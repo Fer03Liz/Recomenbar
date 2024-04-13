@@ -28,6 +28,7 @@ public class HelloController {
 
     @FXML
     private void onRegisterButtonClick(ActionEvent event) {
+        // Cargar la nueva pantalla (LoginScreen.fxml)
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         GestorDePantallas gestorDePantallas = new GestorDePantallas(stage);
         gestorDePantallas.mostrarPantalla("Register");
