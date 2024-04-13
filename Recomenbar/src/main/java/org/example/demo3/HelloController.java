@@ -7,54 +7,29 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import javafx.fxml.FXML;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 
 import java.io.IOException;
 
 public class HelloController {
 
-    @FXML
-    private ImageView imageView;
+    private GestorDePantallas gestorDePantallas;
+
+    public void setGestorDePantallas(GestorDePantallas gestorDePantallas) {
+        this.gestorDePantallas = gestorDePantallas;
+    }
 
     @FXML
     private void onLoginButtonClick(ActionEvent event) throws IOException {
         // Cargar la nueva pantalla (LoginScreen.fxml)
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("Login.fxml"));
-        Parent root = loader.load();
-
-        // Obtener la escena actual y el stage asociado
-        Scene scene = ((Node) event.getSource()).getScene();
-        Stage stage = (Stage) scene.getWindow();
-
-        // Cerrar la pantalla actual
-        stage.close();
-
-        // Mostrar la nueva pantalla
-        stage.setScene(new Scene(root));
-        stage.setTitle("LOGIN");
-        stage.show();
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        GestorDePantallas gestorDePantallas = new GestorDePantallas(stage);
+        gestorDePantallas.mostrarPantalla("Login");
     }
 
     @FXML
-    private void onRegisterButtonClick(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("Registrer.fxml"));
-        Parent root = loader.load();
-
-        // Obtener la escena actual y el stage asociado
-        Scene scene = ((Node) event.getSource()).getScene();
-        Stage stage = (Stage) scene.getWindow();
-
-        // Cerrar la pantalla actual
-        stage.close();
-
-        // Mostrar la nueva pantalla
-        stage.setScene(new Scene(root));
-        stage.setTitle("REGISTER");
-        stage.show();
+    private void onRegisterButtonClick(ActionEvent event) {
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        GestorDePantallas gestorDePantallas = new GestorDePantallas(stage);
+        gestorDePantallas.mostrarPantalla("Register");
     }
-
 }
