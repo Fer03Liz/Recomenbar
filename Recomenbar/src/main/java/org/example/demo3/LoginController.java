@@ -27,12 +27,12 @@ public class LoginController {
 
     @FXML
     private TextField ContraseñaField;
+
     @FXML
     private void onHomeButtonClick(ActionEvent event) throws IOException {
-        //System.out.println("ENTRO");
-        Stage stage = new Stage();
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         GestorDePantallas gestorDePantallas = new GestorDePantallas(stage);
-        gestorDePantallas.mostrarPantalla("Register");
+        gestorDePantallas.mostrarPantalla("Home");
     }
 
     @FXML
@@ -49,10 +49,9 @@ public class LoginController {
             }
         }
     }
-
     if(correo){
         if(contrasena){
-            Stage stage = new Stage();
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             GestorDePantallas gestorDePantallas = new GestorDePantallas(stage);
             gestorDePantallas.mostrarPantalla("PostLogin");
 
@@ -69,20 +68,8 @@ public class LoginController {
 
     @FXML
     private void onRegistarButtonClick(ActionEvent event) throws IOException {
-        //System.out.println("ENTRO");
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("Registrer.fxml"));
-        Parent root = loader.load();
-
-        // Obtener la escena actual y el stage asociado
-        Scene scene = ((Node) event.getSource()).getScene();
-        Stage stage = (Stage) scene.getWindow();
-
-        // Cerrar la pantalla actual
-        stage.close();
-
-        // Mostrar la nueva pantalla
-        stage.setScene(new Scene(root));
-        stage.setTitle("Registrar");
-        stage.show();
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        GestorDePantallas gestorDePantallas = new GestorDePantallas(stage);
+        gestorDePantallas.mostrarPantalla("Register");
     }
 }
