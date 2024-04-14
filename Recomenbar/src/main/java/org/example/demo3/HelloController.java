@@ -21,14 +21,14 @@ public class HelloController {
     @FXML
     private void onLoginButtonClick(ActionEvent event) throws IOException {
         // Cargar la nueva pantalla (LoginScreen.fxml)
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Stage stage = new Stage();
         GestorDePantallas gestorDePantallas = new GestorDePantallas(stage);
         gestorDePantallas.mostrarPantalla("Login");
     }
 
     @FXML
     private void onRegisterButtonClick(ActionEvent event) {
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Stage stage = new Stage();
         GestorDePantallas gestorDePantallas = new GestorDePantallas(stage);
         gestorDePantallas.mostrarPantalla("Register");
     }

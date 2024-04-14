@@ -15,17 +15,9 @@ public class PostLoginController {
     @FXML
     private void onReservarButtonClick(ActionEvent event) throws IOException {
         //System.out.println("ENTRO");
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("Reservar.fxml"));
-        Parent root = loader.load();
-        // Obtener la escena actual y el stage asociado
-        Scene scene = ((Node) event.getSource()).getScene();
-        Stage stage = (Stage) scene.getWindow();
-        // Cerrar la pantalla actual
-        stage.close();
-        // Mostrar la nueva pantalla
-        stage.setScene(new Scene(root));
-        stage.setTitle("RESERVAR");
-        stage.show();
+        Stage stage = new Stage();
+        GestorDePantallas gestorDePantallas = new GestorDePantallas(stage);
+        gestorDePantallas.mostrarPantalla("Reservar");
     }
 
 }
