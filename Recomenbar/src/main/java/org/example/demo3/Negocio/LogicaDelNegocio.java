@@ -1,6 +1,7 @@
 package org.example.demo3.Negocio;
 
 import org.example.demo3.Entidades.Discoteca;
+import org.example.demo3.ReservarController;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +21,7 @@ public class LogicaDelNegocio {
     public boolean registrarReserva(){
         boolean resultado = false;
         return resultado;
+
     }
 
     public List<Discoteca> disponibles(){
