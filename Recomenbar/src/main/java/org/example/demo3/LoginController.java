@@ -41,14 +41,15 @@ public class LoginController {
     boolean correo= false;
     boolean contrasena = false;
 
-    for(Map.Entry<String, String> usuario : usuarios.entrySet()){
-        if(CorreoField.getText().equals(usuario.getValue())){
-            correo = true;
-            if(ContraseñaField.getText().equals(usuario.getValue())){
-              contrasena = true;
+        for(Map.Entry<String, String> usuario : usuarios.entrySet()){
+            if(CorreoField.getText().equals(usuario.getKey())){
+                correo = true;
+                if(ContraseñaField.getText().equals(usuario.getValue())){
+                    contrasena = true;
+                }
             }
         }
-    }
+
     if(correo){
         if(contrasena){
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
