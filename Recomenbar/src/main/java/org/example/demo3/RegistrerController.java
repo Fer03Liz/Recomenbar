@@ -36,14 +36,14 @@ public class RegistrerController {
 
     @FXML
     private void onVolverButtonClick(ActionEvent event) throws IOException {
-        Stage stage = new Stage();
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         GestorDePantallas gestorDePantallas = new GestorDePantallas(stage);
         gestorDePantallas.mostrarPantalla("Login");
     }
 
     @FXML
     private void onHomeButtonClick(ActionEvent event) throws IOException {
-        Stage stage = new Stage();
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         GestorDePantallas gestorDePantallas = new GestorDePantallas(stage);
         gestorDePantallas.mostrarPantalla("Home");
     }
@@ -59,7 +59,7 @@ public class RegistrerController {
             int edad = Integer.parseInt(edadText);
             if(!nombres.isEmpty()&&!correo.isEmpty()&&!contraseña.isEmpty()){
                 //System.out.println("ENTRO");
-                Stage stage = new Stage();
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 GestorDePantallas gestorDePantallas = new GestorDePantallas(stage);
                 gestorDePantallas.mostrarPantalla("Reservar");
             }else if(nombres.isEmpty()){

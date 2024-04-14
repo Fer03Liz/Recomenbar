@@ -20,7 +20,6 @@ public class HelloController {
 
     @FXML
     private void onLoginButtonClick(ActionEvent event) throws IOException {
-        // Cargar la nueva pantalla (LoginScreen.fxml)
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         GestorDePantallas gestorDePantallas = new GestorDePantallas(stage);
         gestorDePantallas.mostrarPantalla("Login");
@@ -28,7 +27,6 @@ public class HelloController {
 
     @FXML
     private void onRegisterButtonClick(ActionEvent event) {
-        // Cargar la nueva pantalla (LoginScreen.fxml)
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         GestorDePantallas gestorDePantallas = new GestorDePantallas(stage);
         gestorDePantallas.mostrarPantalla("Register");

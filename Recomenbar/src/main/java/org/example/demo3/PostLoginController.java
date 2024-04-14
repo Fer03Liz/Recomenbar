@@ -14,8 +14,7 @@ public class PostLoginController {
 
     @FXML
     private void onReservarButtonClick(ActionEvent event) throws IOException {
-        //System.out.println("ENTRO");
-        Stage stage = new Stage();
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         GestorDePantallas gestorDePantallas = new GestorDePantallas(stage);
         gestorDePantallas.mostrarPantalla("Reservar");
     }
