@@ -5,10 +5,12 @@ import javafx.stage.Stage;
 
 import java.io.PrintStream;
 import java.sql.*;
+import java.util.Scanner;
 
 
 public class HelloApplication extends Application {
-
+PreparedStatement ps;
+    public static Scanner scanner=new Scanner(System.in);
     @Override
     public void start(Stage primaryStage) throws Exception {
         // Instancia el gestor de pantallas y muestra la pantalla inicial
@@ -37,6 +39,7 @@ public class HelloApplication extends Application {
         }catch (SQLException e){
             PrintStream printStream = System.err;
             System.setErr(printStream);
+
             System.out.println(e.getMessage());
             throw new RuntimeException(e);
         }
@@ -44,8 +47,13 @@ public class HelloApplication extends Application {
     }
 
 
+
+
+
+
     public static void main(String[] args) {
-        Connection bd = ConectarBD("world");// nombre de la base de datos a la cual será conectada
+
+        ConectarBD("world");// nombre de la base de datos a la cual será conectada
         launch(args);
     }
 }
