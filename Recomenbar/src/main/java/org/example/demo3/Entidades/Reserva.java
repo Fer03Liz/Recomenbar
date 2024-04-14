@@ -4,22 +4,28 @@ import java.util.List;
 
 public class Reserva {
     private String fecha;
-    private String hora;
-    private String cantEntradas;
-    private String estadoReserva;
+    private int cantEntradas;
+    private boolean estadoReserva; //verdadero si esta activa falso si ya se uso o se cancelo
     private String metodoDePago;
     private String precioTotal;
-    private String infoContacto;
     private List<Entrada> entradas;
+    private Discoteca lugar;
 
-    public Reserva (String fecha,String hora,String cantEntradas,String estadoReserva,String metodoDePago,String precioTotal,String infoContacto){
+    public Reserva (String fecha,Discoteca lugar,int cantEntradas,boolean estadoReserva,String metodoDePago,String precioTotal ){
         this.fecha=fecha;
-        this.hora=hora;
+        this.lugar=lugar;
         this.cantEntradas=cantEntradas;
         this.estadoReserva=estadoReserva;
         this.metodoDePago=metodoDePago;
         this.precioTotal=precioTotal;
-        this.infoContacto=infoContacto;
+    }
+
+    public Reserva(Discoteca barSeleccionado, int cantidadPersonas, String fechaReserva) {
+        this.cantEntradas=cantidadPersonas;
+        this.estadoReserva=true;
+        this.fecha=fechaReserva;
+        this.lugar=barSeleccionado;
+
     }
 
     public String getFecha() {
@@ -30,27 +36,19 @@ public class Reserva {
         this.fecha = fecha;
     }
 
-    public String getHora() {
-        return hora;
-    }
-
-    public void setHora(String hora) {
-        this.hora = hora;
-    }
-
-    public String getCantEntradas() {
+    public int getCantEntradas() {
         return cantEntradas;
     }
 
-    public void setCantEntradas(String cantEntradas) {
+    public void setCantEntradas(int cantEntradas) {
         this.cantEntradas = cantEntradas;
     }
 
-    public String getEstadoReserva() {
+    public boolean getEstadoReserva() {
         return estadoReserva;
     }
 
-    public void setEstadoReserva(String estadoReserva) {
+    public void setEstadoReserva(boolean estadoReserva) {
         this.estadoReserva = estadoReserva;
     }
 
@@ -68,13 +66,5 @@ public class Reserva {
 
     public void setPrecioTotal(String precioTotal) {
         this.precioTotal = precioTotal;
-    }
-
-    public String getInfoContacto() {
-        return infoContacto;
-    }
-
-    public void setInfoContacto(String infoContacto) {
-        this.infoContacto = infoContacto;
     }
 }
