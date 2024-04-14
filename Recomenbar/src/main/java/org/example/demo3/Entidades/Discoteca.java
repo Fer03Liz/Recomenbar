@@ -21,6 +21,10 @@ public class Discoteca {
         this.capacidadAforo=capacidadAforo;
     }
 
+    public Discoteca() {
+
+    }
+
     public String getNombre() {
         return nombre;
     }

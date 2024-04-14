@@ -29,12 +29,6 @@ public class RegistrerController {
     private PasswordField contraseñaField;
 
     @FXML
-    private Button registrarButton;
-
-    @FXML
-    private Button volverButton;
-
-    @FXML
     private void onVolverButtonClick(ActionEvent event) throws IOException {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         GestorDePantallas gestorDePantallas = new GestorDePantallas(stage);
