@@ -36,40 +36,16 @@ public class RegistrerController {
 
     @FXML
     private void onVolverButtonClick(ActionEvent event) throws IOException {
-        // Cargar la nueva pantalla (LoginScreen.fxml)
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("Login.fxml"));
-        Parent root = loader.load();
-
-        // Obtener la escena actual y el stage asociado
-        Scene scene = ((Node) event.getSource()).getScene();
-        Stage stage = (Stage) scene.getWindow();
-
-        // Cerrar la pantalla actual
-        stage.close();
-
-        // Mostrar la nueva pantalla
-        stage.setScene(new Scene(root));
-        stage.setTitle("LOGIN");
-        stage.show();
+        Stage stage = new Stage();
+        GestorDePantallas gestorDePantallas = new GestorDePantallas(stage);
+        gestorDePantallas.mostrarPantalla("Login");
     }
 
     @FXML
     private void onHomeButtonClick(ActionEvent event) throws IOException {
-        //System.out.println("ENTRO");
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("Home.fxml"));
-        Parent root = loader.load();
-
-        // Obtener la escena actual y el stage asociado
-        Scene scene = ((Node) event.getSource()).getScene();
-        Stage stage = (Stage) scene.getWindow();
-
-        // Cerrar la pantalla actual
-        stage.close();
-
-        // Mostrar la nueva pantalla
-        stage.setScene(new Scene(root));
-        stage.setTitle("LOGIN");
-        stage.show();
+        Stage stage = new Stage();
+        GestorDePantallas gestorDePantallas = new GestorDePantallas(stage);
+        gestorDePantallas.mostrarPantalla("Home");
     }
 
     @FXML
@@ -83,19 +59,9 @@ public class RegistrerController {
             int edad = Integer.parseInt(edadText);
             if(!nombres.isEmpty()&&!correo.isEmpty()&&!contraseña.isEmpty()){
                 //System.out.println("ENTRO");
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("PostLogin.fxml"));
-                Parent root = loader.load();
-                // Obtener la escena actual y el stage asociado
-                Scene scene = ((Node) event.getSource()).getScene();
-                Stage stage = (Stage) scene.getWindow();
-
-                // Cerrar la pantalla actual
-                stage.close();
-
-                // Mostrar la nueva pantalla
-                stage.setScene(new Scene(root));
-                stage.setTitle("LOGIN");
-                stage.show();
+                Stage stage = new Stage();
+                GestorDePantallas gestorDePantallas = new GestorDePantallas(stage);
+                gestorDePantallas.mostrarPantalla("Reservar");
             }else if(nombres.isEmpty()){
                 nombresField.setPromptText("Ingrese un nombre");
             }else if(correo.isEmpty()){

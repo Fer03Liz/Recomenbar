@@ -30,20 +30,9 @@ public class LoginController {
     @FXML
     private void onHomeButtonClick(ActionEvent event) throws IOException {
         //System.out.println("ENTRO");
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("Home.fxml"));
-        Parent root = loader.load();
-
-        // Obtener la escena actual y el stage asociado
-        Scene scene = ((Node) event.getSource()).getScene();
-        Stage stage = (Stage) scene.getWindow();
-
-        // Cerrar la pantalla actual
-        stage.close();
-
-        // Mostrar la nueva pantalla
-        stage.setScene(new Scene(root));
-        stage.setTitle("Home");
-        stage.show();
+        Stage stage = new Stage();
+        GestorDePantallas gestorDePantallas = new GestorDePantallas(stage);
+        gestorDePantallas.mostrarPantalla("Register");
     }
 
     @FXML
@@ -63,17 +52,9 @@ public class LoginController {
 
     if(correo){
         if(contrasena){
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("PostLogin.fxml"));
-            Parent root = loader.load();
-            // Obtener la escena actual y el stage asociado
-            Scene scene = ((Node) event.getSource()).getScene();
-            Stage stage = (Stage) scene.getWindow();
-            // Cerrar la pantalla actual
-            stage.close();
-            // Mostrar la nueva pantalla
-            stage.setScene(new Scene(root));
-            stage.setTitle("Preview");
-            stage.show();
+            Stage stage = new Stage();
+            GestorDePantallas gestorDePantallas = new GestorDePantallas(stage);
+            gestorDePantallas.mostrarPantalla("PostLogin");
 
         }else{
             ContraseñaField.setPromptText("Contraseña incorrecta");

@@ -19,7 +19,7 @@ public class GestorDePantallas {
         this.rutasFXML.put("Home", "/org/example/demo3/Home.fxml");
         this.rutasFXML.put("Login", "/org/example/demo3/Login.fxml");
         this.rutasFXML.put("PostLogin", "/org/example/demo3/PostLogin.fxml");
-        this.rutasFXML.put("Register", "/org/example/demo3/Register.fxml");
+        this.rutasFXML.put("Register", "/org/example/demo3/Registrer.fxml");
         this.rutasFXML.put("Reservar", "/org/example/demo3/Reservar.fxml");
     }
 
@@ -34,10 +34,11 @@ public class GestorDePantallas {
             Parent root = loader.load();
             Scene scene = new Scene(root);
             escenarioPrincipal.setScene(scene);
-            escenarioPrincipal.show();
+            escenarioPrincipal.show();  // Muestra la nueva pantalla
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
 }
 
