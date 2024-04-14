@@ -48,6 +48,18 @@ public class RegistrerController {
         gestorDePantallas.mostrarPantalla("Home");
     }
 
+    public static boolean esNumerico(String str) {
+        if (str == null || str.isEmpty()) {
+            return false;
+        }
+        for (char c : str.toCharArray()) {
+            if (!Character.isDigit(c)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     @FXML
     private void onRegitrarButtonClick(ActionEvent event) throws IOException {
         //System.out.println("ENTRO");
@@ -55,22 +67,36 @@ public class RegistrerController {
         String correo = correoField.getText();
         String contraseña = contraseñaField.getText();
         String edadText = edadField.getText();
-        if (!edadText.isEmpty()) {
-            int edad = Integer.parseInt(edadText);
-            if(!nombres.isEmpty()&&!correo.isEmpty()&&!contraseña.isEmpty()){
-                //System.out.println("ENTRO");
-                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                GestorDePantallas gestorDePantallas = new GestorDePantallas(stage);
-                gestorDePantallas.mostrarPantalla("Reservar");
+            if(!nombres.isEmpty()&&!correo.isEmpty()&&!contraseña.isEmpty()&&!edadText.isEmpty()){
+                if(correo.contains("@")&&correo.contains(".com")) {
+                    if (esNumerico(edadText)) {
+                        int edad = Integer.parseInt(edadText);
+                        if(edad>=18){
+                            //Logica insertar usuario:
+
+                            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                            GestorDePantallas gestorDePantallas = new GestorDePantallas(stage);
+                            gestorDePantallas.mostrarPantalla("Reservar");
+                        } else{
+                            edadField.clear();
+                            edadField.setPromptText("No cumples con el requisito de edad");
+                        }
+                    } else {
+                        edadField.clear();
+                        edadField.setPromptText("Digita un valor numerico");
+                    }
+                }else{
+                    correoField.clear();
+                    correoField.setPromptText("Digita un correo valido");
+                }
             }else if(nombres.isEmpty()){
                 nombresField.setPromptText("Ingrese un nombre");
             }else if(correo.isEmpty()){
                 correoField.setPromptText("Ingrese un correo");
             } else if (contraseña.isEmpty()) {
                 contraseñaField.setPromptText("Ingrese un contraseña");
+            }else if (edadText.isEmpty()) {
+                contraseñaField.setPromptText("Ingrese su edad");
             }
-        } else {
-            edadField.setPromptText("Digita un valor numerico");
-        }
     }
 }
