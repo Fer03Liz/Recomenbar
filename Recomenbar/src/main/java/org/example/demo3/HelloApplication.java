@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 
 public class HelloApplication extends Application {
-PreparedStatement ps;
+//PreparedStatement ps;
     public static Scanner scanner=new Scanner(System.in);
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -27,9 +27,9 @@ PreparedStatement ps;
         try {
             conexion= DriverManager.getConnection(host+bd,user,pass);
             Statement statement=conexion.createStatement();
-            ResultSet resultSet=statement.executeQuery("SELECT * FROM CITY");
+            ResultSet resultSet=statement.executeQuery("SELECT * FROM registrarusuario");
             while (resultSet.next()){
-                System.out.println(resultSet.getString("id")+" "+ "|"+resultSet.getString("name")+"|"+resultSet.getString("CountryCode")+"|"+resultSet.getString("District"));
+                System.out.println(resultSet.getString("Nombres")+" "+ "|"+resultSet.getString("Correo")+"|"+resultSet.getString("Edad")+"|"+resultSet.getString("Contraseña"));
 
             }
             conexion.close();
@@ -53,7 +53,7 @@ PreparedStatement ps;
 
     public static void main(String[] args) {
 
-        ConectarBD("world");// nombre de la base de datos a la cual será conectada
+        ConectarBD("recomenbar");// nombre de la base de datos a la cual será conectada
         launch(args);
     }
 }

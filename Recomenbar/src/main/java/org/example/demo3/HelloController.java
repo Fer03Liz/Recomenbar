@@ -7,8 +7,10 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import org.example.demo3.Negocio.LogicaDelNegocio;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 public class HelloController {
 
@@ -26,9 +28,10 @@ public class HelloController {
     }
 
     @FXML
-    private void onRegisterButtonClick(ActionEvent event) {
+    private void onRegisterButtonClick(ActionEvent event) throws SQLException {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         GestorDePantallas gestorDePantallas = new GestorDePantallas(stage);
         gestorDePantallas.mostrarPantalla("Register");
+        LogicaDelNegocio.registrarUsuario();
     }
 }
