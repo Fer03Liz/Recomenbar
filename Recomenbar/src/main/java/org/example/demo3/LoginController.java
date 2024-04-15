@@ -27,23 +27,12 @@ public class LoginController {
 
     @FXML
     private TextField ContraseñaField;
+
     @FXML
     private void onHomeButtonClick(ActionEvent event) throws IOException {
-        //System.out.println("ENTRO");
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("Home.fxml"));
-        Parent root = loader.load();
-
-        // Obtener la escena actual y el stage asociado
-        Scene scene = ((Node) event.getSource()).getScene();
-        Stage stage = (Stage) scene.getWindow();
-
-        // Cerrar la pantalla actual
-        stage.close();
-
-        // Mostrar la nueva pantalla
-        stage.setScene(new Scene(root));
-        stage.setTitle("Home");
-        stage.show();
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        GestorDePantallas gestorDePantallas = new GestorDePantallas(stage);
+        gestorDePantallas.mostrarPantalla("Home");
     }
 
     @FXML
@@ -52,28 +41,20 @@ public class LoginController {
     boolean correo= false;
     boolean contrasena = false;
 
-    for(Map.Entry<String, String> usuario : usuarios.entrySet()){
-        if(CorreoField.getText().equals(usuario.getValue())){
-            correo = true;
-            if(ContraseñaField.getText().equals(usuario.getValue())){
-              contrasena = true;
+        for(Map.Entry<String, String> usuario : usuarios.entrySet()){
+            if(CorreoField.getText().equals(usuario.getKey())){
+                correo = true;
+                if(ContraseñaField.getText().equals(usuario.getValue())){
+                    contrasena = true;
+                }
             }
         }
-    }
 
     if(correo){
         if(contrasena){
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("PostLogin.fxml"));
-            Parent root = loader.load();
-            // Obtener la escena actual y el stage asociado
-            Scene scene = ((Node) event.getSource()).getScene();
-            Stage stage = (Stage) scene.getWindow();
-            // Cerrar la pantalla actual
-            stage.close();
-            // Mostrar la nueva pantalla
-            stage.setScene(new Scene(root));
-            stage.setTitle("Preview");
-            stage.show();
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            GestorDePantallas gestorDePantallas = new GestorDePantallas(stage);
+            gestorDePantallas.mostrarPantalla("PostLogin");
 
         }else{
             ContraseñaField.setPromptText("Contraseña incorrecta");
@@ -88,20 +69,8 @@ public class LoginController {
 
     @FXML
     private void onRegistarButtonClick(ActionEvent event) throws IOException {
-        //System.out.println("ENTRO");
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("Registrer.fxml"));
-        Parent root = loader.load();
-
-        // Obtener la escena actual y el stage asociado
-        Scene scene = ((Node) event.getSource()).getScene();
-        Stage stage = (Stage) scene.getWindow();
-
-        // Cerrar la pantalla actual
-        stage.close();
-
-        // Mostrar la nueva pantalla
-        stage.setScene(new Scene(root));
-        stage.setTitle("Registrar");
-        stage.show();
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        GestorDePantallas gestorDePantallas = new GestorDePantallas(stage);
+        gestorDePantallas.mostrarPantalla("Register");
     }
 }

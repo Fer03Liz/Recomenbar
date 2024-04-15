@@ -29,47 +29,29 @@ public class RegistrerController {
     private PasswordField contraseñaField;
 
     @FXML
-    private Button registrarButton;
-
-    @FXML
-    private Button volverButton;
-
-    @FXML
     private void onVolverButtonClick(ActionEvent event) throws IOException {
-        // Cargar la nueva pantalla (LoginScreen.fxml)
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("Login.fxml"));
-        Parent root = loader.load();
-
-        // Obtener la escena actual y el stage asociado
-        Scene scene = ((Node) event.getSource()).getScene();
-        Stage stage = (Stage) scene.getWindow();
-
-        // Cerrar la pantalla actual
-        stage.close();
-
-        // Mostrar la nueva pantalla
-        stage.setScene(new Scene(root));
-        stage.setTitle("LOGIN");
-        stage.show();
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        GestorDePantallas gestorDePantallas = new GestorDePantallas(stage);
+        gestorDePantallas.mostrarPantalla("Login");
     }
 
     @FXML
     private void onHomeButtonClick(ActionEvent event) throws IOException {
-        //System.out.println("ENTRO");
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("Home.fxml"));
-        Parent root = loader.load();
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        GestorDePantallas gestorDePantallas = new GestorDePantallas(stage);
+        gestorDePantallas.mostrarPantalla("Home");
+    }
 
-        // Obtener la escena actual y el stage asociado
-        Scene scene = ((Node) event.getSource()).getScene();
-        Stage stage = (Stage) scene.getWindow();
-
-        // Cerrar la pantalla actual
-        stage.close();
-
-        // Mostrar la nueva pantalla
-        stage.setScene(new Scene(root));
-        stage.setTitle("LOGIN");
-        stage.show();
+    public static boolean esNumerico(String str) {
+        if (str == null || str.isEmpty()) {
+            return false;
+        }
+        for (char c : str.toCharArray()) {
+            if (!Character.isDigit(c)) {
+                return false;
+            }
+        }
+        return true;
     }
 
     @FXML
@@ -79,32 +61,36 @@ public class RegistrerController {
         String correo = correoField.getText();
         String contraseña = contraseñaField.getText();
         String edadText = edadField.getText();
-        if (!edadText.isEmpty()) {
-            int edad = Integer.parseInt(edadText);
-            if(!nombres.isEmpty()&&!correo.isEmpty()&&!contraseña.isEmpty()){
-                //System.out.println("ENTRO");
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("PostLogin.fxml"));
-                Parent root = loader.load();
-                // Obtener la escena actual y el stage asociado
-                Scene scene = ((Node) event.getSource()).getScene();
-                Stage stage = (Stage) scene.getWindow();
+            if(!nombres.isEmpty()&&!correo.isEmpty()&&!contraseña.isEmpty()&&!edadText.isEmpty()){
+                if(correo.contains("@")&&correo.contains(".com")) {
+                    if (esNumerico(edadText)) {
+                        int edad = Integer.parseInt(edadText);
+                        if(edad>=18){
+                            //Logica insertar usuario:
 
-                // Cerrar la pantalla actual
-                stage.close();
-
-                // Mostrar la nueva pantalla
-                stage.setScene(new Scene(root));
-                stage.setTitle("LOGIN");
-                stage.show();
+                            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                            GestorDePantallas gestorDePantallas = new GestorDePantallas(stage);
+                            gestorDePantallas.mostrarPantalla("Reservar");
+                        } else{
+                            edadField.clear();
+                            edadField.setPromptText("No cumples con el requisito de edad");
+                        }
+                    } else {
+                        edadField.clear();
+                        edadField.setPromptText("Digita un valor numerico");
+                    }
+                }else{
+                    correoField.clear();
+                    correoField.setPromptText("Digita un correo valido");
+                }
             }else if(nombres.isEmpty()){
                 nombresField.setPromptText("Ingrese un nombre");
             }else if(correo.isEmpty()){
                 correoField.setPromptText("Ingrese un correo");
             } else if (contraseña.isEmpty()) {
                 contraseñaField.setPromptText("Ingrese un contraseña");
+            }else if (edadText.isEmpty()) {
+                contraseñaField.setPromptText("Ingrese su edad");
             }
-        } else {
-            edadField.setPromptText("Digita un valor numerico");
-        }
     }
 }

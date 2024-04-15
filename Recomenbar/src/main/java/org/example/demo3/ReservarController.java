@@ -1,42 +1,88 @@
 package org.example.demo3;
 
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.*;
+import org.example.demo3.Entidades.Discoteca;
+import org.example.demo3.Entidades.Reserva;
 
+import java.net.URL;
+import java.time.LocalDate;
+import java.util.ResourceBundle;
+import java.util.ArrayList;
+import java.util.List;
 
-public class ReservarController {
+public class ReservarController implements Initializable {
 
-    public void insertarReserva()throws SQLException {
-        String sql= "INSERT INTO city VALUES(?,?,?,?,?)";
-        String bd="world";
-        PreparedStatement sentencia=HelloApplication.ConectarBD(bd).prepareStatement(sql);
-/*
-        System.out.println("ID: ");
-        int ID =HelloApplication.scanner.nextInt();
-        sentencia.setInt(1, ID);
-        HelloApplication.scanner.nextLine();
-*/
-        //
-        System.out.println("Name: ");
-        String name=HelloApplication.scanner.nextLine();
-        sentencia.setString(2,name);
-        //
-        System.out.println("Correo: ");
-        String email=HelloApplication.scanner.nextLine();
-        sentencia.setString(3,email);
-        //
-        System.out.println("Edd: ");
-        int Edd =HelloApplication.scanner.nextInt();
-        sentencia.setInt(4, Edd);
-        HelloApplication.scanner.nextLine();
-        //
-        System.out.println("Contraseña: ");
-        String password=HelloApplication.scanner.nextLine();
-        sentencia.setString(5,password);
+    @FXML
+    private ListView<String> listViewBares;
 
-        int filasINS=sentencia.executeUpdate();//filas insertadas, da la info de filas modificadas o insertadas
-        if (filasINS>0){
-            System.out.println("Insertado con exito!!");
+    @FXML
+    private TextField personasField;
+
+    @FXML
+    private TextField TextAux;
+
+    @FXML
+    private DatePicker fechaField;
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        // Inicializar la lista de nombres de bares
+        List<String> nombresBares = obtenerNombresBaresLocales();
+
+        // Llenar la ListView con los nombres de los bares
+        listViewBares.getItems().addAll(nombresBares);
+    }
+
+    private List<String> obtenerNombresBaresLocales() {
+        List<String> nombresBares = new ArrayList<>();
+        nombresBares.add("Bar 1");
+        nombresBares.add("Bar 2");
+        nombresBares.add("Bar 3");
+        // Agregar más nombres de bares según sea necesario
+        return nombresBares;
+    }
+
+    public static boolean esNumerico(String str) {
+        if (str == null || str.isEmpty()) {
+            return false;
         }
+        for (char c : str.toCharArray()) {
+            if (!Character.isDigit(c)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    @FXML
+    private void onReservarButtonClick() {
+        // Obtener la selección del usuario del ListView
+        String barSeleccionado = listViewBares.getSelectionModel().getSelectedItem();
+       // Discoteca d = new Discoteca();
+        LocalDate fechaSeleccionada = fechaField.getValue();
+        System.out.println(fechaSeleccionada);
+        if(!barSeleccionado.isEmpty()){
+            if(fechaSeleccionada.isAfter(LocalDate.now())||fechaSeleccionada.isEqual(LocalDate.now())){
+                if (esNumerico(personasField.getText())) {
+                    int cantidadPersonas = Integer.parseInt(personasField.getText());
+                    if(cantidadPersonas >=1) {
+                        personasField.clear();
+                        personasField.setPromptText("FUNCIONO");
+                    }
+                }else{
+                    personasField.clear();
+                    personasField.setPromptText("Digita un valor numerico");
+                }
+            }else{
+                fechaField.setPromptText("Escoja una fecha valida");
+            }
+        }else{
+            TextAux.clear();
+            TextAux.setPromptText("SELECCIONA UN BAR");
+        }
+
+
     }
 }
