@@ -4,13 +4,9 @@ import org.example.demo3.Entidades.Discoteca;
 import org.example.demo3.HelloApplication;
 import org.example.demo3.ReservarController;
 
-import java.sql.Date;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.sql.Timestamp;
 
 public class LogicaDelNegocio {
 
@@ -53,10 +49,52 @@ public class LogicaDelNegocio {
 }
 
 
-    public boolean loginRealizado(){
-        boolean resultado = false;
-        return resultado;
+    public boolean loginRealizado() {
+        Connection conexion = null;
+        PreparedStatement sentencia = null;
+        ResultSet resultados = null;
+
+        try {
+            conexion = HelloApplication.ConectarBD("recomenbar");
+            String sql = "SELECT * FROM registrarusuario WHERE Correo = ? AND Contraseña = ?";
+            sentencia = conexion.prepareStatement(sql);
+
+
+            System.out.println("Correo: ");
+            String email = HelloApplication.scanner.nextLine();
+            System.out.println("Contraseña: ");
+            String password = HelloApplication.scanner.nextLine();
+
+
+            sentencia.setString(1, email);
+            sentencia.setString(2, password);
+
+
+            resultados = sentencia.executeQuery();
+
+
+            if (resultados.next()) {
+                System.out.println("Login exitoso.");
+                return true;
+            } else {
+                System.out.println("Correo o contraseña incorrectos.");
+                return false;
+            }
+        } catch (SQLException e) {
+            System.out.println("Error al conectarse a la base de datos: " + e.getMessage());
+            return false;
+        } finally {
+
+            try {
+                if (resultados != null) resultados.close();
+                if (sentencia != null) sentencia.close();
+                if (conexion != null) conexion.close();
+            } catch (SQLException ex) {
+                System.out.println("Error al cerrar la conexión: " + ex.getMessage());
+            }
+        }
     }
+
 
     public void registrarReserva() throws SQLException {
         String sql= "INSERT INTO registroreservas VALUES(?,?)";
