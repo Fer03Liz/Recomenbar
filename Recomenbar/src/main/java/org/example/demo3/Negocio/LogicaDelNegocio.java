@@ -96,9 +96,30 @@ public class LogicaDelNegocio {
         return reservaregistrada;
     }
 
-    public List<Discoteca> disponibles() {
-        List<Discoteca> disponibles = new ArrayList<>();
-        // Agrega aquí la lógica para obtener las discotecas disponibles
-        return disponibles;
+    public List<String> disponibles() throws SQLException {
+        List<String> discotecas = new ArrayList<>();
+
+        // Establecer la conexión con la base de datos
+        Connection conexion = HelloApplication.conectarBD("recomenbar");
+
+        // Preparar la sentencia SQL
+        String sql = "SELECT nombre FROM discoteca";
+        PreparedStatement statement = conexion.prepareStatement(sql);
+
+        // Ejecutar la consulta
+        ResultSet resultSet = statement.executeQuery();
+
+        // Recorrer los resultados y agregar los nombres a la lista
+        while (resultSet.next()) {
+            String nombreDiscoteca = resultSet.getString("Nombre");
+            discotecas.add(nombreDiscoteca);
+        }
+
+        // Cerrar la conexión y liberar los recursos
+        resultSet.close();
+        statement.close();
+        conexion.close();
+
+        return discotecas;
     }
 }

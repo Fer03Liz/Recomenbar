@@ -33,17 +33,20 @@ public class ReservarController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         // Inicializar la lista de nombres de bares
-        List<String> nombresBares = obtenerNombresBaresLocales();
+        List<String> nombresBares = null;
+        try {
+            nombresBares = obtenerNombresBaresLocales();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
 
         // Llenar la ListView con los nombres de los bares
         listViewBares.getItems().addAll(nombresBares);
     }
 
-    private List<String> obtenerNombresBaresLocales() {
-        List<String> nombresBares = new ArrayList<>();
-        nombresBares.add("Bar 1");
-        nombresBares.add("Bar 2");
-        nombresBares.add("Bar 3");
+    private List<String> obtenerNombresBaresLocales() throws SQLException {
+        LogicaDelNegocio logicaDelNegocio= LogicaDelNegocio.getInstancia();
+        List<String> nombresBares = logicaDelNegocio.disponibles();
         // Agregar más nombres de bares según sea necesario
         return nombresBares;
     }
