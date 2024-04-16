@@ -1,5 +1,6 @@
 package org.example.demo3;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -79,9 +80,9 @@ public class ReservarController implements Initializable {
                         // Convertir LocalDate a Timestamp
                         Timestamp timestamp = Timestamp.valueOf(fechaSeleccionada.atStartOfDay());
                         if(logicaDelNegocio.registrarReserva(cantidadPersonas, timestamp, barSeleccionado)){
-                            // Hacer algo si la reserva se registró correctamente
+                            // Cierra la aplicación después de registrar la reserva correctamente
+                            Platform.exit();
                         }
-
                     }
                 }else{
                     personasField.clear();

@@ -27,9 +27,7 @@ public class RegistrerController {
 
     @FXML
     private void onVolverButtonClick(ActionEvent event) throws IOException {
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        GestorDePantallas gestorDePantallas = GestorDePantallas.obtenerInstancia(stage);
-        gestorDePantallas.mostrarPantalla("Login");
+        mostrarPantalla("Login", event);
     }
 
     public static boolean esNumerico(String str) {
@@ -46,7 +44,6 @@ public class RegistrerController {
 
     @FXML
     private void onRegitrarButtonClick(ActionEvent event) throws IOException, SQLException {
-        //System.out.println("ENTRO");
         String nombres = nombresField.getText();
         String correo = correoField.getText();
         String contraseña = contraseñaField.getText();
@@ -59,9 +56,7 @@ public class RegistrerController {
                         // Lógica insertar usuario:
                         LogicaDelNegocio logicaDelNegocio= LogicaDelNegocio.getInstancia();
                         if(logicaDelNegocio.registrarUsuario(nombres,correo,edad,contraseña)) {
-                            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                            GestorDePantallas gestorDePantallas = GestorDePantallas.obtenerInstancia(stage);
-                            gestorDePantallas.mostrarPantalla("Reservar");
+                            mostrarPantalla("Reservar", event);
                         }
                     } else {
                         edadField.clear();
@@ -84,5 +79,11 @@ public class RegistrerController {
         } else if (edadText.isEmpty()) {
             contraseñaField.setPromptText("Ingrese su edad");
         }
+    }
+
+    private void mostrarPantalla(String pantalla, ActionEvent event) throws IOException {
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        GestorDePantallas gestorDePantallas = GestorDePantallas.obtenerInstancia(stage);
+        gestorDePantallas.mostrarPantalla(pantalla);
     }
 }
