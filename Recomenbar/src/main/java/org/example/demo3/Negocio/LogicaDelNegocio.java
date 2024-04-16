@@ -2,7 +2,6 @@ package org.example.demo3.Negocio;
 
 import org.example.demo3.Entidades.Discoteca;
 import org.example.demo3.HelloApplication;
-import org.example.demo3.ReservarController;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -11,7 +10,7 @@ import java.util.List;
 public class LogicaDelNegocio {
 
 
-        public static void registrarUsuario() throws SQLException{
+        public void registrarUsuario() throws SQLException{
 
             Connection conexion = HelloApplication.ConectarBD("recomenbar");
 
@@ -49,7 +48,7 @@ public class LogicaDelNegocio {
 }
 
 
-    public boolean loginRealizado() {
+    public void loginRealizado() {
         Connection conexion = null;
         PreparedStatement sentencia = null;
         ResultSet resultados = null;
@@ -75,14 +74,11 @@ public class LogicaDelNegocio {
 
             if (resultados.next()) {
                 System.out.println("Login exitoso.");
-                return true;
             } else {
                 System.out.println("Correo o contraseña incorrectos.");
-                return false;
             }
         } catch (SQLException e) {
             System.out.println("Error al conectarse a la base de datos: " + e.getMessage());
-            return false;
         } finally {
 
             try {
