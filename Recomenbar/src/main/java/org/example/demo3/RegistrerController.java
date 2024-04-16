@@ -11,6 +11,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import org.example.demo3.Entidades.Usuario;
+import org.example.demo3.Negocio.LogicaDelNegocio;
 
 import java.io.IOException;
 
@@ -33,13 +34,6 @@ public class RegistrerController {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         GestorDePantallas gestorDePantallas = new GestorDePantallas(stage);
         gestorDePantallas.mostrarPantalla("Login");
-    }
-
-    @FXML
-    private void onHomeButtonClick(ActionEvent event) throws IOException {
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        GestorDePantallas gestorDePantallas = new GestorDePantallas(stage);
-        gestorDePantallas.mostrarPantalla("Home");
     }
 
     public static boolean esNumerico(String str) {

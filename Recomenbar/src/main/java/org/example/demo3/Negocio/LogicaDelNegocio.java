@@ -8,116 +8,94 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LogicaDelNegocio {
+    private static LogicaDelNegocio instancia;
 
+    // Constructor privado para evitar la creación de instancias desde fuera de la clase
+    private LogicaDelNegocio() {
+    }
 
-        public void registrarUsuario() throws SQLException{
+    // Método estático para obtener la instancia única de LogicaDelNegocio
+    public static LogicaDelNegocio getInstancia() {
+        if (instancia == null) {
+            instancia = new LogicaDelNegocio();
+        }
+        return instancia;
+    }
 
-            Connection conexion = HelloApplication.ConectarBD("recomenbar");
+    public boolean registrarUsuario(String name, String email, int Edd, String password) {
+        boolean insertado = false;
+        try (Connection conexion = HelloApplication.conectarBD("recomenbar");
+             PreparedStatement sentencia = conexion.prepareStatement("INSERT INTO registrarusuario (Name, Correo, Edd, Contraseña) VALUES (?, ?, ?, ?)")) {
 
-            String sql= "INSERT INTO registrarusuario VALUES(?,?,?,?,?)";
-            String bd="recomenbar";
-            PreparedStatement sentencia= HelloApplication.ConectarBD(bd).prepareStatement(sql);
-/*
-        System.out.println("ID: ");
-        int ID =HelloApplication.scanner.nextInt();
-        sentencia.setInt(1, ID);
-        HelloApplication.scanner.nextLine();
-*/
-            //
-            System.out.println("Name: ");
-            String name=HelloApplication.scanner.nextLine();
-            sentencia.setString(2,name);
-            //
-            System.out.println("Correo: ");
-            String email=HelloApplication.scanner.nextLine();
-            sentencia.setString(3,email);
-            //
-            System.out.println("Edd: ");
-            int Edd =HelloApplication.scanner.nextInt();
-            sentencia.setInt(4, Edd);
-            HelloApplication.scanner.nextLine();
-            //
-            System.out.println("Contraseña: ");
-            String password=HelloApplication.scanner.nextLine();
-            sentencia.setString(5,password);
+            sentencia.setString(1, name);
+            sentencia.setString(2, email);
+            sentencia.setInt(3, Edd);
+            sentencia.setString(4, password);
 
-            int filasINS=sentencia.executeUpdate();//filas insertadas, da la info de filas modificadas o insertadas
-            if (filasINS>0){
-                System.out.println("Insertado con exito!!");
+            int filasINS = sentencia.executeUpdate();
+            if (filasINS > 0) {
+                insertado = true;
+                System.out.println("Insertado con éxito!!");
             }
-}
+        } catch (SQLException e) {
+            System.out.println("Error al registrar usuario: " + e.getMessage());
+        }
+        return insertado;
+    }
 
-
-    public void loginRealizado() {
-        Connection conexion = null;
-        PreparedStatement sentencia = null;
-        ResultSet resultados = null;
-
-        try {
-            conexion = HelloApplication.ConectarBD("recomenbar");
-            String sql = "SELECT * FROM registrarusuario WHERE Correo = ? AND Contraseña = ?";
-            sentencia = conexion.prepareStatement(sql);
-
-
-            System.out.println("Correo: ");
-            String email = HelloApplication.scanner.nextLine();
-            System.out.println("Contraseña: ");
-            String password = HelloApplication.scanner.nextLine();
-
+    public boolean loginRealizado(String email, String password) {
+        boolean ingresado = false;
+        try (Connection conexion = HelloApplication.conectarBD("recomenbar");
+             PreparedStatement sentencia = conexion.prepareStatement("SELECT * FROM registrarusuario WHERE Correo = ? AND Contraseña = ?")) {
 
             sentencia.setString(1, email);
             sentencia.setString(2, password);
 
-
-            resultados = sentencia.executeQuery();
-
-
-            if (resultados.next()) {
-                System.out.println("Login exitoso.");
-            } else {
-                System.out.println("Correo o contraseña incorrectos.");
+            try (ResultSet resultados = sentencia.executeQuery()) {
+                if (resultados.next()) {
+                    ingresado = true;
+                    System.out.println("Login exitoso.");
+                } else {
+                    System.out.println("Correo o contraseña incorrectos.");
+                }
             }
         } catch (SQLException e) {
-            System.out.println("Error al conectarse a la base de datos: " + e.getMessage());
-        } finally {
+            System.out.println("Error al realizar el login: " + e.getMessage());
+        }
+        return ingresado;
+    }
 
-            try {
-                if (resultados != null) resultados.close();
-                if (sentencia != null) sentencia.close();
-                if (conexion != null) conexion.close();
-            } catch (SQLException ex) {
-                System.out.println("Error al cerrar la conexión: " + ex.getMessage());
+    public boolean registrarReserva(int cantPersonas, Timestamp timestamp) {
+        boolean reservaregistrada = false;
+        try (Connection conexion = HelloApplication.conectarBD("world");
+             PreparedStatement sentencia = conexion.prepareStatement("INSERT INTO registroreservas (CantidadPersonas, FechaReserva) VALUES (?, ?)")) {
+
+            System.out.println("Cantidad de personas: ");
+            cantPersonas = HelloApplication.scanner.nextInt();
+            sentencia.setInt(1, cantPersonas);
+            HelloApplication.scanner.nextLine(); // Consumir la nueva línea después de nextInt()
+
+            System.out.println("Fecha de la reserva: ");
+            timestamp = new Timestamp(System.currentTimeMillis());
+            sentencia.setTimestamp(2, timestamp);
+
+            int filasINS = sentencia.executeUpdate();
+            if (filasINS > 0) {
+                reservaregistrada = true;
+                System.out.println("Reserva exitosa!!");
+            } else {
+                System.out.println("Algo salió mal...");
             }
+        } catch (SQLException e) {
+            System.out.println("Error al registrar la reserva: " + e.getMessage());
         }
+        return reservaregistrada;
     }
 
-
-    public void registrarReserva() throws SQLException {
-        String sql= "INSERT INTO registroreservas VALUES(?,?)";
-        String bd="world";
-        PreparedStatement sentencia= HelloApplication.ConectarBD(bd).prepareStatement(sql);
-
-        System.out.println("Cantidad de personas: ");
-        int cantPersonas=HelloApplication.scanner.nextInt();
-        sentencia.setInt(1,cantPersonas);
-        //
-        System.out.println("Fecha de la reserva: ");
-        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-        sentencia.setTimestamp(2, timestamp);
-
-
-        int filasINS=sentencia.executeUpdate();//filas insertadas, da la info de filas modificadas o insertadas
-        if (filasINS>0){
-            System.out.println("Reserva exitosa!!");
-        }
-        else {
-            System.out.println("Algo salio mal...");
-        }
-
-    }
-
-    public List<Discoteca> disponibles(){
-        List<Discoteca> disponibles = new ArrayList<Discoteca>();
+    public List<Discoteca> disponibles() {
+        List<Discoteca> disponibles = new ArrayList<>();
+        // Agrega aquí la lógica para obtener las discotecas disponibles
         return disponibles;
     }
+
 }

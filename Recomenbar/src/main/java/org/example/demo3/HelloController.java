@@ -23,8 +23,6 @@ public class HelloController {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         GestorDePantallas gestorDePantallas = new GestorDePantallas(stage);
         gestorDePantallas.mostrarPantalla("Login");
-        LogicaDelNegocio logicaDelNegocio=new LogicaDelNegocio();
-        logicaDelNegocio.loginRealizado();
     }
 
     @FXML
