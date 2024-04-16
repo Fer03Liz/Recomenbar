@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="801bc716-0083-4949-92f2-9ec9633c59b8" name="Changes" comment="Creacion GestorDePantallas" />
+    <list default="true" id="08ef61b8-f2e4-4eb3-85ba-5046761b8a2f" name="Changes" comment="Prueba" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -18,19 +18,41 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 2
-}]]></component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;AFCTT&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Fer03Liz/Recomenbar.git&quot;,
+    &quot;accountId&quot;: &quot;2b838478-8ea1-4920-b145-b932a8945544&quot;
+  }
+}</component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHomeTypeForPersistence" value="WRAPPER" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 2
+}</component>
   <component name="ProjectId" id="2eyCfL5jbYRp0TpGWIBD6T5tUHj" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Application.HelloApplication.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "Logica-de-negocio",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/PCFER/Documents/GitHub/Recomenbar/Recomenbar",
+    "last_opened_file_path": "D:/Centa/Documents/Universidad/Ing Soft/Recomenbar/Recomenbar",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -47,18 +69,10 @@
       <recent name="C:\Users\PCFER\Documents\GitHub\Recomenbar" />
     </key>
   </component>
-  <component name="SharedIndexes">
-    <attachedChunks>
-      <set>
-        <option value="bundled-jdk-9f38398b9061-18abd8497189-intellij.indexing.shared.core-IU-241.14494.240" />
-        <option value="bundled-js-predefined-1d06a55b98c1-74d2a5396914-JavaScript-IU-241.14494.240" />
-      </set>
-    </attachedChunks>
-  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="801bc716-0083-4949-92f2-9ec9633c59b8" name="Changes" comment="" />
+      <changelist id="08ef61b8-f2e4-4eb3-85ba-5046761b8a2f" name="Changes" comment="Prueba" />
       <created>1712867533154</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -106,7 +120,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="main" />
+                        <option value="Logica-de-negocio" />
                       </list>
                     </value>
                   </entry>
@@ -122,6 +136,7 @@
     <MESSAGE value="Creacion" />
     <MESSAGE value="Creacion develop" />
     <MESSAGE value="Creacion GestorDePantallas" />
-    <option name="LAST_COMMIT_MESSAGE" value="Creacion GestorDePantallas" />
+    <MESSAGE value="pruebaaa" />
+    <option name="LAST_COMMIT_MESSAGE" value="pruebaaa" />
   </component>
 </project>
