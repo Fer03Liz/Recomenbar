@@ -76,14 +76,15 @@ public class LogicaDelNegocio {
         return ingresado;
     }
 
-    public boolean registrarReserva(int cantPersonas, Timestamp timestamp) throws SQLException {
+    public boolean registrarReserva(int cantPersonas, Timestamp timestamp, String nombreBar) throws SQLException {
         boolean reservaregistrada = false;
         Connection conexion = HelloApplication.conectarBD("world");
-        String sql = "INSERT INTO registroreservas VALUES(?,?)";
+        String sql = "INSERT INTO registroreservas VALUES(?,?,?)";
         PreparedStatement sentencia = conexion.prepareStatement(sql);
 
         sentencia.setInt(1, cantPersonas);
         sentencia.setTimestamp(2, timestamp);
+        sentencia.setString(3,nombreBar);
 
         int filasINS = sentencia.executeUpdate();
         if (filasINS > 0) {
