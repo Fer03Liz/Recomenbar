@@ -9,18 +9,28 @@ import java.sql.SQLException;
 import java.util.Scanner;
 
 public class HelloApplication extends Application {
-    public static Scanner scanner;
-
-    public static void main(String[] args) {
-        // Lanza la aplicación JavaFX
-        launch(args);
-    }
+    public static Scanner scanner = new Scanner(System.in);
 
     @Override
     public void start(Stage primaryStage) {
         // Instancia el gestor de pantallas y muestra la pantalla inicial
         GestorDePantallas gestorDePantallas = new GestorDePantallas(primaryStage);
         gestorDePantallas.mostrarPantalla("Home");
+    }
+
+    public static void main(String[] args) {
+        try {
+            // Conecta a la base de datos
+            Connection connection = conectarBD("recomenbar");
+            // Inicia la aplicación JavaFX
+            launch(args);
+            // Cierra la conexión a la base de datos
+            connection.close();
+        } catch (SQLException e) {
+            // Maneja la excepción SQLException
+            System.err.println("Error al conectar a la base de datos: " + e.getMessage());
+            e.printStackTrace();
+        }
     }
 
     public static Connection conectarBD(String bd) throws SQLException {

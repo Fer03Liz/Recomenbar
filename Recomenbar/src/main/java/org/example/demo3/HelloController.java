@@ -2,17 +2,11 @@ package org.example.demo3;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.Node;
-import javafx.stage.Stage;
-
 import java.io.IOException;
 
 public class HelloController {
 
     private GestorDePantallas gestorDePantallas;
-
-    public HelloController() {
-    }
 
     public void setGestorDePantallas(GestorDePantallas gestorDePantallas) {
         this.gestorDePantallas = gestorDePantallas;

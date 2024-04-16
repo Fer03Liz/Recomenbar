@@ -9,6 +9,7 @@ import javafx.scene.control.PasswordField;
 import org.example.demo3.Negocio.LogicaDelNegocio;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 public class RegistrerController {
 
@@ -44,7 +45,7 @@ public class RegistrerController {
     }
 
     @FXML
-    private void onRegitrarButtonClick(ActionEvent event) throws IOException {
+    private void onRegitrarButtonClick(ActionEvent event) throws IOException, SQLException {
         //System.out.println("ENTRO");
         String nombres = nombresField.getText();
         String correo = correoField.getText();
