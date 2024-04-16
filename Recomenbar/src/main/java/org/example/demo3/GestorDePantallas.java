@@ -10,10 +10,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class GestorDePantallas {
+    private static GestorDePantallas instancia;
     private final Map<String, String> rutasFXML;
     private final Stage escenarioPrincipal;
 
-    public GestorDePantallas(Stage escenarioPrincipal) {
+    GestorDePantallas(Stage escenarioPrincipal) {
         this.escenarioPrincipal = escenarioPrincipal;
         this.rutasFXML = new HashMap<>();
         this.rutasFXML.put("Home", "/org/example/demo3/Home.fxml");
@@ -21,6 +22,13 @@ public class GestorDePantallas {
         this.rutasFXML.put("PostLogin", "/org/example/demo3/PostLogin.fxml");
         this.rutasFXML.put("Register", "/org/example/demo3/Registrer.fxml");
         this.rutasFXML.put("Reservar", "/org/example/demo3/Reservar.fxml");
+    }
+
+    public static GestorDePantallas obtenerInstancia(Stage escenarioPrincipal) {
+        if (instancia == null) {
+            instancia = new GestorDePantallas(escenarioPrincipal);
+        }
+        return instancia;
     }
 
     public void mostrarPantalla(String rutaFXML) {
@@ -39,6 +47,4 @@ public class GestorDePantallas {
             e.printStackTrace();
         }
     }
-
 }
-

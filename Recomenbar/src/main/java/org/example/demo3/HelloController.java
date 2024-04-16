@@ -4,15 +4,15 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.stage.Stage;
-import org.example.demo3.Negocio.LogicaDelNegocio;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.SQLException;
 
 public class HelloController {
 
     private GestorDePantallas gestorDePantallas;
+
+    public HelloController() {
+    }
 
     public void setGestorDePantallas(GestorDePantallas gestorDePantallas) {
         this.gestorDePantallas = gestorDePantallas;
@@ -20,16 +20,28 @@ public class HelloController {
 
     @FXML
     private void onLoginButtonClick(ActionEvent event) throws IOException {
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        GestorDePantallas gestorDePantallas = new GestorDePantallas(stage);
-        gestorDePantallas.mostrarPantalla("Login");
+        if (gestorDePantallas != null) {
+            gestorDePantallas.mostrarPantalla("Login");
+        } else {
+            System.err.println("El gestorDePantallas no está inicializado correctamente.");
+        }
     }
 
     @FXML
-    private void onRegisterButtonClick(ActionEvent event) throws SQLException {
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        GestorDePantallas gestorDePantallas = new GestorDePantallas(stage);
-        gestorDePantallas.mostrarPantalla("Register");
+    private void onRegisterButtonClick(ActionEvent event) {
+        if (gestorDePantallas != null) {
+            gestorDePantallas.mostrarPantalla("Register");
+        } else {
+            System.err.println("El gestorDePantallas no está inicializado correctamente.");
+        }
+    }
 
+    @FXML
+    private void onHomeButtonClick(ActionEvent event) throws IOException {
+        if (gestorDePantallas != null) {
+            gestorDePantallas.mostrarPantalla("Home");
+        } else {
+            System.err.println("El gestorDePantallas no está inicializado correctamente.");
+        }
     }
 }

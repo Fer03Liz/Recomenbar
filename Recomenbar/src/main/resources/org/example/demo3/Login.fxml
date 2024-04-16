@@ -4,7 +4,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
@@ -19,15 +19,13 @@
             <Label text="Contraseña:" />
             <PasswordField fx:id="ContraseñaField" />
             <Button mnemonicParsing="false" onAction="#onLoginButtonClick" text="Login" />
-            <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../Logo.png" />
+               </image></ImageView>
             <Button mnemonicParsing="false" onAction="#onRegistarButtonClick" text="No estas registrado?" />
          </children>
       </VBox>
-      <ToolBar prefHeight="45.0" prefWidth="141.0">
-        <items>
-          <Button mnemonicParsing="false" onAction="#onHomeButtonClick" text="Home" />
-        </items>
-      </ToolBar>
       <Label layoutX="149.0" layoutY="12.0" text="RECOMENBAR" />
    </children>
 </AnchorPane>

@@ -21,7 +21,7 @@ public class ReservarController implements Initializable {
     private TextField personasField;
 
     @FXML
-    private TextField TextAux;
+    private TextField  TextAux;
 
     @FXML
     private DatePicker fechaField;
@@ -60,11 +60,11 @@ public class ReservarController implements Initializable {
     private void onReservarButtonClick() {
         // Obtener la selección del usuario del ListView
         String barSeleccionado = listViewBares.getSelectionModel().getSelectedItem();
-       // Discoteca d = new Discoteca();
+        // Discoteca d = new Discoteca();
         LocalDate fechaSeleccionada = fechaField.getValue();
         System.out.println(fechaSeleccionada);
-        if(!barSeleccionado.isEmpty()){
-            if(fechaSeleccionada.isAfter(LocalDate.now())||fechaSeleccionada.isEqual(LocalDate.now())){
+        if(barSeleccionado != null){
+            if(fechaSeleccionada != null && (fechaSeleccionada.isAfter(LocalDate.now()) || fechaSeleccionada.isEqual(LocalDate.now()))){
                 if (esNumerico(personasField.getText())) {
                     int cantidadPersonas = Integer.parseInt(personasField.getText());
                     if(cantidadPersonas >=1) {
@@ -79,8 +79,7 @@ public class ReservarController implements Initializable {
                 fechaField.setPromptText("Escoja una fecha valida");
             }
         }else{
-            TextAux.clear();
-            TextAux.setPromptText("SELECCIONA UN BAR");
+            TextAux.setText("SELECCIONA UN BAR");
         }
 
 
