@@ -2,40 +2,31 @@ package org.example.demo3;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
+import javafx.stage.Stage;
+
 import java.io.IOException;
 
 public class HelloController {
 
-    private GestorDePantallas gestorDePantallas;
-
-    public void setGestorDePantallas(GestorDePantallas gestorDePantallas) {
-        this.gestorDePantallas = gestorDePantallas;
-    }
-
     @FXML
     private void onLoginButtonClick(ActionEvent event) throws IOException {
-        if (gestorDePantallas != null) {
-            gestorDePantallas.mostrarPantalla("Login");
-        } else {
-            System.err.println("El gestorDePantallas no está inicializado correctamente.");
-        }
+        mostrarPantalla("Login", event);
     }
 
     @FXML
-    private void onRegisterButtonClick(ActionEvent event) {
-        if (gestorDePantallas != null) {
-            gestorDePantallas.mostrarPantalla("Register");
-        } else {
-            System.err.println("El gestorDePantallas no está inicializado correctamente.");
-        }
+    private void onRegisterButtonClick(ActionEvent event) throws IOException {
+        mostrarPantalla("Register", event);
     }
 
     @FXML
     private void onHomeButtonClick(ActionEvent event) throws IOException {
-        if (gestorDePantallas != null) {
-            gestorDePantallas.mostrarPantalla("Home");
-        } else {
-            System.err.println("El gestorDePantallas no está inicializado correctamente.");
-        }
+        mostrarPantalla("Home", event);
+    }
+
+    private void mostrarPantalla(String pantalla, ActionEvent event) throws IOException {
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        GestorDePantallas gestorDePantallas = GestorDePantallas.obtenerInstancia(stage);
+        gestorDePantallas.mostrarPantalla(pantalla);
     }
 }

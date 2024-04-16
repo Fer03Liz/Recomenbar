@@ -26,13 +26,13 @@ public class LogicaDelNegocio {
         boolean insertado = false;
         Connection conexion = HelloApplication.conectarBD("recomenbar");
 
-        String sql = "INSERT INTO registrarusuario VALUES(?,?,?,?,?)";
+        String sql = "INSERT INTO registrarusuario VALUES(?,?,?,?)";
         PreparedStatement sentencia = conexion.prepareStatement(sql);
 
-        sentencia.setString(2, name);
-        sentencia.setString(3, email);
-        sentencia.setInt(4, Edd);
-        sentencia.setString(5, password);
+        sentencia.setString(1, name);
+        sentencia.setString(2, email);
+        sentencia.setInt(3, Edd);
+        sentencia.setString(4, password);
 
         int filasINS = sentencia.executeUpdate();
         if (filasINS > 0) {
