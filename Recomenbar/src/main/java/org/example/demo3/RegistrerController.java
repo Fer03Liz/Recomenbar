@@ -6,6 +6,7 @@ import javafx.scene.Node;
 import javafx.stage.Stage;
 import javafx.scene.control.TextField;
 import javafx.scene.control.PasswordField;
+import org.example.demo3.Negocio.LogicaDelNegocio;
 
 import java.io.IOException;
 
@@ -55,10 +56,12 @@ public class RegistrerController {
                     int edad = Integer.parseInt(edadText);
                     if (edad >= 18) {
                         // Lógica insertar usuario:
-
-                        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                        GestorDePantallas gestorDePantallas = GestorDePantallas.obtenerInstancia(stage);
-                        gestorDePantallas.mostrarPantalla("Reservar");
+                        LogicaDelNegocio logicaDelNegocio= LogicaDelNegocio.getInstancia();
+                        if(logicaDelNegocio.registrarUsuario(nombres,correo,edad,contraseña)) {
+                            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                            GestorDePantallas gestorDePantallas = GestorDePantallas.obtenerInstancia(stage);
+                            gestorDePantallas.mostrarPantalla("Reservar");
+                        }
                     } else {
                         edadField.clear();
                         edadField.setPromptText("No cumples con el requisito de edad");
