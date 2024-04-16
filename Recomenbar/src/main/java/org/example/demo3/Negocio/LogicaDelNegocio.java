@@ -78,7 +78,7 @@ public class LogicaDelNegocio {
 
     public boolean registrarReserva(int cantPersonas, Timestamp timestamp, String nombreBar) throws SQLException {
         boolean reservaregistrada = false;
-        Connection conexion = HelloApplication.conectarBD("world");
+        Connection conexion = HelloApplication.conectarBD("recomenbar");
         String sql = "INSERT INTO registroreservas VALUES(?,?,?)";
         PreparedStatement sentencia = conexion.prepareStatement(sql);
 

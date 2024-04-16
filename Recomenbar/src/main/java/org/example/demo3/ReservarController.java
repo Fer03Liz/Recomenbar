@@ -5,6 +5,10 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import org.example.demo3.Entidades.Discoteca;
 import org.example.demo3.Entidades.Reserva;
+import org.example.demo3.Negocio.LogicaDelNegocio;
+
+import java.sql.SQLException;
+import java.sql.Timestamp;
 
 import java.net.URL;
 import java.time.LocalDate;
@@ -57,7 +61,7 @@ public class ReservarController implements Initializable {
     }
 
     @FXML
-    private void onReservarButtonClick() {
+    private void onReservarButtonClick() throws SQLException {
         // Obtener la selección del usuario del ListView
         String barSeleccionado = listViewBares.getSelectionModel().getSelectedItem();
         // Discoteca d = new Discoteca();
@@ -68,8 +72,13 @@ public class ReservarController implements Initializable {
                 if (esNumerico(personasField.getText())) {
                     int cantidadPersonas = Integer.parseInt(personasField.getText());
                     if(cantidadPersonas >=1) {
-                        personasField.clear();
-                        personasField.setPromptText("FUNCIONO");
+                        LogicaDelNegocio logicaDelNegocio= LogicaDelNegocio.getInstancia();
+                        // Convertir LocalDate a Timestamp
+                        Timestamp timestamp = Timestamp.valueOf(fechaSeleccionada.atStartOfDay());
+                        if(logicaDelNegocio.registrarReserva(cantidadPersonas, timestamp, barSeleccionado)){
+                            // Hacer algo si la reserva se registró correctamente
+                        }
+
                     }
                 }else{
                     personasField.clear();
@@ -79,9 +88,7 @@ public class ReservarController implements Initializable {
                 fechaField.setPromptText("Escoja una fecha valida");
             }
         }else{
-            TextAux.setText("SELECCIONA UN BAR");
+            TextAux.setText("SELECCIONA UN BAR");
         }
-
-
     }
 }
