@@ -21,7 +21,7 @@ public class HelloApplication extends Application {
     public static void main(String[] args) {
         try {
             // Conecta a la base de datos
-            Connection connection = conectarBD("recomenbar");
+            Connection connection = conectarBD("Recomenbar");
             // Inicia la aplicación JavaFX
             launch(args);
             // Cierra la conexión a la base de datos
@@ -37,7 +37,7 @@ public class HelloApplication extends Application {
         // Configuración de la conexión a la base de datos
         String host = "jdbc:mysql://localhost/";
         String user = "root";
-        String pass = "Tinto56Ñ*52#";
+        String pass = "12345678";
         System.out.println("Conectando a la base de datos...");
         try {
             // Intenta establecer la conexión
