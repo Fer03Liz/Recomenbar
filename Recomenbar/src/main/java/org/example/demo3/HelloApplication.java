@@ -15,7 +15,7 @@ public class HelloApplication extends Application {
     public void start(Stage primaryStage) {
         // Instancia el gestor de pantallas y muestra la pantalla inicial
         GestorDePantallas gestorDePantallas = new GestorDePantallas(primaryStage);
-        gestorDePantallas.mostrarPantalla("Home");
+        gestorDePantallas.seleccionarPantalla(0);
     }
 
     public static void main(String[] args) {

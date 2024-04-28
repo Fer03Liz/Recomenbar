@@ -11,22 +11,17 @@ public class HelloController {
 
     @FXML
     private void onLoginButtonClick(ActionEvent event) throws IOException {
-        mostrarPantalla("Login", event);
+        mostrarPantalla(1, event);
     }
 
     @FXML
     private void onRegisterButtonClick(ActionEvent event) throws IOException {
-        mostrarPantalla("Register", event);
+        mostrarPantalla(3, event);
     }
 
-    @FXML
-    private void onHomeButtonClick(ActionEvent event) throws IOException {
-        mostrarPantalla("Home", event);
-    }
-
-    private void mostrarPantalla(String pantalla, ActionEvent event) throws IOException {
+    private void mostrarPantalla(int pantalla, ActionEvent event) throws IOException {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         GestorDePantallas gestorDePantallas = GestorDePantallas.obtenerInstancia(stage);
-        gestorDePantallas.mostrarPantalla(pantalla);
+        gestorDePantallas.seleccionarPantalla(pantalla);
     }
 }
