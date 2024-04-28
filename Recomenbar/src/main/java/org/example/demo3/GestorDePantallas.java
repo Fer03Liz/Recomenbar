@@ -31,7 +31,7 @@ public class GestorDePantallas {
         return instancia;
     }
 
-    public void mostrarPantalla(String rutaFXML) {
+    private void mostrarPantalla(String rutaFXML) {
         try {
             String rutaCompletaFXML = rutasFXML.get(rutaFXML);
             if (rutaCompletaFXML == null) {
@@ -45,6 +45,36 @@ public class GestorDePantallas {
             escenarioPrincipal.show();  // Muestra la nueva pantalla
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    private void mostrarPantallaHome(){
+        mostrarPantalla("Home");
+    }
+    private void mostrarPantallaLogin(){
+        mostrarPantalla("Login");
+    }
+    private void mostrarPantallaPostLogin(){
+        mostrarPantalla("PostLogin");
+    }
+    private void mostrarPantallaReservar(){
+        mostrarPantalla("Reservar");
+    }
+    private void mostrarPantallaRegistrar(){
+        mostrarPantalla("Register");
+    }
+
+    public void seleccionarPantalla(int numeroPantalla){
+        if(numeroPantalla==0){
+            mostrarPantallaHome();
+        }else if(numeroPantalla==1){
+            mostrarPantallaLogin();
+        }else if (numeroPantalla==2) {
+            mostrarPantallaPostLogin();
+        }else if(numeroPantalla==3){
+            mostrarPantallaRegistrar();
+        }else if(numeroPantalla==4){
+            mostrarPantallaReservar();
         }
     }
 }
