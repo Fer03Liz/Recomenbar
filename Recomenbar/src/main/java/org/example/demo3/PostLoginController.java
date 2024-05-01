@@ -12,6 +12,10 @@ public class PostLoginController {
     private void onReservarButtonClick(ActionEvent event) throws IOException {
         mostrarPantalla(4, event);
     }
+    @FXML
+    private void onEncuestaButtonClick(ActionEvent event) throws IOException {
+        mostrarPantalla(5, event);
+    }
 
     private void mostrarPantalla(int pantalla, ActionEvent event) throws IOException {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();

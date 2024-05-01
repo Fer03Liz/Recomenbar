@@ -22,6 +22,8 @@ public class GestorDePantallas {
         this.rutasFXML.put("PostLogin", "/org/example/demo3/PostLogin.fxml");
         this.rutasFXML.put("Register", "/org/example/demo3/Registrer.fxml");
         this.rutasFXML.put("Reservar", "/org/example/demo3/Reservar.fxml");
+        this.rutasFXML.put("Encuesta", "/org/example/demo3/Encuesta.fxml");
+        this.rutasFXML.put("Eleccion", "/org/example/demo3/Encuesta.fxml");
     }
 
     public static GestorDePantallas obtenerInstancia(Stage escenarioPrincipal) {
@@ -60,9 +62,8 @@ public class GestorDePantallas {
     private void mostrarPantallaReservar(){
         mostrarPantalla("Reservar");
     }
-    private void mostrarPantallaRegistrar(){
-        mostrarPantalla("Register");
-    }
+    private void mostrarPantallaRegistrar(){mostrarPantalla("Register");}
+    private void mostrarPantallaEncuesta(){mostrarPantalla("Encuesta");}
 
     public void seleccionarPantalla(int numeroPantalla){
         if(numeroPantalla==0){
@@ -76,5 +77,10 @@ public class GestorDePantallas {
         }else if(numeroPantalla==4){
             mostrarPantallaReservar();
         }
+        else if(numeroPantalla==5)
+        {
+            mostrarPantallaEncuesta();
+        }
+
     }
 }
