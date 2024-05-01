@@ -6,7 +6,7 @@ import org.example.demo3.HelloApplication;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-
+//prueba simon
 public class LogicaDelNegocio {
     private static LogicaDelNegocio instancia;
 
