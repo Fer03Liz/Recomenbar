@@ -1,6 +1,7 @@
 package org.example.demo3;
 
 import javafx.application.Application;
+import javafx.event.ActionEvent;
 import javafx.stage.Stage;
 
 import java.sql.Connection;
@@ -14,8 +15,8 @@ public class HelloApplication extends Application {
     @Override
     public void start(Stage primaryStage) {
         // Instancia el gestor de pantallas y muestra la pantalla inicial
-        GestorDePantallas gestorDePantallas = new GestorDePantallas(primaryStage);
-        gestorDePantallas.seleccionarPantalla(0);
+        GestorDePantallas gestorDePantallas = new GestorDePantallas();
+        gestorDePantallas.mostrarPantallaHome(primaryStage);
     }
 
     public static void main(String[] args) {

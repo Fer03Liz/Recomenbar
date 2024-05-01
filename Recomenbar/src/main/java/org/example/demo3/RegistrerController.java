@@ -27,7 +27,8 @@ public class RegistrerController {
 
     @FXML
     private void onVolverButtonClick(ActionEvent event) throws IOException {
-        mostrarPantalla(1, event);
+        GestorDePantallas gestorDePantallas = GestorDePantallas.obtenerInstancia();
+        gestorDePantallas.mostrarPantallaPostLogin(event);
     }
 
     public static boolean esNumerico(String str) {
@@ -56,7 +57,8 @@ public class RegistrerController {
                         // Lógica insertar usuario:
                         LogicaDelNegocio logicaDelNegocio= LogicaDelNegocio.getInstancia();
                         if(logicaDelNegocio.registrarUsuario(nombres,correo,edad,contraseña)) {
-                            mostrarPantalla(4, event);
+                            GestorDePantallas gestorDePantallas = GestorDePantallas.obtenerInstancia();
+                            gestorDePantallas.mostrarPantallaPostLogin(event);
                         }
                     } else {
                         edadField.clear();
@@ -81,9 +83,4 @@ public class RegistrerController {
         }
     }
 
-    private void mostrarPantalla(int pantalla, ActionEvent event) throws IOException {
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        GestorDePantallas gestorDePantallas = GestorDePantallas.obtenerInstancia(stage);
-        gestorDePantallas.seleccionarPantalla(pantalla);
-    }
 }

@@ -21,7 +21,8 @@ public class LoginController {
     private void onLoginButtonClick(ActionEvent event) throws IOException {
         LogicaDelNegocio logicaDelNegocio = LogicaDelNegocio.getInstancia();
         if (logicaDelNegocio.loginRealizado(CorreoField.getText(), ContraseñaField.getText())) {
-            mostrarPantalla(2, event);
+            GestorDePantallas gestorDePantallas = GestorDePantallas.obtenerInstancia();
+            gestorDePantallas.mostrarPantallaLogin(event);
         } else {
             ContraseñaField.setPromptText("Contraseña incorrecta");
             CorreoField.setPromptText("Usuario incorrecta");
@@ -30,12 +31,7 @@ public class LoginController {
 
     @FXML
     private void onRegistarButtonClick(ActionEvent event) throws IOException {
-        mostrarPantalla(3, event);
-    }
-
-    private void mostrarPantalla(int pantalla, ActionEvent event) throws IOException {
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        GestorDePantallas gestorDePantallas = GestorDePantallas.obtenerInstancia(stage);
-        gestorDePantallas.seleccionarPantalla(pantalla);
+        GestorDePantallas gestorDePantallas = GestorDePantallas.obtenerInstancia();
+        gestorDePantallas.mostrarPantallaRegistrar(event);
     }
 }
