@@ -7,6 +7,7 @@ import javafx.stage.Stage;
 import javafx.scene.control.TextField;
 import javafx.scene.control.PasswordField;
 import org.example.demo3.Negocio.LogicaDelNegocio;
+import org.example.demo3.Negocio.Sesion;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -57,6 +58,9 @@ public class RegistrerController {
                         // Lógica insertar usuario:
                         LogicaDelNegocio logicaDelNegocio= LogicaDelNegocio.getInstancia();
                         if(logicaDelNegocio.registrarUsuario(nombres,correo,edad,contraseña)) {
+                            Sesion sesion= Sesion.obtenerInstancia();
+                            sesion.setCorreo(correo);
+                            sesion.setNombre(nombres);
                             GestorDePantallas gestorDePantallas = GestorDePantallas.obtenerInstancia();
                             gestorDePantallas.mostrarPantallaPostLogin(event);
                         }

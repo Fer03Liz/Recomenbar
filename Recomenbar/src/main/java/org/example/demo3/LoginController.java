@@ -6,6 +6,7 @@ import javafx.scene.Node;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import org.example.demo3.Negocio.LogicaDelNegocio;
+import org.example.demo3.Negocio.Sesion;
 
 import java.io.IOException;
 
@@ -21,6 +22,8 @@ public class LoginController {
     private void onLoginButtonClick(ActionEvent event) throws IOException {
         LogicaDelNegocio logicaDelNegocio = LogicaDelNegocio.getInstancia();
         if (logicaDelNegocio.loginRealizado(CorreoField.getText(), ContraseñaField.getText())) {
+            Sesion sesion= Sesion.obtenerInstancia();
+            sesion.setCorreo(CorreoField.getText());
             GestorDePantallas gestorDePantallas = GestorDePantallas.obtenerInstancia();
             gestorDePantallas.mostrarPantallaLogin(event);
         } else {
