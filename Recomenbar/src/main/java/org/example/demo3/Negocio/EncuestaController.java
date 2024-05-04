@@ -11,7 +11,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import org.example.demo3.GestorDePantallas;
-
+import javafx.stage.Stage;
 import java.io.IOException;
 
 public class EncuestaController {
@@ -32,7 +32,7 @@ public class EncuestaController {
 
 
         LogicaDelNegocio logicaDelNegocio = LogicaDelNegocio.getInstancia();
-        public void start(Stage primaryStage) {
+       public void start( Stage PrimaryStage) {
             // Crear una lista de elementos para el ChoiceBox
             ObservableList<String> opciones = FXCollections.observableArrayList(
                     "Opción 1",
@@ -53,9 +53,9 @@ public class EncuestaController {
             Scene scene = new Scene(root, 300, 200);
 
             // Configurar el escenario y mostrarlo
-            primaryStage.setTitle("Ejemplo de ChoiceBox");
-            primaryStage.setScene(scene);
-            primaryStage.show();
+            primaryStage1.setTitle("Ejemplo de ChoiceBox");
+            primaryStage1.setScene(scene);
+            primaryStage1.show();
         }
     }
     @FXML
