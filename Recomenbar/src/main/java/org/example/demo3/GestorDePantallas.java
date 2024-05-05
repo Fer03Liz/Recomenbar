@@ -21,10 +21,10 @@ public class GestorDePantallas {
         this.rutasFXML.put("Login", "/org/example/demo3/Login.fxml");
         this.rutasFXML.put("PostLogin", "/org/example/demo3/PostLogin.fxml");
         this.rutasFXML.put("Register", "/org/example/demo3/Registrer.fxml");
-        this.rutasFXML.put("Res" +
-                "ervar", "/org/example/demo3/Reservar.fxml");
+        this.rutasFXML.put("Reservar", "/org/example/demo3/Reservar.fxml");
+        this.rutasFXML.put("Encuesta", "/org/example/demo3/Encuesta.fxml");
     }
-
+//develop, gestor
     public static GestorDePantallas obtenerInstancia() {
         if (instancia == null) {
             instancia = new GestorDePantallas();
@@ -78,5 +78,6 @@ public class GestorDePantallas {
     public void mostrarPantallaRegistrar(ActionEvent event){
         mostrarPantalla("Register", event);
     }
+    public void mostrarPantallaEncuesta(ActionEvent event){mostrarPantalla("Encuesta", event);}
 
 }

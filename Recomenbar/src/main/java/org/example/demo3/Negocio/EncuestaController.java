@@ -17,56 +17,73 @@ import java.io.IOException;
 public class EncuestaController {
 
     @FXML
-    private TextField preguntauno;
-    private TextField preguntados;
-    private TextField preguntatres;
-    private TextField preguntacuatro;
+    private ChoiceBox<String> choicebox1;
+    private ChoiceBox<String> choicebox2;
+    private ChoiceBox<String> choicebox3;
+    private ChoiceBox<String> choicebox4;
 
-
-    @FXML
-    private TextField ContraseñaField;
 
 
     @FXML
     private void onEncuestaButtonClick(ActionEvent event) throws IOException {
-
-
         LogicaDelNegocio logicaDelNegocio = LogicaDelNegocio.getInstancia();
-       public void start( Stage PrimaryStage) {
-            // Crear una lista de elementos para el ChoiceBox
-            ObservableList<String> opciones = FXCollections.observableArrayList(
-                    "Opción 1",
-                    "Opción 2",
-                    "Opción 3"
-            );
 
-            // Crear el ChoiceBox y establecer las opciones
-            ChoiceBox<String> choiceBox = new ChoiceBox<>(opciones);
+        // Crear una lista de elementos para el ChoiceBox
+        ObservableList<String> opuno = FXCollections.observableArrayList(
+                "reggaetón",
+                "Música electrónica",
+                "Rock",
+                "House",
+                "Salsa",
+                "Merengue",
+                "Ranchera",
+                "Popular",
+                "Variado"
+        );
 
-            // Establecer el primer elemento como seleccionado por defecto
-            choiceBox.getSelectionModel().selectFirst();
+        // Crear el ChoiceBox y establecer las opciones
+        choicebox1 = new ChoiceBox<>(opuno);
 
-            // Crear un layout y añadir el ChoiceBox
-            VBox root = new VBox(choiceBox);
+        ObservableList<String> opdos = FXCollections.observableArrayList(
+                "Chapinero",
+                "85",
+                "Restrepo",
+                "Modelia",
+                "Usaquen",
+                "La candelaria"
+        );
+        choicebox2 = new ChoiceBox<>(opdos);
 
-            // Crear la escena y añadir el layout
-            Scene scene = new Scene(root, 300, 200);
+        ObservableList<String> optres = FXCollections.observableArrayList(
+                "10-15k",
+                "20-25k",
+                "25-30k",
+                "30-25k",
+                "+40k",
+                "sin cover",
+                "no importa cuanto"
+        );
+        choicebox3 = new ChoiceBox<>(optres);
 
-            // Configurar el escenario y mostrarlo
-            primaryStage1.setTitle("Ejemplo de ChoiceBox");
-            primaryStage1.setScene(scene);
-            primaryStage1.show();
-        }
+        ObservableList<String> opcuatro = FXCollections.observableArrayList(
+                "Bailar",
+                "Comer y Bailar",
+                "Cocteles y hablar",
+                "Musica en vivo",
+                "Un poco de todo"
+        );
+        choicebox4 = new ChoiceBox<>(opcuatro);
+
+        // Establecer el primer elemento como seleccionado por defecto
+        choicebox1.getSelectionModel().selectFirst();
+        choicebox2.getSelectionModel().selectFirst();
+        choicebox3.getSelectionModel().selectFirst();
+        choicebox4.getSelectionModel().selectFirst();
     }
-    @FXML
-    private void onRegistarButtonClick(ActionEvent event) throws IOException {
-        mostrarPantalla(3, event);
-    }
 
-    private void mostrarPantalla(int pantalla, ActionEvent event) throws IOException {
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        GestorDePantallas gestorDePantallas = GestorDePantallas.obtenerInstancia(stage);
-        gestorDePantallas.seleccionarPantalla(pantalla);
+    private void mostrarPantalla(ActionEvent event) throws IOException {
+        GestorDePantallas gestorDePantallas = GestorDePantallas.obtenerInstancia();
+        gestorDePantallas.mostrarPantallaEncuesta(event);
     }
 }
 

@@ -15,7 +15,8 @@ public class PostLoginController {
     }
     @FXML
     private void onEncuestaButtonClick(ActionEvent event) throws IOException {
-        mostrarPantalla(5, event);
+        GestorDePantallas gestorDePantallas = GestorDePantallas.obtenerInstancia();
+        gestorDePantallas.mostrarPantallaEncuesta(event);
     }
 
 }
