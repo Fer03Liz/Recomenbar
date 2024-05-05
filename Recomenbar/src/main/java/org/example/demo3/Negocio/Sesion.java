@@ -2,7 +2,6 @@ package org.example.demo3.Negocio;
 
 public class Sesion {
     private static Sesion instancia;
-    private String nombre;
     private String correo;
 
     // Constructor privado para evitar instanciación externa
@@ -17,17 +16,9 @@ public class Sesion {
         return instancia;
     }
 
-    // Métodos para establecer y obtener el nombre y el correo
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
+    // Métodos para establecer y obtener el correo
     public void setCorreo(String correo) {
         this.correo = correo;
-    }
-
-    public String getNombre() {
-        return nombre;
     }
 
     public String getCorreo() {

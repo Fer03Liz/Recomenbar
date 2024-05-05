@@ -47,7 +47,7 @@ public class ReservarController implements Initializable {
 
     private List<String> obtenerNombresBaresLocales() throws SQLException {
         LogicaDelNegocio logicaDelNegocio= LogicaDelNegocio.getInstancia();
-        List<String> nombresBares = logicaDelNegocio.disponibles();
+        List<String> nombresBares = logicaDelNegocio.disponibles();//Instanciar bares
         // Agregar más nombres de bares según sea necesario
         return nombresBares;
     }
