@@ -1,6 +1,7 @@
 package org.example.demo3.Negocio;
 
 
+import org.example.demo3.Entidades.Discoteca;
 import org.example.demo3.Negocio.ConexionBD;
 import java.sql.*;
 import java.util.ArrayList;
@@ -75,16 +76,17 @@ public class LogicaDelNegocio {
         return ingresado;
     }
 
-    public boolean registrarReserva(int cantPersonas, Timestamp timestamp, String nombreBar) throws SQLException {
+    public boolean registrarReserva(int cantPersonas, Timestamp timestamp, String nombreBar, String correo) throws SQLException {
 
         boolean reservaregistrada = false;
         Connection conexion = ConexionBD.getConexion(); // Obtén la conexión a través del Singleton
-        String sql = "INSERT INTO registroreservas VALUES(?,?,?)";
+        String sql = "INSERT INTO registroreservas VALUES(?,?,?,?)";
         PreparedStatement sentencia = conexion.prepareStatement(sql);
 
         sentencia.setInt(1, cantPersonas);
         sentencia.setTimestamp(2,timestamp);
         sentencia.setString(3, nombreBar);
+        sentencia.setString(4, correo);
 
         System.out.println("Mensaje de registro aquí");
 
@@ -102,14 +104,14 @@ public class LogicaDelNegocio {
         return reservaregistrada;
     }
 
-    public List<String> disponibles() throws SQLException {
-        List<String> discotecas = new ArrayList<>();
+    public List<Discoteca> disponibles() throws SQLException {
+        List<Discoteca> discotecas = new ArrayList<>();
 
         // Obtén la conexión a través del Singleton
         Connection conexion = ConexionBD.getConexion();
 
         // Preparar la sentencia SQL
-        String sql = "SELECT nombre FROM discoteca";
+        String sql = "SELECT nombre, direccion, tipoMusica FROM discoteca";
         PreparedStatement statement = conexion.prepareStatement(sql);
 
         // Ejecutar la consulta
@@ -117,8 +119,11 @@ public class LogicaDelNegocio {
 
         // Recorrer los resultados y agregar los nombres a la lista
         while (resultSet.next()) {
-            String nombreDiscoteca = resultSet.getString("Nombre");
-            discotecas.add(nombreDiscoteca);
+            Discoteca discoteca = new Discoteca();
+            discoteca.setNombre( resultSet.getString("Nombre"));
+            discoteca.setUbicacion(resultSet.getString("Direccion"));
+            discoteca.setTipoMusica(resultSet.getString("TipoMusica"));
+            discotecas.add(discoteca);
         }
 
         // Cerrar la conexión y liberar los recursos
