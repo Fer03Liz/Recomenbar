@@ -1,32 +1,25 @@
 package org.example.demo3;
 
 import javafx.application.Application;
-import javafx.event.ActionEvent;
 import javafx.stage.Stage;
+import org.example.demo3.Negocio.ConexionBD;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.util.Scanner;
 
 public class HelloApplication extends Application {
-    public static Scanner scanner = new Scanner(System.in);
+    private static Connection connection; // Declara la conexión como estática
 
     @Override
     public void start(Stage primaryStage) {
-        // Instancia el gestor de pantallas y muestra la pantalla inicial
-        GestorDePantallas gestorDePantallas = new GestorDePantallas();
-        gestorDePantallas.mostrarPantallaHome(primaryStage);
-    }
-
-    public static void main(String[] args) {
         try {
-            // Conecta a la base de datos
-            Connection connection = conectarBD("Recomenbar");
-            // Inicia la aplicación JavaFX
-            launch(args);
-            // Cierra la conexión a la base de datos
-            connection.close();
+            // Conecta a la base de datos si no se ha conectado previamente
+            if (connection == null || connection.isClosed()) {
+                connection = ConexionBD.getConexion(); // Obtiene la conexión usando el Singleton
+            }
+            // Instancia el gestor de pantallas y muestra la pantalla inicial
+            GestorDePantallas gestorDePantallas = new GestorDePantallas();
+            gestorDePantallas.mostrarPantallaHome(primaryStage);
         } catch (SQLException e) {
             // Maneja la excepción SQLException
             System.err.println("Error al conectar a la base de datos: " + e.getMessage());
@@ -34,24 +27,8 @@ public class HelloApplication extends Application {
         }
     }
 
-    public static Connection conectarBD(String bd) throws SQLException {
-        // Configuración de la conexión a la base de datos
-        String host = "jdbc:mysql://localhost/";
-        String user = "root";
-        String pass = "12345678";
-        System.out.println("Conectando a la base de datos...");
-        try {
-            // Intenta establecer la conexión
-            Connection conexion = DriverManager.getConnection(host + bd, user, pass);
-            if (conexion != null) {
-                System.out.println("Conexión exitosa a la base de datos: " + bd);
-                System.out.println("-------------------");
-            }
-            return conexion;
-        } catch (SQLException e) {
-            // Captura y maneja los errores de conexión
-            System.out.println("Error al conectar a la base de datos: " + e.getMessage());
-            throw new SQLException(e);
-        }
+    public static void main(String[] args) {
+        // Inicia la aplicación JavaFX
+        launch(args);
     }
 }

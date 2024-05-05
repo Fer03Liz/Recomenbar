@@ -7,6 +7,7 @@ import javafx.scene.control.*;
 import org.example.demo3.Entidades.Discoteca;
 import org.example.demo3.Entidades.Reserva;
 import org.example.demo3.Negocio.LogicaDelNegocio;
+import org.example.demo3.Negocio.Sesion;
 
 import java.sql.SQLException;
 import java.sql.Timestamp;
@@ -34,22 +35,23 @@ public class ReservarController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         // Inicializar la lista de nombres de bares
-        List<String> nombresBares = null;
+        List<Discoteca> discotecas = null;
         try {
-            nombresBares = obtenerNombresBaresLocales();
+            discotecas = obtenerBaresLocales();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-
         // Llenar la ListView con los nombres de los bares
-        listViewBares.getItems().addAll(nombresBares);
+        for (Discoteca discoteca : discotecas) {
+            listViewBares.getItems().addAll(discoteca.getNombre()+" en la direccion: "+discoteca.getUbicacion()+" con un tipo de musica: "+discoteca.getTipoMusica());
+        }
     }
 
-    private List<String> obtenerNombresBaresLocales() throws SQLException {
+    private List<Discoteca> obtenerBaresLocales() throws SQLException {
         LogicaDelNegocio logicaDelNegocio= LogicaDelNegocio.getInstancia();
-        List<String> nombresBares = logicaDelNegocio.disponibles();
+        List<Discoteca> discotecas = logicaDelNegocio.disponibles();//Instanciar bares
         // Agregar más nombres de bares según sea necesario
-        return nombresBares;
+        return discotecas;
     }
 
     public static boolean esNumerico(String str) {
@@ -72,27 +74,33 @@ public class ReservarController implements Initializable {
         LocalDate fechaSeleccionada = fechaField.getValue();
         System.out.println(fechaSeleccionada);
         if(barSeleccionado != null){
-            if(fechaSeleccionada != null && (fechaSeleccionada.isAfter(LocalDate.now()) || fechaSeleccionada.isEqual(LocalDate.now()))){
+            if(fechaSeleccionada != null && (fechaSeleccionada.isAfter(LocalDate.now().minusDays(1)) && fechaSeleccionada.isBefore(LocalDate.now().plusDays(31)))){
                 if (esNumerico(personasField.getText())) {
                     int cantidadPersonas = Integer.parseInt(personasField.getText());
-                    if(cantidadPersonas >=1) {
+                    if(cantidadPersonas >=1 && cantidadPersonas<=25) {
                         LogicaDelNegocio logicaDelNegocio= LogicaDelNegocio.getInstancia();
                         // Convertir LocalDate a Timestamp
                         Timestamp timestamp = Timestamp.valueOf(fechaSeleccionada.atStartOfDay());
-                        if(logicaDelNegocio.registrarReserva(cantidadPersonas, timestamp, barSeleccionado)){
+                        Sesion sesion= Sesion.obtenerInstancia();
+                        if(logicaDelNegocio.registrarReserva(cantidadPersonas, timestamp, barSeleccionado,sesion.getCorreo())){
                             // Cierra la aplicación después de registrar la reserva correctamente
                             Platform.exit();
+                        }else{
+                            System.out.printf("No se puede hacer la reserva");
                         }
+                    }else{
+                        personasField.clear();
+                        personasField.setPromptText("El maximo para reservar es de 25 personas");
                     }
                 }else{
                     personasField.clear();
                     personasField.setPromptText("Digita un valor numerico");
                 }
             }else{
-                fechaField.setPromptText("Escoja una fecha valida");
+                TextAux.setPromptText("Escoja una fecha valida");
             }
         }else{
-            TextAux.setText("SELECCIONA UN BAR");
+            TextAux.setText("SELECCIONA UN BAR");
         }
     }
 }
