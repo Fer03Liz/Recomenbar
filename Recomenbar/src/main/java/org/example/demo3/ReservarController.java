@@ -82,6 +82,8 @@ public class ReservarController implements Initializable {
                         if(logicaDelNegocio.registrarReserva(cantidadPersonas, timestamp, barSeleccionado)){
                             // Cierra la aplicación después de registrar la reserva correctamente
                             Platform.exit();
+                        }else{
+                            System.out.printf("No se puede hacer la reserva");
                         }
                     }
                 }else{

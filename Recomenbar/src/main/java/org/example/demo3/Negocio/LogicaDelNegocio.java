@@ -83,8 +83,8 @@ public class LogicaDelNegocio {
         PreparedStatement sentencia = conexion.prepareStatement(sql);
 
         sentencia.setInt(1, cantPersonas);
-        sentencia.setString(2, nombreBar);
-        sentencia.setTimestamp(3,timestamp);
+        sentencia.setTimestamp(2,timestamp);
+        sentencia.setString(3, nombreBar);
 
         System.out.println("Mensaje de registro aquí");
 

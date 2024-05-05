@@ -30,7 +30,7 @@ public class RegistrerController {
     @FXML
     private void onVolverButtonClick(ActionEvent event) throws IOException {
         GestorDePantallas gestorDePantallas = GestorDePantallas.obtenerInstancia();
-        gestorDePantallas.mostrarPantallaPostLogin(event);
+        gestorDePantallas.mostrarPantallaLogin(event);
     }
 
     public static boolean esNumerico(String str) {
