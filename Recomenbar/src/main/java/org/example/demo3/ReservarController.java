@@ -92,7 +92,7 @@ public class ReservarController implements Initializable {
                 fechaField.setPromptText("Escoja una fecha valida");
             }
         }else{
-            TextAux.setText("SELECCIONA UN BAR");
+            TextAux.setText("SELECCIONA UN BAR");
         }
     }
 }
