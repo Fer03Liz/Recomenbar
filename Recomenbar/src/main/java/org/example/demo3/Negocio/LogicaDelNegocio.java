@@ -1,8 +1,7 @@
 package org.example.demo3.Negocio;
 
-import org.example.demo3.Entidades.Discoteca;
-import org.example.demo3.HelloApplication;
 
+import org.example.demo3.Negocio.ConexionBD;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +23,7 @@ public class LogicaDelNegocio {
 
     public boolean registrarUsuario(String name, String email, int Edd, String password) throws SQLException {
         boolean insertado = false;
-        Connection conexion = HelloApplication.conectarBD("recomenbar");
+        Connection conexion = ConexionBD.getConexion(); // Obtén la conexión a través del Singleton
 
         String sql = "INSERT INTO registrarusuario VALUES(?,?,?,?)";
         PreparedStatement sentencia = conexion.prepareStatement(sql);
@@ -47,7 +46,7 @@ public class LogicaDelNegocio {
         ResultSet resultados = null;
         boolean ingresado = false;
         try {
-            conexion = HelloApplication.conectarBD("recomenbar");
+            conexion = ConexionBD.getConexion(); // Obtén la conexión a través del Singleton
             String sql = "SELECT * FROM registrarusuario WHERE Correo = ? AND Contraseña = ?";
             sentencia = conexion.prepareStatement(sql);
 
@@ -77,30 +76,37 @@ public class LogicaDelNegocio {
     }
 
     public boolean registrarReserva(int cantPersonas, Timestamp timestamp, String nombreBar) throws SQLException {
+
         boolean reservaregistrada = false;
-        Connection conexion = HelloApplication.conectarBD("recomenbar");
+        Connection conexion = ConexionBD.getConexion(); // Obtén la conexión a través del Singleton
         String sql = "INSERT INTO registroreservas VALUES(?,?,?)";
         PreparedStatement sentencia = conexion.prepareStatement(sql);
 
         sentencia.setInt(1, cantPersonas);
-        sentencia.setTimestamp(2, timestamp);
-        sentencia.setString(3,nombreBar);
+        sentencia.setString(2, nombreBar);
+        sentencia.setTimestamp(3,timestamp);
+
+        System.out.println("Mensaje de registro aquí");
 
         int filasINS = sentencia.executeUpdate();
         if (filasINS > 0) {
+            // System.out.println("Mensaje de registro aquí");
+
             reservaregistrada = true;
             System.out.println("Reserva exitosa!!");
         } else {
             System.out.println("Algo salió mal...");
         }
+        // System.out.println("Mensaje de registro aquí");
+
         return reservaregistrada;
     }
 
     public List<String> disponibles() throws SQLException {
         List<String> discotecas = new ArrayList<>();
 
-        // Establecer la conexión con la base de datos
-        Connection conexion = HelloApplication.conectarBD("recomenbar");
+        // Obtén la conexión a través del Singleton
+        Connection conexion = ConexionBD.getConexion();
 
         // Preparar la sentencia SQL
         String sql = "SELECT nombre FROM discoteca";
