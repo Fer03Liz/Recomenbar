@@ -1,17 +1,12 @@
-package org.example.demo3.Negocio;
+package org.example.demo3;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.Node;
-import javafx.scene.Scene;
 import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.TextField;
-import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
-import org.example.demo3.GestorDePantallas;
-import javafx.stage.Stage;
+import org.example.demo3.Negocio.LogicaDelNegocio;
+
 import java.io.IOException;
 
 public class EncuestaController {

@@ -18,7 +18,7 @@
                </image></ImageView>
             <VBox alignment="CENTER" prefHeight="357.0" prefWidth="395.0">
                <children>
-                  <Button mnemonicParsing="false" text="Encuesta" />
+                  <Button mnemonicParsing="false" onAction="#onEncuestaButtonClick" text="Encuesta" />
                   <Label text="Empecemos con una pequeña encuesta " />
                   <Button mnemonicParsing="false" onAction="#onReservarButtonClick" text="Reserva" />
                   <Label text="Quierers reservar directamente?" />
