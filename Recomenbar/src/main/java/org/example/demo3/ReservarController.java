@@ -74,10 +74,10 @@ public class ReservarController implements Initializable {
         LocalDate fechaSeleccionada = fechaField.getValue();
         System.out.println(fechaSeleccionada);
         if(barSeleccionado != null){
-            if(fechaSeleccionada != null && (fechaSeleccionada.isAfter(LocalDate.now()) || fechaSeleccionada.isEqual(LocalDate.now()) || fechaSeleccionada.isBefore(LocalDate.now().plusDays(31)))){
+            if(fechaSeleccionada != null && (fechaSeleccionada.isAfter(LocalDate.now().minusDays(1)) && fechaSeleccionada.isBefore(LocalDate.now().plusDays(31)))){
                 if (esNumerico(personasField.getText())) {
                     int cantidadPersonas = Integer.parseInt(personasField.getText());
-                    if(cantidadPersonas >=1) {
+                    if(cantidadPersonas >=1 && cantidadPersonas<=25) {
                         LogicaDelNegocio logicaDelNegocio= LogicaDelNegocio.getInstancia();
                         // Convertir LocalDate a Timestamp
                         Timestamp timestamp = Timestamp.valueOf(fechaSeleccionada.atStartOfDay());
@@ -88,13 +88,16 @@ public class ReservarController implements Initializable {
                         }else{
                             System.out.printf("No se puede hacer la reserva");
                         }
+                    }else{
+                        personasField.clear();
+                        personasField.setPromptText("El maximo para reservar es de 25 personas");
                     }
                 }else{
                     personasField.clear();
                     personasField.setPromptText("Digita un valor numerico");
                 }
             }else{
-                fechaField.setPromptText("Escoja una fecha valida");
+                TextAux.setPromptText("Escoja una fecha valida");
             }
         }else{
             TextAux.setText("SELECCIONA UN BAR");
