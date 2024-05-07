@@ -1,8 +1,8 @@
 package org.example.demo3.Negocio;
 
-import org.example.demo3.Entidades.Discoteca;
-import org.example.demo3.HelloApplication;
 
+import org.example.demo3.Entidades.Discoteca;
+import org.example.demo3.Negocio.ConexionBD;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +24,7 @@ public class LogicaDelNegocio {
 
     public boolean registrarUsuario(String name, String email, int Edd, String password) throws SQLException {
         boolean insertado = false;
-        Connection conexion = HelloApplication.conectarBD("recomenbar");
+        Connection conexion = ConexionBD.getConexion(); // Obtén la conexión a través del Singleton
 
         String sql = "INSERT INTO registrarusuario VALUES(?,?,?,?)";
         PreparedStatement sentencia = conexion.prepareStatement(sql);
@@ -47,7 +47,7 @@ public class LogicaDelNegocio {
         ResultSet resultados = null;
         boolean ingresado = false;
         try {
-            conexion = HelloApplication.conectarBD("recomenbar");
+            conexion = ConexionBD.getConexion(); // Obtén la conexión a través del Singleton
             String sql = "SELECT * FROM registrarusuario WHERE Correo = ? AND Contraseña = ?";
             sentencia = conexion.prepareStatement(sql);
 
@@ -76,34 +76,42 @@ public class LogicaDelNegocio {
         return ingresado;
     }
 
-    public boolean registrarReserva(int cantPersonas, Timestamp timestamp, String nombreBar) throws SQLException {
+    public boolean registrarReserva(int cantPersonas, Timestamp timestamp, String nombreBar, String correo) throws SQLException {
+
         boolean reservaregistrada = false;
-        Connection conexion = HelloApplication.conectarBD("recomenbar");
-        String sql = "INSERT INTO registroreservas VALUES(?,?,?)";
+        Connection conexion = ConexionBD.getConexion(); // Obtén la conexión a través del Singleton
+        String sql = "INSERT INTO registroreservas VALUES(?,?,?,?)";
         PreparedStatement sentencia = conexion.prepareStatement(sql);
 
         sentencia.setInt(1, cantPersonas);
-        sentencia.setTimestamp(2, timestamp);
-        sentencia.setString(3,nombreBar);
+        sentencia.setTimestamp(2,timestamp);
+        sentencia.setString(3, nombreBar);
+        sentencia.setString(4, correo);
+
+        System.out.println("Mensaje de registro aquí");
 
         int filasINS = sentencia.executeUpdate();
         if (filasINS > 0) {
+            // System.out.println("Mensaje de registro aquí");
+
             reservaregistrada = true;
             System.out.println("Reserva exitosa!!");
         } else {
             System.out.println("Algo salió mal...");
         }
+        // System.out.println("Mensaje de registro aquí");
+
         return reservaregistrada;
     }
 
-    public List<String> disponibles() throws SQLException {
-        List<String> discotecas = new ArrayList<>();
+    public List<Discoteca> disponibles() throws SQLException {
+        List<Discoteca> discotecas = new ArrayList<>();
 
-        // Establecer la conexión con la base de datos
-        Connection conexion = HelloApplication.conectarBD("recomenbar");
+        // Obtén la conexión a través del Singleton
+        Connection conexion = ConexionBD.getConexion();
 
         // Preparar la sentencia SQL
-        String sql = "SELECT nombre FROM discoteca";
+        String sql = "SELECT nombre, direccion, tipoMusica FROM discoteca";
         PreparedStatement statement = conexion.prepareStatement(sql);
 
         // Ejecutar la consulta
@@ -111,8 +119,11 @@ public class LogicaDelNegocio {
 
         // Recorrer los resultados y agregar los nombres a la lista
         while (resultSet.next()) {
-            String nombreDiscoteca = resultSet.getString("Nombre");
-            discotecas.add(nombreDiscoteca);
+            Discoteca discoteca = new Discoteca();
+            discoteca.setNombre( resultSet.getString("Nombre"));
+            discoteca.setUbicacion(resultSet.getString("Direccion"));
+            discoteca.setTipoMusica(resultSet.getString("TipoMusica"));
+            discotecas.add(discoteca);
         }
 
         // Cerrar la conexión y liberar los recursos

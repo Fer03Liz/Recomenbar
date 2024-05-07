@@ -25,7 +25,7 @@ public class LoginController {
             Sesion sesion= Sesion.obtenerInstancia();
             sesion.setCorreo(CorreoField.getText());
             GestorDePantallas gestorDePantallas = GestorDePantallas.obtenerInstancia();
-            gestorDePantallas.mostrarPantallaLogin(event);
+            gestorDePantallas.mostrarPantallaPostLogin(event);
         } else {
             ContraseñaField.setPromptText("Contraseña incorrecta");
             CorreoField.setPromptText("Usuario incorrecta");
