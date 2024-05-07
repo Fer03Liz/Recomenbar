@@ -2,7 +2,6 @@ package org.example.demo3.Negocio;
 
 
 import org.example.demo3.Entidades.Discoteca;
-import org.example.demo3.Negocio.ConexionBD;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
