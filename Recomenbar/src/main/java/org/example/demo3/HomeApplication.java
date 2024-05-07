@@ -7,7 +7,7 @@ import org.example.demo3.Negocio.ConexionBD;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-public class HelloApplication extends Application {
+public class HomeApplication extends Application {
     private static Connection connection; // Declara la conexión como estática
 
     @Override
