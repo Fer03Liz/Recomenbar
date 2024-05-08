@@ -8,19 +8,20 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox alignment="CENTER" prefHeight="618.0" prefWidth="773.0" spacing="20.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo3.HomeController">
-  <padding>
-    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-  </padding>
-   <Label fx:id="welcomeText1" layoutX="671.0" layoutY="471.0" text="BIENVENIDO" />
-   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
-      <children>
-        <Button onAction="#onLoginButtonClick" prefHeight="60.0" prefWidth="151.0" text="Login" />
-         <Button layoutX="575.0" layoutY="30.0" onAction="#onRegisterButtonClick" prefHeight="60.0" prefWidth="151.0" text="Register" />
-      </children>
-   </HBox>
-   <ImageView fitHeight="315.0" fitWidth="456.0" pickOnBounds="true" preserveRatio="true">
-      <image>
-         <Image url="@../../../Logo.png" />
-      </image></ImageView>
+<VBox alignment="CENTER" prefHeight="618.0" prefWidth="773.0" spacing="20.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo3.HomeController" style="-fx-background-color: black;">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+    </padding>
+    <Label fx:id="welcomeText1" layoutX="671.0" layoutY="471.0" text="BIENVENIDO" style="-fx-font-size: 24px; -fx-font-family: 'Comic Sans MS'; -fx-text-fill: white;" />
+    <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+        <children>
+            <Button onAction="#onLoginButtonClick" prefHeight="60.0" prefWidth="151.0" text="Login" style="-fx-background-color: black; -fx-text-fill: white;" />
+            <Button layoutX="575.0" layoutY="30.0" onAction="#onRegisterButtonClick" prefHeight="60.0" prefWidth="151.0" text="Register" style="-fx-background-color: black; -fx-text-fill: white;" />
+        </children>
+    </HBox>
+    <ImageView fitHeight="315.0" fitWidth="456.0" pickOnBounds="true" preserveRatio="true">
+        <image>
+            <Image url="@../../../LogoFondoNegro.png" />
+        </image>
+    </ImageView>
 </VBox>
