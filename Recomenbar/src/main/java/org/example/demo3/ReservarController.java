@@ -79,7 +79,11 @@ public class ReservarController implements Initializable {
                         LogicaDelNegocio logicaDelNegocio= LogicaDelNegocio.getInstancia();
                         // Convertir LocalDate a Timestamp
                         Timestamp timestamp = Timestamp.valueOf(fechaSeleccionada.atStartOfDay());
-                        if(logicaDelNegocio.registrarReserva(cantidadPersonas, timestamp, barSeleccionado)){
+                        int idUsuario= Integer.parseInt(null);
+                        int idDiscoteca= Integer.parseInt(null);
+                        int idEntrada= Integer.parseInt(null);
+                        int idEvento= Integer.parseInt(null);
+                        if(logicaDelNegocio.registrarReserva(idUsuario,idDiscoteca,idEntrada,idEvento,timestamp,cantidadPersonas,true)){
                             // Cierra la aplicación después de registrar la reserva correctamente
                             Platform.exit();
                         }

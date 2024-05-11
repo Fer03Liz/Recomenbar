@@ -1,8 +1,5 @@
 package org.example.demo3.Negocio;
-
-import org.example.demo3.Entidades.Discoteca;
 import org.example.demo3.HelloApplication;
-
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,17 +19,65 @@ public class LogicaDelNegocio {
         return instancia;
     }
 
-    public boolean registrarUsuario(String name, String email, int Edd, String password) throws SQLException {
+    public boolean usuarioExistente(String correo) {
+        boolean existe = false;
+        Connection conexion = null;
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+
+        try {
+            conexion = HelloApplication.conectarBD("recomenbar");
+            String query = "SELECT COUNT(*) AS total FROM usuario WHERE correo = ?";
+            statement = conexion.prepareStatement(query);
+            statement.setString(1, correo);
+            resultSet = statement.executeQuery();
+
+            if (resultSet.next()) {
+                int total = resultSet.getInt("total");
+                existe = total > 0;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            // Manejar la excepción según sea necesario
+        } finally {
+            if (resultSet != null) {
+                try {
+                    resultSet.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (statement != null) {
+                try {
+                    statement.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (conexion != null) {
+                try {
+                    conexion.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        return existe;
+    }
+
+    public boolean registrarUsuario(String name, int edad, String correo, String password) throws SQLException {
         boolean insertado = false;
         Connection conexion = HelloApplication.conectarBD("recomenbar");
 
-        String sql = "INSERT INTO registrarusuario VALUES(?,?,?,?)";
+        String sql = "INSERT INTO usuario VALUES(?,?,?,?,?)";
         PreparedStatement sentencia = conexion.prepareStatement(sql);
 
         sentencia.setString(1, name);
-        sentencia.setString(2, email);
-        sentencia.setInt(3, Edd);
+        sentencia.setInt(2, edad);
+        sentencia.setString(3, correo);
         sentencia.setString(4, password);
+        sentencia.setInt(5, 1);
 
         int filasINS = sentencia.executeUpdate();
         if (filasINS > 0) {
@@ -48,7 +93,7 @@ public class LogicaDelNegocio {
         boolean ingresado = false;
         try {
             conexion = HelloApplication.conectarBD("recomenbar");
-            String sql = "SELECT * FROM registrarusuario WHERE Correo = ? AND Contraseña = ?";
+            String sql = "SELECT * FROM usuario WHERE Correo = ? AND Contraseña = ?";
             sentencia = conexion.prepareStatement(sql);
 
             sentencia.setString(1, email);
@@ -76,15 +121,19 @@ public class LogicaDelNegocio {
         return ingresado;
     }
 
-    public boolean registrarReserva(int cantPersonas, Timestamp timestamp, String nombreBar) throws SQLException {
+    public boolean registrarReserva(int idUsuario, int idDiscoteca, int idEntrada, int idEvento, Timestamp timestamp, int cantidadBoletas, boolean valida) throws SQLException {
         boolean reservaregistrada = false;
         Connection conexion = HelloApplication.conectarBD("recomenbar");
-        String sql = "INSERT INTO registroreservas VALUES(?,?,?)";
+        String sql = "INSERT INTO reserva VALUES(?,?,?,?,?,?,?)";
         PreparedStatement sentencia = conexion.prepareStatement(sql);
 
-        sentencia.setInt(1, cantPersonas);
-        sentencia.setTimestamp(2, timestamp);
-        sentencia.setString(3,nombreBar);
+        sentencia.setInt(1, idUsuario);
+        sentencia.setInt(2, idDiscoteca);
+        sentencia.setInt(3, idEntrada);
+        sentencia.setInt(4, idEvento);
+        sentencia.setTimestamp(5, timestamp);
+        sentencia.setInt(6, cantidadBoletas);
+        sentencia.setBoolean(7,valida);
 
         int filasINS = sentencia.executeUpdate();
         if (filasINS > 0) {
