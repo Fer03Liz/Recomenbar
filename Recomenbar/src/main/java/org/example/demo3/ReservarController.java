@@ -8,6 +8,7 @@ import org.example.demo3.Entidades.Discoteca;
 import org.example.demo3.Entidades.Reserva;
 import org.example.demo3.Negocio.LogicaDelNegocio;
 import org.example.demo3.Negocio.Sesion;
+import org.example.demo3.Negocio.Sesion;
 
 import java.sql.SQLException;
 import java.sql.Timestamp;
@@ -82,7 +83,11 @@ public class ReservarController implements Initializable {
                         // Convertir LocalDate a Timestamp
                         Timestamp timestamp = Timestamp.valueOf(fechaSeleccionada.atStartOfDay());
                         Sesion sesion= Sesion.obtenerInstancia();
-                        if(logicaDelNegocio.registrarReserva(cantidadPersonas, timestamp, barSeleccionado,sesion.getCorreo())){
+                        int idUsuario= Integer.parseInt(null);
+                        int idDiscoteca= Integer.parseInt(null);
+                        int idEntrada= Integer.parseInt(null);
+                        int idEvento= Integer.parseInt(null);
+                        if(logicaDelNegocio.registrarReserva(idUsuario,idDiscoteca,idEntrada,idEvento,timestamp,cantidadPersonas,true)){
                             // Cierra la aplicación después de registrar la reserva correctamente
                             Platform.exit();
                         }else{
