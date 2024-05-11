@@ -1,0 +1,48 @@
+
+DROP TABLE IF EXISTS reserva, evento, entrada, discoteca, usuario, registrarusuario, registroreservas;
+
+CREATE TABLE usuario (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(255),
+    edad INT,
+    correo VARCHAR(255),
+    tipo INT
+);
+
+CREATE TABLE discoteca (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(255),
+    direccion VARCHAR(255),
+    genero_musical VARCHAR(255),
+    tipo INT,
+    precio_entrada DECIMAL(10, 2)
+);
+
+CREATE TABLE entrada (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    id_discoteca INT,
+    vip BOOLEAN,
+    precio DECIMAL(10, 2),
+    FOREIGN KEY (id_discoteca) REFERENCES discoteca(id)
+);
+
+CREATE TABLE evento (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    id_discoteca INT,
+    precio DECIMAL(10, 2),
+    fecha DATE,
+    FOREIGN KEY (id_discoteca) REFERENCES discoteca(id)
+);
+
+CREATE TABLE reserva (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    id_usuario INT,
+    id_discoteca INT,
+    id_Entrada INT,
+    fecha DATE,
+    cantidad_boletas INT,
+    valida BOOLEAN,
+    FOREIGN KEY (id_usuario) REFERENCES usuario(id),
+    FOREIGN KEY (id_discoteca) REFERENCES discoteca(id),
+    FOREIGN KEY (id_Entrada) REFERENCES entrada(id)
+);
