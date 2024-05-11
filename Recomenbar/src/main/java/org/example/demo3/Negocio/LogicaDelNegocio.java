@@ -1,5 +1,5 @@
 package org.example.demo3.Negocio;
-import org.example.demo3.HelloApplication;
+import org.example.demo3.Entidades.Discoteca;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,14 +19,13 @@ public class LogicaDelNegocio {
         return instancia;
     }
 
-    public boolean usuarioExistente(String correo) {
+    public boolean usuarioExistente(String correo) throws SQLException {
         boolean existe = false;
-        Connection conexion = null;
+        Connection conexion = ConexionBD.getConexion();
         PreparedStatement statement = null;
         ResultSet resultSet = null;
 
         try {
-            conexion = HelloApplication.conectarBD("recomenbar");
             String query = "SELECT COUNT(*) AS total FROM usuario WHERE correo = ?";
             statement = conexion.prepareStatement(query);
             statement.setString(1, correo);
@@ -68,7 +67,7 @@ public class LogicaDelNegocio {
 
     public boolean registrarUsuario(String name, int edad, String correo, String password) throws SQLException {
         boolean insertado = false;
-        Connection conexion = HelloApplication.conectarBD("recomenbar");
+        Connection conexion = ConexionBD.getConexion();
 
         String sql = "INSERT INTO usuario VALUES(?,?,?,?,?)";
         PreparedStatement sentencia = conexion.prepareStatement(sql);
@@ -87,12 +86,11 @@ public class LogicaDelNegocio {
     }
 
     public boolean loginRealizado(String email, String password) {
-        Connection conexion = null;
         PreparedStatement sentencia = null;
         ResultSet resultados = null;
         boolean ingresado = false;
         try {
-            conexion = HelloApplication.conectarBD("recomenbar");
+            Connection conexion = ConexionBD.getConexion();
             String sql = "SELECT * FROM usuario WHERE Correo = ? AND Contraseña = ?";
             sentencia = conexion.prepareStatement(sql);
 
@@ -113,7 +111,6 @@ public class LogicaDelNegocio {
             try {
                 if (resultados != null) resultados.close();
                 if (sentencia != null) sentencia.close();
-                if (conexion != null) conexion.close();
             } catch (SQLException ex) {
                 System.out.println("Error al cerrar la conexión: " + ex.getMessage());
             }
@@ -123,8 +120,9 @@ public class LogicaDelNegocio {
 
     public boolean registrarReserva(int idUsuario, int idDiscoteca, int idEntrada, int idEvento, Timestamp timestamp, int cantidadBoletas, boolean valida) throws SQLException {
         boolean reservaregistrada = false;
-        Connection conexion = HelloApplication.conectarBD("recomenbar");
-        String sql = "INSERT INTO reserva VALUES(?,?,?,?,?,?,?)";
+        Connection conexion = ConexionBD.getConexion();
+        String sql = "INSERT INTO reserva (id_usuario, id_discoteca, id_entrada, id_evento, fecha, cantidad_boletas, valida) VALUES (?, ?, ?, ?, ?, ?, ?)";
+
         PreparedStatement sentencia = conexion.prepareStatement(sql);
 
         sentencia.setInt(1, idUsuario);
@@ -133,7 +131,7 @@ public class LogicaDelNegocio {
         sentencia.setInt(4, idEvento);
         sentencia.setTimestamp(5, timestamp);
         sentencia.setInt(6, cantidadBoletas);
-        sentencia.setBoolean(7,valida);
+        sentencia.setBoolean(7, valida);
 
         int filasINS = sentencia.executeUpdate();
         if (filasINS > 0) {
@@ -145,14 +143,14 @@ public class LogicaDelNegocio {
         return reservaregistrada;
     }
 
-    public List<String> disponibles() throws SQLException {
-        List<String> discotecas = new ArrayList<>();
+    public List<Discoteca> disponibles() throws SQLException {
+        List<Discoteca> discotecas = new ArrayList<>();
 
-        // Establecer la conexión con la base de datos
-        Connection conexion = HelloApplication.conectarBD("recomenbar");
+        // Obtén la conexión a través del Singleton
+        Connection conexion = ConexionBD.getConexion();
 
         // Preparar la sentencia SQL
-        String sql = "SELECT nombre FROM discoteca";
+        String sql = "SELECT nombre, direccion, genero_Musical FROM discoteca";
         PreparedStatement statement = conexion.prepareStatement(sql);
 
         // Ejecutar la consulta
@@ -160,8 +158,11 @@ public class LogicaDelNegocio {
 
         // Recorrer los resultados y agregar los nombres a la lista
         while (resultSet.next()) {
-            String nombreDiscoteca = resultSet.getString("Nombre");
-            discotecas.add(nombreDiscoteca);
+            Discoteca discoteca = new Discoteca();
+            discoteca.setNombre( resultSet.getString("Nombre"));
+            discoteca.setUbicacion(resultSet.getString("Direccion"));
+            discoteca.setTipoMusica(resultSet.getString("genero_Musical"));
+            discotecas.add(discoteca);
         }
 
         // Cerrar la conexión y liberar los recursos

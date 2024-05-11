@@ -21,8 +21,7 @@ public class GestorDePantallas {
         this.rutasFXML.put("Login", "/org/example/demo3/Login.fxml");
         this.rutasFXML.put("PostLogin", "/org/example/demo3/PostLogin.fxml");
         this.rutasFXML.put("Register", "/org/example/demo3/Registrer.fxml");
-        this.rutasFXML.put("Res" +
-                "ervar", "/org/example/demo3/Reservar.fxml");
+        this.rutasFXML.put("Reservar", "/org/example/demo3/Reservar.fxml");
     }
 
     public static GestorDePantallas obtenerInstancia() {

@@ -8,7 +8,6 @@ import org.example.demo3.Entidades.Discoteca;
 import org.example.demo3.Entidades.Reserva;
 import org.example.demo3.Negocio.LogicaDelNegocio;
 import org.example.demo3.Negocio.Sesion;
-import org.example.demo3.Negocio.Sesion;
 
 import java.sql.SQLException;
 import java.sql.Timestamp;
@@ -76,30 +75,36 @@ public class ReservarController implements Initializable {
         System.out.println(fechaSeleccionada);
         if(barSeleccionado != null){
             if(fechaSeleccionada != null && (fechaSeleccionada.isAfter(LocalDate.now().minusDays(1)) && fechaSeleccionada.isBefore(LocalDate.now().plusDays(31)))){
-                if (esNumerico(personasField.getText())) {
-                    int cantidadPersonas = Integer.parseInt(personasField.getText());
-                    if(cantidadPersonas >=1 && cantidadPersonas<=25) {
-                        LogicaDelNegocio logicaDelNegocio= LogicaDelNegocio.getInstancia();
-                        // Convertir LocalDate a Timestamp
-                        Timestamp timestamp = Timestamp.valueOf(fechaSeleccionada.atStartOfDay());
-                        Sesion sesion= Sesion.obtenerInstancia();
-                        int idUsuario= Integer.parseInt(null);
-                        int idDiscoteca= Integer.parseInt(null);
-                        int idEntrada= Integer.parseInt(null);
-                        int idEvento= Integer.parseInt(null);
-                        if(logicaDelNegocio.registrarReserva(idUsuario,idDiscoteca,idEntrada,idEvento,timestamp,cantidadPersonas,true)){
-                            // Cierra la aplicación después de registrar la reserva correctamente
-                            Platform.exit();
+                try {
+                    if (esNumerico(personasField.getText())) {
+                        int cantidadPersonas = Integer.parseInt(personasField.getText());
+                        if(cantidadPersonas >=1 && cantidadPersonas<=25) {
+                            LogicaDelNegocio logicaDelNegocio= LogicaDelNegocio.getInstancia();
+                            // Convertir LocalDate a Timestamp
+                            Timestamp timestamp = Timestamp.valueOf(fechaSeleccionada.atStartOfDay());
+                            Sesion sesion= Sesion.obtenerInstancia();
+                            int idUsuario= 1;
+                            int idDiscoteca= 1;
+                            int idEntrada= 1;
+                            int idEvento= 1;
+                            if(logicaDelNegocio.registrarReserva(idUsuario,idDiscoteca,idEntrada,idEvento,timestamp,cantidadPersonas,true)){
+                                // Cierra la aplicación después de registrar la reserva correctamente
+                                Platform.exit();
+                            }else{
+                                System.out.printf("No se puede hacer la reserva");
+                            }
                         }else{
-                            System.out.printf("No se puede hacer la reserva");
+                            personasField.clear();
+                            personasField.setPromptText("El maximo para reservar es de 25 personas");
                         }
                     }else{
                         personasField.clear();
-                        personasField.setPromptText("El maximo para reservar es de 25 personas");
+                        personasField.setPromptText("Digita un valor numerico");
                     }
-                }else{
+                } catch (NumberFormatException e) {
                     personasField.clear();
                     personasField.setPromptText("Digita un valor numerico");
+                    System.err.println("Error: La cantidad de personas debe ser un número entero válido.");
                 }
             }else{
                 TextAux.setPromptText("Escoja una fecha valida");
