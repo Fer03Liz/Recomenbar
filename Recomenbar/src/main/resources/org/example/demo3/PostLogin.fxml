@@ -7,21 +7,22 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="338.0" prefWidth="265.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo3.PostLoginController">
+<AnchorPane prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo3.PostLoginController">
    <children>
-      <VBox alignment="TOP_CENTER" layoutY="41.0" prefHeight="357.0" prefWidth="395.0">
+      <VBox alignment="CENTER" layoutX="560" layoutY="240" prefHeight="338.0" prefWidth="265.0">
          <children>
-            <Label text="Que Deseas Hoy???" />
+            <Label text="Que Deseas Hoy???" style="-fx-text-fill: white; -fx-font-size: 24px; -fx-font-family: 'Belleza';"/>
             <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../Logo.png" />
-               </image></ImageView>
+                  <Image url="@../../../Logo.png"/>
+               </image>
+            </ImageView>
             <VBox alignment="CENTER" prefHeight="357.0" prefWidth="395.0">
                <children>
-                  <Button mnemonicParsing="false" onAction="#onEncuestaButtonClick" text="Encuesta" />
-                  <Label text="Empecemos con una pequeña encuesta " />
-                  <Button mnemonicParsing="false" onAction="#onReservarButtonClick" text="Reserva" />
-                  <Label text="Quierers reservar directamente?" />
+                  <Button mnemonicParsing="false" text="Encuesta" prefWidth="150.0" style="-fx-background-color: #87CEEB; -fx-text-fill: white; -fx-font-family: 'Belleza';"/>
+                  <Label text="Empecemos con una pequeña encuesta " style="-fx-text-fill: white; -fx-font-size: 16px;"/>
+                  <Button mnemonicParsing="false" onAction="#onReservarButtonClick" text="Reserva" prefWidth="150.0" style="-fx-background-color: #87CEEB; -fx-text-fill: white; -fx-font-family: 'Belleza';"/>
+                  <Label text="Quieres reservar directamente?" style="-fx-text-fill: white; -fx-font-size: 16px;"/>
                </children>
             </VBox>
          </children>

@@ -56,7 +56,7 @@ public class RegistrerController {
                     if (usuario.getEdad() >= 18) {
                         // Lógica insertar usuario:
                         LogicaDelNegocio logicaDelNegocio= LogicaDelNegocio.getInstancia();
-                        if(logicaDelNegocio.registrarUsuario(usuario.getNombre(),usuario.getCorreo(), usuario.getEdad(), usuario.getContraseña())) {
+                        if(logicaDelNegocio.registrarUsuario(usuario.getNombre(), usuario.getEdad() ,usuario.getCorreo(), usuario.getContraseña())) {
                             Sesion sesion= Sesion.obtenerInstancia();
                             sesion.setCorreo(usuario.getCorreo());
                             GestorDePantallas gestorDePantallas = GestorDePantallas.obtenerInstancia();
