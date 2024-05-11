@@ -30,11 +30,9 @@ CREATE TABLE evento (
 CREATE TABLE entrada (
     id INT AUTO_INCREMENT PRIMARY KEY,
     id_discoteca INT,
-    id_entrada INT,
     vip BOOLEAN,
     precio DECIMAL(10, 2),
-    FOREIGN KEY (id_discoteca) REFERENCES discoteca(id),
-    FOREIGN KEY (id_entrada) REFERENCES entrada(id)
+    FOREIGN KEY (id_discoteca) REFERENCES discoteca(id)
 );
 
 CREATE TABLE reserva (
@@ -67,3 +65,4 @@ INSERT INTO evento (id_discoteca, nombre, precio, fecha) VALUES (2, "PontiFarra"
 INSERT INTO evento (id_discoteca, nombre, precio, fecha) VALUES (3, "Perreologia", 15000, '2024-06-08');
 INSERT INTO evento (id_discoteca, nombre, precio, fecha) VALUES (4, "Despecho Pa La Gente", 45000, '2024-06-25');
 
+INSERT INTO entrada (id_discoteca,  vip) VALUES(1,true);
