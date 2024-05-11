@@ -4,11 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="08ef61b8-f2e4-4eb3-85ba-5046761b8a2f" name="Changes" comment="POST LOGIN CAMBIADO&#10;PANTALLA ENCUESTA&#10;CONTROLADOR ENCUESTA">
+    <list default="true" id="08ef61b8-f2e4-4eb3-85ba-5046761b8a2f" name="Changes" comment="ENCUESTA ACTUALIZADO(SIN ERRORES)">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Recomenbar/src/main/java/org/example/demo3/GestorDePantallas.java" beforeDir="false" afterPath="$PROJECT_DIR$/Recomenbar/src/main/java/org/example/demo3/GestorDePantallas.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Recomenbar/src/main/java/org/example/demo3/Negocio/EncuestaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Recomenbar/src/main/java/org/example/demo3/Negocio/EncuestaController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Recomenbar/src/main/java/org/example/demo3/PostLoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Recomenbar/src/main/java/org/example/demo3/PostLoginController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Recomenbar/src/main/java/org/example/demo3/Negocio/EncuestaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Recomenbar/src/main/java/org/example/demo3/EncuestaController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,12 +37,12 @@
     &quot;assignee&quot;: &quot;AFCTT&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/Fer03Liz/Recomenbar.git&quot;,
-    &quot;accountId&quot;: &quot;2b838478-8ea1-4920-b145-b932a8945544&quot;
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/Fer03Liz/Recomenbar.git",
+    "accountId": "16333a3f-5c3f-4bb3-9fc5-5d71c4303839"
   }
-}</component>
+}]]></component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
@@ -126,7 +124,15 @@
       <option name="project" value="LOCAL" />
       <updated>1714583623320</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="ENCUESTA ACTUALIZADO(SIN ERRORES)">
+      <option name="closed" value="true" />
+      <created>1714871389572</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1714871389573</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -161,6 +167,7 @@
     <MESSAGE value="Creacion GestorDePantallas" />
     <MESSAGE value="pruebaaa" />
     <MESSAGE value="POST LOGIN CAMBIADO&#10;PANTALLA ENCUESTA&#10;CONTROLADOR ENCUESTA" />
-    <option name="LAST_COMMIT_MESSAGE" value="POST LOGIN CAMBIADO&#10;PANTALLA ENCUESTA&#10;CONTROLADOR ENCUESTA" />
+    <MESSAGE value="ENCUESTA ACTUALIZADO(SIN ERRORES)" />
+    <option name="LAST_COMMIT_MESSAGE" value="ENCUESTA ACTUALIZADO(SIN ERRORES)" />
   </component>
 </project>
