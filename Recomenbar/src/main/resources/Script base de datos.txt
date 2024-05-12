@@ -17,13 +17,14 @@ CREATE TABLE discoteca (
     tipo INT,
     precio_entrada DECIMAL(10, 2)
 );
-
+#Si el evento es exclusivo para cada usuario es true privado, sino false y pueden reservar para este evento
 CREATE TABLE evento (
     id INT AUTO_INCREMENT PRIMARY KEY,
     id_discoteca INT,
     nombre VARCHAR(255),
     precio DECIMAL(10, 2),
     fecha DATE,
+    privado BOOLEAN,
     FOREIGN KEY (id_discoteca) REFERENCES discoteca(id)
 );
 #Si vip true, se cobra un 20% adicional
@@ -61,8 +62,8 @@ INSERT INTO discoteca(nombre, direccion, genero_musical, tipo, precio_entrada) v
 INSERT INTO discoteca(nombre, direccion, genero_musical, tipo, precio_entrada) values ("Andres DC", "Calle 85", "Variedad",2,50000);
 INSERT INTO discoteca(nombre, direccion, genero_musical, tipo, precio_entrada) values ("Andres Chia", "Chia", "Variedad",2,40000);
 
-INSERT INTO evento (id_discoteca, nombre, precio, fecha) VALUES (2, "PontiFarra", 25000, '2024-06-01');
-INSERT INTO evento (id_discoteca, nombre, precio, fecha) VALUES (3, "Perreologia", 15000, '2024-06-08');
-INSERT INTO evento (id_discoteca, nombre, precio, fecha) VALUES (4, "Despecho Pa La Gente", 45000, '2024-06-25');
+INSERT INTO evento (id_discoteca, nombre, precio, fecha, privado) VALUES (2, "PontiFarra", 25000, '2024-06-01',false);
+INSERT INTO evento (id_discoteca, nombre, precio, fecha, privado) VALUES (3, "Perreologia", 15000, '2024-06-08',false);
+INSERT INTO evento (id_discoteca, nombre, precio, fecha, privado) VALUES (4, "Despecho Pa La Gente", 45000, '2024-06-25',false);
 
 INSERT INTO entrada (id_discoteca,  vip) VALUES(1,true);

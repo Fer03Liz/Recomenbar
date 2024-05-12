@@ -69,7 +69,7 @@ public class LogicaDelNegocio {
         boolean insertado = false;
         Connection conexion = ConexionBD.getConexion();
 
-        String sql = "INSERT INTO usuario VALUES(?,?,?,?,?)";
+        String sql = "INSERT INTO usuario (nombre, edad, correo, contraseña, tipo) VALUES(?,?,?,?,?)";
         PreparedStatement sentencia = conexion.prepareStatement(sql);
 
         sentencia.setString(1, name);
