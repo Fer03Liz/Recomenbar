@@ -4,9 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="08ef61b8-f2e4-4eb3-85ba-5046761b8a2f" name="Changes" comment="ENCUESTA ACTUALIZADO(SIN ERRORES)">
+    <list default="true" id="08ef61b8-f2e4-4eb3-85ba-5046761b8a2f" name="Changes" comment="Prueba">
+      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Recomenbar/src/main/java/org/example/demo3/Discotecas.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Recomenbar/src/main/resources/org/example/demo3/Encuesta.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Recomenbar/src/main/java/org/example/demo3/Negocio/EncuestaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Recomenbar/src/main/java/org/example/demo3/EncuestaController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Recomenbar/src/main/java/org/example/demo3/EncuestaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Recomenbar/src/main/java/org/example/demo3/EncuestaController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Recomenbar/src/main/java/org/example/demo3/Entidades/Discoteca.java" beforeDir="false" afterPath="$PROJECT_DIR$/Recomenbar/src/main/java/org/example/demo3/Entidades/Discoteca.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Recomenbar/src/main/java/org/example/demo3/Negocio/LogicaDelNegocio.java" beforeDir="false" afterPath="$PROJECT_DIR$/Recomenbar/src/main/java/org/example/demo3/Negocio/LogicaDelNegocio.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Recomenbar/src/main/resources/Script base de datos.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Recomenbar/src/main/resources/Script base de datos.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Recomenbar/src/main/resources/org/example/demo3/PostLogin.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/Recomenbar/src/main/resources/org/example/demo3/PostLogin.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,13 +29,10 @@
       </list>
     </option>
   </component>
-  <component name="Git.Merge.Settings">
-    <option name="BRANCH" value="origin/develop" />
-  </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="Logica-de-negocio" />
+        <entry key="$PROJECT_DIR$" value="gestor-de-pantallas" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -37,12 +43,12 @@
     &quot;assignee&quot;: &quot;AFCTT&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/Fer03Liz/Recomenbar.git",
-    "accountId": "16333a3f-5c3f-4bb3-9fc5-5d71c4303839"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Fer03Liz/Recomenbar.git&quot;,
+    &quot;accountId&quot;: &quot;f52fef62-4292-4932-bd03-809101075ffb&quot;
   }
-}]]></component>
+}</component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
@@ -59,28 +65,66 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.HelloApplication.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;Encuesta&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/Centa/Documents/Universidad/Ing Soft/Recomenbar/Recomenbar&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.HelloApplication.executor": "Run",
+    "Application.HomeApplication.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "Encuesta",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "D:/Centa/Documents/Universidad/Ing Soft/Recomenbar/Recomenbar",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="org.example.demo3" />
+      <recent name="org.example.demo3.Entidades" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\PCFER\Documents\GitHub\Recomenbar" />
     </key>
+  </component>
+  <component name="RunManager" selected="Application.HomeApplication">
+    <configuration name="HelloApplication" type="Application" factoryName="Application" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.example.demo3.HelloApplication" />
+      <module name="demo3" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.example.demo3.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="HomeApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.example.demo3.HomeApplication" />
+      <module name="demo3" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.example.demo3.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.HomeApplication" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -116,23 +160,7 @@
       <option name="project" value="LOCAL" />
       <updated>1712868304735</updated>
     </task>
-    <task id="LOCAL-00004" summary="POST LOGIN CAMBIADO&#10;PANTALLA ENCUESTA&#10;CONTROLADOR ENCUESTA">
-      <option name="closed" value="true" />
-      <created>1714583623320</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1714583623320</updated>
-    </task>
-    <task id="LOCAL-00005" summary="ENCUESTA ACTUALIZADO(SIN ERRORES)">
-      <option name="closed" value="true" />
-      <created>1714871389572</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1714871389573</updated>
-    </task>
-    <option name="localTasksCounter" value="6" />
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -149,7 +177,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="origin/Encuesta" />
+                        <option value="Logica-de-negocio" />
                       </list>
                     </value>
                   </entry>
@@ -166,8 +194,6 @@
     <MESSAGE value="Creacion develop" />
     <MESSAGE value="Creacion GestorDePantallas" />
     <MESSAGE value="pruebaaa" />
-    <MESSAGE value="POST LOGIN CAMBIADO&#10;PANTALLA ENCUESTA&#10;CONTROLADOR ENCUESTA" />
-    <MESSAGE value="ENCUESTA ACTUALIZADO(SIN ERRORES)" />
-    <option name="LAST_COMMIT_MESSAGE" value="ENCUESTA ACTUALIZADO(SIN ERRORES)" />
+    <option name="LAST_COMMIT_MESSAGE" value="pruebaaa" />
   </component>
 </project>

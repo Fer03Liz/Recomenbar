@@ -60,6 +60,24 @@ INSERT INTO discoteca(nombre, direccion, genero_musical, tipo, precio_entrada) v
 INSERT INTO discoteca(nombre, direccion, genero_musical, tipo, precio_entrada) values ("Plaza Mexico", "Calle 116", "Rancheras",2,35000);
 INSERT INTO discoteca(nombre, direccion, genero_musical, tipo, precio_entrada) values ("Andres DC", "Calle 85", "Variedad",2,50000);
 INSERT INTO discoteca(nombre, direccion, genero_musical, tipo, precio_entrada) values ("Andres Chia", "Chia", "Variedad",2,40000);
+INSERT INTO discoteca(nombre, direccion, genero_musical, tipo, precio_entrada) VALUES ("The Club", "Calle 85", "Regueton", 1, 25000);
+INSERT INTO discoteca(nombre, direccion, genero_musical, tipo, precio_entrada) VALUES ("ElectroLand", "Calle 116", "Electrónica", 2, 35000);
+INSERT INTO discoteca(nombre, direccion, genero_musical, tipo, precio_entrada) VALUES ("Rock'n'Roll Paradise", "Calle 85", "Rock", 1, 20000);
+INSERT INTO discoteca(nombre, direccion, genero_musical, tipo, precio_entrada) VALUES ("House of Beats", "Chapinero", "House", 2, 30000);
+INSERT INTO discoteca(nombre, direccion, genero_musical, tipo, precio_entrada) VALUES ("Salsa Lounge", "Calle 85", "Salsa", 1, 18000);
+INSERT INTO discoteca(nombre, direccion, genero_musical, tipo, precio_entrada) VALUES ("Merengue Bar", "Calle 85", "Merengue", 2, 22000);
+INSERT INTO discoteca(nombre, direccion, genero_musical, tipo, precio_entrada) VALUES ("Rancheras Pub", "Calle 116", "Rancheras", 1, 28000);
+INSERT INTO discoteca(nombre, direccion, genero_musical, tipo, precio_entrada) VALUES ("Popular Night", "Chia", "Popular", 2, 32000);
+INSERT INTO discoteca(nombre, direccion, genero_musical, tipo, precio_entrada) VALUES ("Variedad Party", "Calle 85", "Variedad", 1, 28000);
+INSERT INTO discoteca(nombre, direccion, genero_musical, tipo, precio_entrada) VALUES ("Chill & Chat", "Chapinero", "Regueton", 2, 27000);
+INSERT INTO discoteca(nombre, direccion, genero_musical, tipo, precio_entrada) VALUES ("EDM Kingdom", "Calle 85", "Electrónica", 1, 34000);
+INSERT INTO discoteca(nombre, direccion, genero_musical, tipo, precio_entrada) VALUES ("Salsa Fiesta", "Calle 116", "Salsa", 2, 18000);
+INSERT INTO discoteca(nombre, direccion, genero_musical, tipo, precio_entrada) VALUES ("Merengue Madness", "Chapinero", "Merengue", 1, 22000);
+INSERT INTO discoteca(nombre, direccion, genero_musical, tipo, precio_entrada) VALUES ("Rocks & Rolls", "Calle 85", "Rock", 2, 28000);
+INSERT INTO discoteca(nombre, direccion, genero_musical, tipo, precio_entrada) VALUES ("House Hub", "Calle 85", "House", 1, 32000);
+INSERT INTO discoteca(nombre, direccion, genero_musical, tipo, precio_entrada) VALUES ("Salsa Sensation", "Calle 116", "Salsa", 2, 28000);
+INSERT INTO discoteca(nombre, direccion, genero_musical, tipo, precio_entrada) VALUES ("Merengue Mania", "Chia", "Merengue", 1, 27000);
+INSERT INTO discoteca(nombre, direccion, genero_musical, tipo, precio_entrada) VALUES ("Regueton Rave", "Chapinero", "Regueton", 2, 26000);
 
 INSERT INTO evento (id_discoteca, nombre, precio, fecha) VALUES (2, "PontiFarra", 25000, '2024-06-01');
 INSERT INTO evento (id_discoteca, nombre, precio, fecha) VALUES (3, "Perreologia", 15000, '2024-06-08');

@@ -80,4 +80,10 @@ public class Discoteca {
     public void setCapacidadAforo(int capacidadAforo) {
         this.capacidadAforo = capacidadAforo;
     }
+
+    public void setPrecioEntrada(int precioEntrada) {
+    }
+
+    public void setTipo(int tipo) {
+    }
 }

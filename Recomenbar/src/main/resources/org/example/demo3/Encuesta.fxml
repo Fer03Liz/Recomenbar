@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane prefHeight="530.0" prefWidth="831.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo3.EncuestaController">
+    <children>
+        <Label layoutX="217.0" layoutY="23.0" text="Encuesta para encontrar tu discoteca indicada " />
+        <Label layoutX="48.0" layoutY="93.0" prefHeight="17.0" prefWidth="124.0" text="Pregunta 1" />
+        <Label layoutX="48.0" layoutY="123.0" text="Que tipo de musica te gusta?" />
+        <Label layoutX="50.0" layoutY="196.0" text="Pregunta 2" />
+        <Label layoutX="44.0" layoutY="224.0" text="En donde te gusta rumbear normalmente?" />
+        <Label layoutX="44.0" layoutY="322.0" text="Cual es tu presupuesto?" />
+        <Label layoutX="44.0" layoutY="297.0" text="Pregunta 3" />
+        <Label layoutX="44.0" layoutY="381.0" text="Pregunta 4" />
+        <Label layoutX="47.0" layoutY="405.0" text="Que tipo de experiencia prefieres al salir?" />
+        <ChoiceBox fx:id="choicebox1" layoutX="50.0" layoutY="155.0" prefWidth="150.0" />
+        <ChoiceBox fx:id="choicebox2" layoutX="50.0" layoutY="253.0" prefWidth="150.0" />
+        <ChoiceBox fx:id="choicebox4" layoutX="50.0" layoutY="430.0" prefWidth="150.0" />
+        <ChoiceBox fx:id="choicebox3" layoutX="50.0" layoutY="347.0" prefWidth="150.0" />
+      <Button layoutX="340.0" layoutY="484.0" mnemonicParsing="false" onAction="#onResultadosButtonClick" text="Resultados" />
+      <ListView fx:id="listViewBares" layoutX="479.0" layoutY="141.0" prefHeight="200.0" prefWidth="200.0" />
+    </children>
+</Pane>

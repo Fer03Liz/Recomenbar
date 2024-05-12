@@ -4,81 +4,106 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.ListView;
+import org.example.demo3.Entidades.Discoteca;
 import org.example.demo3.Negocio.LogicaDelNegocio;
 
-import java.io.IOException;
+import java.net.URL;
+import java.sql.SQLException;
+import java.util.List;
+import java.util.ResourceBundle;
 
-public class EncuestaController {
+public class EncuestaController implements Initializable {
 
     @FXML
     private ChoiceBox<String> choicebox1;
-    private ChoiceBox<String> choicebox2;
-    private ChoiceBox<String> choicebox3;
-    private ChoiceBox<String> choicebox4;
-
-
-
     @FXML
-    private void onEncuestaButtonClick(ActionEvent event) throws IOException {
-        LogicaDelNegocio logicaDelNegocio = LogicaDelNegocio.getInstancia();
+    private ChoiceBox<String> choicebox2;
+    @FXML
+    private ChoiceBox<String> choicebox3;
+    @FXML
+    private ChoiceBox<String> choicebox4;
+    @FXML
+    private ListView<String> listViewBares;
 
-        // Crear una lista de elementos para el ChoiceBox
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        // Crear una lista de elementos para cada ChoiceBox
         ObservableList<String> opuno = FXCollections.observableArrayList(
-                "reggaetón",
-                "Música electrónica",
+                "Regueton",
+                "Electrónica",
                 "Rock",
                 "House",
                 "Salsa",
                 "Merengue",
-                "Ranchera",
+                "Rancheras",
                 "Popular",
-                "Variado"
+                "Variedad"
         );
-
-        // Crear el ChoiceBox y establecer las opciones
-        choicebox1 = new ChoiceBox<>(opuno);
 
         ObservableList<String> opdos = FXCollections.observableArrayList(
                 "Chapinero",
-                "85",
-                "Restrepo",
-                "Modelia",
-                "Usaquen",
-                "La candelaria"
+                "Calle 85",
+                "Calle 116",
+                "Chia"
         );
-        choicebox2 = new ChoiceBox<>(opdos);
 
         ObservableList<String> optres = FXCollections.observableArrayList(
-                "10-15k",
-                "20-25k",
-                "25-30k",
-                "30-25k",
-                "+40k",
-                "sin cover",
-                "no importa cuanto"
+                "15.000",
+                "20.000",
+                "25.000",
+                "30.000",
+                "35.000",
+                "40.000",
+                "45.000",
+                "50.000"
         );
-        choicebox3 = new ChoiceBox<>(optres);
 
         ObservableList<String> opcuatro = FXCollections.observableArrayList(
-                "Bailar",
-                "Comer y Bailar",
-                "Cocteles y hablar",
-                "Musica en vivo",
-                "Un poco de todo"
+                "Bar",
+                "Gastrobar"
         );
-        choicebox4 = new ChoiceBox<>(opcuatro);
 
-        // Establecer el primer elemento como seleccionado por defecto
-        choicebox1.getSelectionModel().selectFirst();
-        choicebox2.getSelectionModel().selectFirst();
-        choicebox3.getSelectionModel().selectFirst();
-        choicebox4.getSelectionModel().selectFirst();
+        // Establecer las opciones para cada ChoiceBox
+        choicebox1.setItems(opuno);
+        choicebox2.setItems(opdos);
+        choicebox3.setItems(optres);
+        choicebox4.setItems(opcuatro);
+
+        // Inicializar la lista de nombres de bares
+        try {
+            actualizarListaBares();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
-    private void mostrarPantalla(ActionEvent event) throws IOException {
-        GestorDePantallas gestorDePantallas = GestorDePantallas.obtenerInstancia();
-        gestorDePantallas.mostrarPantallaEncuesta(event);
+    private void actualizarListaBares() throws SQLException {
+        LogicaDelNegocio logicaDelNegocio = LogicaDelNegocio.getInstancia();
+        List<Discoteca> discotecas = logicaDelNegocio.filtrarDiscotecas(
+                choicebox1.getValue(),
+                choicebox2.getValue(),
+                choicebox3.getValue(),
+                choicebox4.getValue()
+        );
+
+        // Limpiar la lista actual de nombres de bares
+        listViewBares.getItems().clear();
+
+        // Llenar la ListView con los nombres de los bares filtrados
+        for (Discoteca discoteca : discotecas) {
+            listViewBares.getItems().add(discoteca.getNombre());
+        }
+    }
+
+    @FXML
+    private void onResultadosButtonClick(ActionEvent event) {
+        try {
+            actualizarListaBares();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
-
