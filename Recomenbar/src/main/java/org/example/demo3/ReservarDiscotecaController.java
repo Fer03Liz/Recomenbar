@@ -5,7 +5,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import org.example.demo3.Entidades.Discoteca;
-import org.example.demo3.Entidades.Reserva;
 import org.example.demo3.Negocio.LogicaDelNegocio;
 import org.example.demo3.Negocio.Sesion;
 
@@ -15,10 +14,9 @@ import java.sql.Timestamp;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
-import java.util.ArrayList;
 import java.util.List;
 
-public class ReservarController implements Initializable {
+public class ReservarDiscotecaController implements Initializable {
 
     @FXML
     private ListView<String> listViewBares;
