@@ -1,5 +1,7 @@
 package org.example.demo3.Negocio;
 import org.example.demo3.Entidades.Discoteca;
+import org.example.demo3.Entidades.Evento;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -171,5 +173,35 @@ public class LogicaDelNegocio {
         conexion.close();
 
         return discotecas;
+    }
+
+    public List<Evento> EventosDisponibles() throws SQLException {
+        List<Evento> eventos = new ArrayList<>();
+        // Obtén la conexión a través del Singleton
+        Connection conexion = ConexionBD.getConexion();
+
+        // Preparar la sentencia SQL
+        String sql = "SELECT nombre, precio, fecha FROM evento WHERE privado = false ORDER BY fecha DESC";
+        PreparedStatement statement = conexion.prepareStatement(sql);
+
+        // Ejecutar la consulta
+        ResultSet resultSet = statement.executeQuery();
+
+        // Recorrer los resultados y agregar los nombres a la lista
+        while (resultSet.next()) {
+            Evento  evento = new Evento();
+            evento.setNombre( resultSet.getString("Nombre"));
+            evento.setPrecio(resultSet.getFloat("precio"));
+            evento.setFecha(resultSet.getDate("fecha"));
+            eventos.add(evento);
+        }
+
+        // Cerrar la conexión y liberar los recursos
+        resultSet.close();
+        statement.close();
+        conexion.close();
+
+        return eventos;
+
     }
 }

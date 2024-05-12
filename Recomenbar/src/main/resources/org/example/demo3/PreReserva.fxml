@@ -17,7 +17,7 @@
             <HBox alignment="CENTER" prefHeight="299.0" prefWidth="575.0">
                <children>
                   <Button contentDisplay="CENTER" mnemonicParsing="false" onAction="#onDiscotecaButtonClick" prefHeight="106.0" prefWidth="189.0" text="Discotecas" />
-                  <Button contentDisplay="CENTER" layoutX="106.0" layoutY="78.0" mnemonicParsing="false" prefHeight="106.0" prefWidth="189.0" text="Eventos" />
+                  <Button contentDisplay="CENTER" layoutX="106.0" layoutY="78.0" mnemonicParsing="false" onAction="#onEventoButtonClick" prefHeight="106.0" prefWidth="189.0" text="Eventos" />
                </children>
             </HBox>
          </children>

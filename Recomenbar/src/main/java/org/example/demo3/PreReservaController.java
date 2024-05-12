@@ -12,4 +12,10 @@ public class PreReservaController {
         GestorDePantallas gestorDePantallas = GestorDePantallas.obtenerInstancia();
         gestorDePantallas.mostrarPantallaReservarDiscoteca(event);
     }
+
+    @FXML
+    private void onEventoButtonClick(ActionEvent event) throws IOException {
+        GestorDePantallas gestorDePantallas = GestorDePantallas.obtenerInstancia();
+        gestorDePantallas.mostrarPantallaReservarEvento(event);
+    }
 }
