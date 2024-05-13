@@ -19,4 +19,10 @@ public class HomeController {
         gestorDePantallas.mostrarPantallaRegistrar(event);
     }
 
+    @FXML
+    private void onFrecuentesButtonClick(ActionEvent event) throws IOException {
+        GestorDePantallas gestorDePantallas = GestorDePantallas.obtenerInstancia();
+        gestorDePantallas.mostrarPantallaFrecuentes(event);
+    }
+
 }

@@ -23,6 +23,7 @@ public class GestorDePantallas {
         this.rutasFXML.put("Register", "/org/example/demo3/Registrer.fxml");
         this.rutasFXML.put("Res" +
                 "ervar", "/org/example/demo3/Reservar.fxml");
+        this.rutasFXML.put("Frecuentes", "/org/example/demo3/PreguntasFrecuentes.fxml");
     }
 
     public static GestorDePantallas obtenerInstancia() {
@@ -79,4 +80,6 @@ public class GestorDePantallas {
         mostrarPantalla("Register", event);
     }
 
+    public void mostrarPantallaHome(ActionEvent event) { mostrarPantalla("Home", event); }
+    public void mostrarPantallaFrecuentes(ActionEvent event) { mostrarPantalla("Frecuentes", event);}
 }
