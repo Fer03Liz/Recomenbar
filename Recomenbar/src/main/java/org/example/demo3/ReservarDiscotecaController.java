@@ -77,8 +77,16 @@ public class ReservarDiscotecaController implements Initializable {
             System.out.println("No es numerico el dato");
             return false;
         }
-        if(fechaSeleccionada != null && (fechaSeleccionada.isAfter(LocalDate.now().minusDays(1)) && fechaSeleccionada.isBefore(LocalDate.now().plusDays(31)))){
+        if(fechaSeleccionada != null){
             System.out.println("La fecha es invalida");
+            return false;
+        }
+        if(fechaSeleccionada.isAfter(LocalDate.now().minusDays(1))){
+            System.out.println("La fecha es ya ocurrio");
+            return false;
+        }
+        if(fechaSeleccionada.isBefore(LocalDate.now().plusDays(31))){
+            System.out.println("La fecha es demasiado lejana");
             return false;
         }
         return true;
