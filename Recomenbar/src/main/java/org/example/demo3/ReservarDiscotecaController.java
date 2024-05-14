@@ -64,6 +64,26 @@ public class ReservarDiscotecaController implements Initializable {
         return true;
     }
 
+    private boolean validarFormulario() throws SQLException {
+        LogicaDelNegocio logicaDelNegocio= LogicaDelNegocio.getInstancia();
+        String nombre = listViewBares.getSelectionModel().getSelectedItem();
+        LocalDate fechaSeleccionada = fechaField.getValue();
+        int idDiscoteca=logicaDelNegocio.idDiscoteca(nombre);
+        if(idDiscoteca==0){
+            System.out.println("No se ha encontrado el discoteca");
+            return false;
+        }
+        if(!esNumerico(personasField.getText())){
+            System.out.println("No es numerico el dato");
+            return false;
+        }
+        if(fechaSeleccionada != null && (fechaSeleccionada.isAfter(LocalDate.now().minusDays(1)) && fechaSeleccionada.isBefore(LocalDate.now().plusDays(31)))){
+            System.out.println("La fecha es invalida");
+            return false;
+        }
+        return true;
+    }
+
     @FXML
     private void onReservarButtonClick() throws SQLException {
         // Obtener la selección del usuario del ListView

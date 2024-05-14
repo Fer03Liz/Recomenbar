@@ -10,9 +10,7 @@ public class LogicaDelNegocio {
     private static LogicaDelNegocio instancia;
 
     // Constructor privado para evitar la creación de instancias desde fuera de la clase
-    private LogicaDelNegocio() {
-    }
-
+    private LogicaDelNegocio() {}
     // Método estático para obtener la instancia única de LogicaDelNegocio
     public static LogicaDelNegocio getInstancia() {
         if (instancia == null) {
@@ -203,5 +201,57 @@ public class LogicaDelNegocio {
 
         return eventos;
 
+    }
+
+    public int idUsuario(String correo) throws SQLException {
+        Connection conexion = ConexionBD.getConexion();
+        String sql = "SELECT id_usuario FROM usuario WHERE correo = ?";
+        PreparedStatement statement = conexion.prepareStatement(sql);
+        statement.setString(1, correo);
+        ResultSet resultSet = statement.executeQuery();
+        int id = 0;
+        if (resultSet.next()) {
+            id = resultSet.getInt("id_usuario");
+        }
+        return id;
+    }
+
+    public int idDiscoteca(String nombre) throws SQLException {
+        Connection conexion = ConexionBD.getConexion();
+        String sql = "SELECT id_discoteca FROM usuario WHERE nombre = ?";
+        PreparedStatement statement = conexion.prepareStatement(sql);
+        statement.setString(1, nombre);
+        ResultSet resultSet = statement.executeQuery();
+        int id = 0;
+        if (resultSet.next()) {
+            id = resultSet.getInt("id_discoteca");
+        }
+        return id;
+    }
+
+    public int idEntrada(int id_entrada) throws SQLException {
+        Connection conexion = ConexionBD.getConexion();
+        String sql = "SELECT id_entrada FROM reserva WHERE nombre = ?";
+        PreparedStatement statement = conexion.prepareStatement(sql);
+        statement.setInt(1, id_entrada);
+        ResultSet resultSet = statement.executeQuery();
+        int id = 0;
+        if (resultSet.next()) {
+            id = resultSet.getInt("id_entrada");
+        }
+        return id;
+    }
+
+    public int idReserva(int id_usuario) throws SQLException {
+        Connection conexion = ConexionBD.getConexion();
+        String sql = "SELECT id FROM usuario WHERE id_usuario = ?";
+        PreparedStatement statement = conexion.prepareStatement(sql);
+        statement.setInt(1, id_usuario);
+        ResultSet resultSet = statement.executeQuery();
+        int id = 0;
+        if (resultSet.next()) {
+            id = resultSet.getInt("id");
+        }
+        return id;
     }
 }

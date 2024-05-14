@@ -68,11 +68,9 @@ public class ReservarEventoController implements Initializable {
     @FXML
     private void onReservarButtonClick() throws SQLException {
         // Obtener la selección del usuario del ListView
-        String barSeleccionado = listViewBares.getSelectionModel().getSelectedItem();
-        // Discoteca d = new Discoteca();
+        String eventoSeleccionado = listViewBares.getSelectionModel().getSelectedItem();
         LocalDate fechaSeleccionada = fechaField.getValue();
-        System.out.println(fechaSeleccionada);
-        if(barSeleccionado != null){
+        if(eventoSeleccionado != null){
             if(fechaSeleccionada != null && (fechaSeleccionada.isAfter(LocalDate.now().minusDays(1)) && fechaSeleccionada.isBefore(LocalDate.now().plusDays(31)))){
                 try {
                     if (esNumerico(personasField.getText())) {
