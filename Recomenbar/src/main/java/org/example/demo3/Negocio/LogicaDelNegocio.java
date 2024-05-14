@@ -3,6 +3,7 @@ import org.example.demo3.Entidades.Discoteca;
 import org.example.demo3.Entidades.Evento;
 
 import java.sql.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 //prueba simon
@@ -143,6 +144,26 @@ public class LogicaDelNegocio {
         return reservaregistrada;
     }
 
+    public boolean crearEventoPrivado(int id_discoteca, String nombreUsuario, float precio, Timestamp date) throws SQLException {
+        boolean reservaregistrada = false;
+        Connection conexion = ConexionBD.getConexion();
+        String sql = "INSERT INTO evento (id_discoteca, nombreUsuario, precio, date, private) VALUES (?, ?, ?, ?, ?)";
+        PreparedStatement sentencia = conexion.prepareStatement(sql);
+        sentencia.setInt(1, id_discoteca);
+        sentencia.setString(2, nombreUsuario);
+        sentencia.setFloat(3, precio);
+        sentencia.setTimestamp(4, date);
+        sentencia.setBoolean(5, true);
+        int filasINS = sentencia.executeUpdate();
+        if (filasINS > 0) {
+            reservaregistrada = true;
+            System.out.println("Evento creado!!");
+        } else {
+            System.out.println("Algo salió mal...");
+        }
+        return reservaregistrada;
+    }
+
     public List<Discoteca> disponibles() throws SQLException {
         List<Discoteca> discotecas = new ArrayList<>();
 
@@ -229,11 +250,11 @@ public class LogicaDelNegocio {
         return id;
     }
 
-    public int idEntrada(int id_entrada) throws SQLException {
+    public int idEntrada(int idReserva) throws SQLException {
         Connection conexion = ConexionBD.getConexion();
-        String sql = "SELECT id_entrada FROM reserva WHERE nombre = ?";
+        String sql = "SELECT id_entrada FROM reserva WHERE id = ?";
         PreparedStatement statement = conexion.prepareStatement(sql);
-        statement.setInt(1, id_entrada);
+        statement.setInt(1, idReserva);
         ResultSet resultSet = statement.executeQuery();
         int id = 0;
         if (resultSet.next()) {
@@ -254,4 +275,5 @@ public class LogicaDelNegocio {
         }
         return id;
     }
+
 }

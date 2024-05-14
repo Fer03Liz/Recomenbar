@@ -65,9 +65,13 @@ public class ReservarDiscotecaController implements Initializable {
     }
 
     private boolean validarFormulario() throws SQLException {
-        LogicaDelNegocio logicaDelNegocio= LogicaDelNegocio.getInstancia();
-        String nombre = listViewBares.getSelectionModel().getSelectedItem();
         LocalDate fechaSeleccionada = fechaField.getValue();
+        String nombre = listViewBares.getSelectionModel().getSelectedItem();
+        if (nombre == null || nombre.isEmpty()) {
+            System.out.println("Seleccione una Discoteca");
+            return false;
+        }
+        LogicaDelNegocio logicaDelNegocio= LogicaDelNegocio.getInstancia();
         int idDiscoteca=logicaDelNegocio.idDiscoteca(nombre);
         if(idDiscoteca==0){
             System.out.println("No se ha encontrado el discoteca");
@@ -75,6 +79,15 @@ public class ReservarDiscotecaController implements Initializable {
         }
         if(!esNumerico(personasField.getText())){
             System.out.println("No es numerico el dato");
+            return false;
+        }
+        int cantidadPersonas = Integer.parseInt(personasField.getText());
+        if(cantidadPersonas>=0){
+            System.out.println("Debe haber al menos una persona en la reserva");
+            return false;
+        }
+        if(cantidadPersonas<=20){
+            System.out.println("El maximo de personas por reserva es 20");
             return false;
         }
         if(fechaSeleccionada != null){
