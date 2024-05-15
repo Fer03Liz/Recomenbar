@@ -42,8 +42,8 @@ public class LoginController {
         if (correo) {
             if (contrasena) {
                 Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                GestorDePantallas gestorDePantallas = GestorDePantallas.obtenerInstancia(stage);
-                gestorDePantallas.mostrarPantalla("PostLogin");
+                GestorDePantallas gestorDePantallas = GestorDePantallas.obtenerInstancia();
+                gestorDePantallas.mostrarPantallaPostLogin(event);
             } else {
                 ContraseñaField.setPromptText("Contraseña incorrecta");
             }
@@ -55,7 +55,7 @@ public class LoginController {
     @FXML
     private void onRegistarButtonClick(ActionEvent event) throws IOException {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        GestorDePantallas gestorDePantallas = GestorDePantallas.obtenerInstancia(stage);
-        gestorDePantallas.mostrarPantalla("Register");
+        GestorDePantallas gestorDePantallas = GestorDePantallas.obtenerInstancia();
+        gestorDePantallas.mostrarPantallaRegistrar(event);
     }
 }
