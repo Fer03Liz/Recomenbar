@@ -9,23 +9,23 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="415.0" prefWidth="353.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo3.LoginController">
+<AnchorPane style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo3.LoginController">
    <children>
-      <VBox alignment="TOP_CENTER" layoutY="45.0" prefHeight="370.0" prefWidth="394.0">
+         <VBox alignment="CENTER" layoutX="560" layoutY="240" prefHeight="370.0" prefWidth="394.0" style="-fx-background-color: black;">
          <children>
-            <Label text="Welcome Back!" />
-            <Label text="Correo:" />
+            <Label style="-fx-font-size: 24px; -fx-font-family: 'Comic Sans MS'; -fx-text-fill: white;" text="RECOMENBAR" />
+            <Label style="-fx-font-size: 24px; -fx-font-family: 'Comic Sans MS'; -fx-text-fill: white;" text="Welcome Back!" />
+            <Label style="-fx-font-size: 14px; -fx-font-family: 'Comic Sans MS'; -fx-text-fill: white;" text="Correo:" />
             <TextField fx:id="CorreoField" prefHeight="31.0" prefWidth="488.0" />
-            <Label text="Contraseña:" />
+            <Label style="-fx-font-size: 14px; -fx-font-family: 'Comic Sans MS'; -fx-text-fill: white;" text="Contraseña:" />
             <PasswordField fx:id="ContraseñaField" />
-            <Button mnemonicParsing="false" onAction="#onLoginButtonClick" text="Login" />
+            <Button mnemonicParsing="false" onAction="#onLoginButtonClick" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: #87CEEB; -fx-text-fill: white; -fx-font-family: 'Belleza';" text="Login" />
             <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../Logo.png" />
                </image></ImageView>
-            <Button mnemonicParsing="false" onAction="#onRegistarButtonClick" text="No estas registrado?" />
+            <Button mnemonicParsing="false" onAction="#onRegistarButtonClick" prefHeight="40.0" prefWidth="150.0" style="-fx-background-color: #87CEEB; -fx-text-fill: white; -fx-font-family: 'Belleza';" text="No estas registrado?" textAlignment="CENTER" />
          </children>
       </VBox>
-      <Label layoutX="149.0" layoutY="12.0" text="RECOMENBAR" />
    </children>
 </AnchorPane>

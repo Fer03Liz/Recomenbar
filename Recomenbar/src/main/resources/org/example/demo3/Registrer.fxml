@@ -7,26 +7,26 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="684.0" prefWidth="608.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo3.RegistrerController">
+<AnchorPane prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo3.RegistrerController">
    <children>
-      <VBox alignment="TOP_CENTER" prefHeight="723.0" prefWidth="680.0">
+      <VBox alignment="CENTER" layoutX="560" layoutY="240" prefHeight="684.0" prefWidth="608.0">
          <children>
-            <Label text="RECOMENBAR" />
-            <Label text="Welcome Back" />
+            <Label text="RECOMENBAR" style="-fx-text-fill: white; -fx-font-size: 24px; -fx-font-family: 'Belleza';"/>
+            <Label text="Welcome Back" style="-fx-text-fill: white; -fx-font-size: 18px;"/>
             <VBox alignment="CENTER" prefHeight="524.0" prefWidth="680.0">
                <children>
-                  <Label text="Nombres:" />
-                  <TextField fx:id="nombresField" prefHeight="31.0" prefWidth="488.0" />
-                  <Label text="Correo:" />
-                  <TextField fx:id="correoField" prefHeight="31.0" prefWidth="488.0" />
-                  <Label text="Edad" />
-                  <TextField fx:id="edadField" prefHeight="31.0" prefWidth="488.0" />
-                  <Label text="Contraseña:" />
-                  <PasswordField fx:id="contraseñaField" />
-                  <Button mnemonicParsing="false" onAction="#onRegitrarButtonClick" text="Registrar" />
+                  <Label text="Nombres:" style="-fx-text-fill: white;"/>
+                  <TextField fx:id="nombresField" prefHeight="31.0" prefWidth="488.0"/>
+                  <Label text="Correo:" style="-fx-text-fill: white;"/>
+                  <TextField fx:id="correoField" prefHeight="31.0" prefWidth="488.0"/>
+                  <Label text="Edad" style="-fx-text-fill: white;"/>
+                  <TextField fx:id="edadField" prefHeight="31.0" prefWidth="488.0"/>
+                  <Label text="Contraseña:" style="-fx-text-fill: white;"/>
+                  <PasswordField fx:id="contraseñaField"/>
+                  <Button mnemonicParsing="false" onAction="#onRegitrarButtonClick" text="Registrar" prefWidth="150.0" style="-fx-background-color: #87CEEB; -fx-text-fill: white; -fx-font-family: 'Belleza';"/>
                </children>
             </VBox>
-            <Button mnemonicParsing="false" onAction="#onVolverButtonClick" text="Ya estas registrado?" />
+            <Button mnemonicParsing="false" onAction="#onVolverButtonClick" text="Ya estas registrado?" prefWidth="150.0" style="-fx-background-color: #87CEEB; -fx-text-fill: white; -fx-font-family: 'Belleza';"/>
          </children>
       </VBox>
    </children>
