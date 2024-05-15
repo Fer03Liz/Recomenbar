@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo3.ReservarDiscotecaController">
+   <children>
+      <VBox alignment="CENTER" layoutX="-1.0" prefHeight="720.0" prefWidth="1280.0">
+         <children>
+            <Label style="-fx-text-fill: white; -fx-font-size: 24px; -fx-font-family: 'Belleza';" text="RESERVA" />
+            <Label style="-fx-text-fill: white;" text="Escoge el sitio a reservar">
+               <font>
+                  <Font size="31.0" />
+               </font></Label>
+            <ListView fx:id="listViewBares" prefHeight="200.0" prefWidth="200.0" />
+            <Label fx:id="TextAux1" textFill="WHITE">
+               <font>
+                  <Font size="40.0" />
+               </font>
+            </Label>
+            <Label style="-fx-text-fill: white;" text="Cuantas personas van a ir?">
+               <font>
+                  <Font size="29.0" />
+               </font></Label>
+            <TextField fx:id="personasField" />
+            <Label fx:id="TextAux2" textFill="WHITE">
+               <font>
+                  <Font size="40.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" style="-fx-text-fill: white;" text="Que dia es la reserva?">
+               <font>
+                  <Font size="28.0" />
+               </font>
+            </Label>
+            <DatePicker fx:id="fechaField" />
+            <Label fx:id="TextAux3" layoutX="650.0" layoutY="447.0" textFill="WHITE">
+               <font>
+                  <Font size="40.0" />
+               </font>
+            </Label>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <CheckBox fx:id="vip" mnemonicParsing="false" text="VIP" textFill="WHITE">
+                     <font>
+                        <Font size="27.0" />
+                     </font>
+                  </CheckBox>
+               </children>
+            </HBox>
+            <Button mnemonicParsing="false" onAction="#onReservarButtonClick" prefHeight="112.0" prefWidth="249.0" style="-fx-background-color: #87CEEB; -fx-text-fill: white; -fx-font-family: 'Belleza';" text="Reservar" />
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

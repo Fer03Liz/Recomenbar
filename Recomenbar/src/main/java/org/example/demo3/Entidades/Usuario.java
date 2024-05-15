@@ -4,18 +4,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Usuario {
+    int id;
     String nombre;
-    String correo;
     int edad;
+    String correo;
     String contraseña;
-    List<Encuesta> gustos = new ArrayList<>();
-    List<Reserva> historial = new ArrayList<>();
+    int tipo;
+
 
     public Usuario(String nombre, String correo, int edad, String contraseña) {
         this.nombre = nombre;
         this.correo = correo;
         this.edad = edad;
         this.contraseña=contraseña;
+    }
+    public Usuario() {
+
     }
 
     public String getNombre() {
@@ -42,5 +46,9 @@ public class Usuario {
     public void setContraseña(String contraseña) {
         this.contraseña = contraseña;
     }
+    public int getTipo() { return tipo;}
+    public void setTipo(int tipo) {this.tipo = tipo;}
+    public int getId() {return id;}
+    public void setId(int id) {this.id = id;}
 
 }

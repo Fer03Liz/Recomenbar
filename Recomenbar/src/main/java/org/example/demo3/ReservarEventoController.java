@@ -5,7 +5,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import org.example.demo3.Entidades.Discoteca;
-import org.example.demo3.Entidades.Reserva;
+import org.example.demo3.Entidades.Evento;
 import org.example.demo3.Negocio.LogicaDelNegocio;
 import org.example.demo3.Negocio.Sesion;
 
@@ -15,10 +15,9 @@ import java.sql.Timestamp;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
-import java.util.ArrayList;
 import java.util.List;
 
-public class ReservarController implements Initializable {
+public class ReservarEventoController implements Initializable {
 
     @FXML
     private ListView<String> listViewBares;
@@ -35,23 +34,23 @@ public class ReservarController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         // Inicializar la lista de nombres de bares
-        List<Discoteca> discotecas = null;
+        List<Evento> eventos = null;
         try {
-            discotecas = obtenerBaresLocales();
+            eventos = obtenerEventosPublicos();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
         // Llenar la ListView con los nombres de los bares
-        for (Discoteca discoteca : discotecas) {
-            listViewBares.getItems().addAll(discoteca.getNombre()+" en la direccion: "+discoteca.getUbicacion()+" con un tipo de musica: "+discoteca.getTipoMusica());
+        for (Evento evento : eventos) {
+            listViewBares.getItems().addAll(evento.getNombre()+" en la direccion: ");
         }
     }
 
-    private List<Discoteca> obtenerBaresLocales() throws SQLException {
+    private List<Evento> obtenerEventosPublicos() throws SQLException {
         LogicaDelNegocio logicaDelNegocio= LogicaDelNegocio.getInstancia();
-        List<Discoteca> discotecas = logicaDelNegocio.disponibles();//Instanciar bares
+        List<Evento> eventos = logicaDelNegocio.EventosDisponibles();//Instanciar bares
         // Agregar más nombres de bares según sea necesario
-        return discotecas;
+        return eventos;
     }
 
     public static boolean esNumerico(String str) {
@@ -69,11 +68,9 @@ public class ReservarController implements Initializable {
     @FXML
     private void onReservarButtonClick() throws SQLException {
         // Obtener la selección del usuario del ListView
-        String barSeleccionado = listViewBares.getSelectionModel().getSelectedItem();
-        // Discoteca d = new Discoteca();
+        String eventoSeleccionado = listViewBares.getSelectionModel().getSelectedItem();
         LocalDate fechaSeleccionada = fechaField.getValue();
-        System.out.println(fechaSeleccionada);
-        if(barSeleccionado != null){
+        if(eventoSeleccionado != null){
             if(fechaSeleccionada != null && (fechaSeleccionada.isAfter(LocalDate.now().minusDays(1)) && fechaSeleccionada.isBefore(LocalDate.now().plusDays(31)))){
                 try {
                     if (esNumerico(personasField.getText())) {

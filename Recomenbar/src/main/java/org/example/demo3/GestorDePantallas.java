@@ -21,7 +21,9 @@ public class GestorDePantallas {
         this.rutasFXML.put("Login", "/org/example/demo3/Login.fxml");
         this.rutasFXML.put("PostLogin", "/org/example/demo3/PostLogin.fxml");
         this.rutasFXML.put("Register", "/org/example/demo3/Registrer.fxml");
-        this.rutasFXML.put("Reservar", "/org/example/demo3/Reservar.fxml");
+        this.rutasFXML.put("ReservarDiscoteca", "/org/example/demo3/ReservarDiscoteca.fxml");
+        this.rutasFXML.put("EleccionReservar", "/org/example/demo3/PreReserva.fxml");
+        this.rutasFXML.put("ReservarEvento", "/org/example/demo3/ReservarEvento.fxml");
     }
 
     public static GestorDePantallas obtenerInstancia() {
@@ -31,25 +33,19 @@ public class GestorDePantallas {
         return instancia;
     }
 
-    private void mostrarPantalla(String rutaFXML, ActionEvent event) {
-        try {
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
-            String rutaCompletaFXML = rutasFXML.get(rutaFXML);
-            if (rutaCompletaFXML == null) {
-                System.err.println("No se encontró la ruta FXML para: " + rutaFXML);
-                return;
-            }
-            FXMLLoader loader = new FXMLLoader(getClass().getResource(rutaCompletaFXML));
-            Parent root = loader.load();
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-
-            stage.setFullScreen(true);
-            stage.show();  // Muestra la nueva pantalla
-        } catch (IOException e) {
-            e.printStackTrace();
+    private void mostrarPantalla(String rutaFXML, ActionEvent event) throws IOException {
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        String rutaCompletaFXML = rutasFXML.get(rutaFXML);
+        if (rutaCompletaFXML == null) {
+            System.err.println("No se encontró la ruta FXML para: " + rutaFXML);
+            throw new IOException("No se encontró la ruta FXML para: " + rutaFXML);
         }
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(rutaCompletaFXML));
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.setFullScreen(true);
+        stage.show();  // Muestra la nueva pantalla
     }
     public void mostrarPantallaHome(Stage stage){
         try {
@@ -67,17 +63,10 @@ public class GestorDePantallas {
             e.printStackTrace();
         }
     }
-    public void mostrarPantallaLogin(ActionEvent event){
-        mostrarPantalla("Login", event);
-    }
-    public void mostrarPantallaPostLogin(ActionEvent event){
-        mostrarPantalla("PostLogin", event);
-    }
-    public void mostrarPantallaReservar(ActionEvent event){
-        mostrarPantalla("Reservar", event);
-    }
-    public void mostrarPantallaRegistrar(ActionEvent event){
-        mostrarPantalla("Register", event);
-    }
-
+    public void mostrarPantallaLogin(ActionEvent event) throws IOException {mostrarPantalla("Login", event);}
+    public void mostrarPantallaPostLogin(ActionEvent event) throws IOException {mostrarPantalla("PostLogin", event);}
+    public void mostrarPantallaReservarDiscoteca(ActionEvent event) throws IOException {mostrarPantalla("ReservarDiscoteca", event);}
+    public void mostrarPantallaRegistrar(ActionEvent event) throws IOException {mostrarPantalla("Register", event);}
+    public void mostrarPantallaEleccionReservar(ActionEvent event) throws IOException {mostrarPantalla("EleccionReservar", event);}
+    public void mostrarPantallaReservarEvento(ActionEvent event) throws IOException {mostrarPantalla("ReservarEvento", event);}
 }
