@@ -2,6 +2,8 @@ package org.example.demo3;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
+
+import org.example.demo3.Entidades.Entrada;
 import org.example.demo3.Negocio.ConexionBD;
 
 import java.sql.Connection;
@@ -30,5 +32,12 @@ public class HomeApplication extends Application {
     public static void main(String[] args) {
         // Inicia la aplicación JavaFX
         launch(args);
+        Entrada entrada = new Entrada();
+        entrada.setId(1);
+        entrada.setIdRerserva(123);
+        entrada.setIdEvento(456);
+        entrada.setPrecio(50.0f);
+        entrada.generarQR(7); // Genera un QR para una reserva de 7 personas
+
     }
 }

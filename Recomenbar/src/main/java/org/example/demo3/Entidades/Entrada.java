@@ -1,7 +1,17 @@
 package org.example.demo3.Entidades;
 
-import javafx.fxml.FXML;
-import javafx.scene.control.TextField;
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.EncodeHintType;
+import com.google.zxing.WriterException;
+import com.google.zxing.client.j2se.MatrixToImageWriter;
+import com.google.zxing.common.BitMatrix;
+import com.google.zxing.qrcode.QRCodeWriter;
+
+import java.io.IOException;
+import java.nio.file.FileSystems;
+import java.nio.file.Path;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Entrada {
     private int id;
@@ -11,8 +21,7 @@ public class Entrada {
     private float precio;
     private boolean usado;
 
-    public Entrada(){
-
+    public Entrada() {
     }
 
     public boolean isUsado() {
@@ -62,4 +71,32 @@ public class Entrada {
     public void setId(int id) {
         this.id = id;
     }
+
+    // Método para generar un QR con la información de la reserva
+    public void generarQR(int numeroPersonas) {
+        String data = "Reserva ID: " + idRerserva + "\n" +
+                "Evento ID: " + idEvento + "\n" +
+                "Número de Personas: " + numeroPersonas + "\n" +
+                "Precio: " + precio;
+
+        QRCodeWriter qrCodeWriter = new QRCodeWriter();
+        int width = 300;
+        int height = 300;
+        String filePath = "D:\\Centa\\Documents\\Universidad\\Ing_Soft\\Recomenbar\\Recomenbar\\src\\main\\java\\org\\example\\demo3\\Entidades"
+                + id + ".png";
+        String charset = "UTF-8";
+
+        Map<EncodeHintType, Object> hintMap = new HashMap<>();
+        hintMap.put(EncodeHintType.CHARACTER_SET, charset);
+
+        try {
+
+            BitMatrix bitMatrix = qrCodeWriter.encode(data, BarcodeFormat.QR_CODE, width, height);
+            Path path = FileSystems.getDefault().getPath(filePath);
+            MatrixToImageWriter.writeToPath(bitMatrix, "PNG", path);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 }
