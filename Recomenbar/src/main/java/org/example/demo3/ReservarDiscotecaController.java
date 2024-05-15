@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import org.example.demo3.Entidades.Discoteca;
+import org.example.demo3.Entidades.Usuario;
 import org.example.demo3.Negocio.LogicaDelNegocio;
 import org.example.demo3.Negocio.Sesion;
 
@@ -15,6 +16,7 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
 import java.util.List;
+
 
 public class ReservarDiscotecaController implements Initializable {
 
@@ -41,7 +43,7 @@ public class ReservarDiscotecaController implements Initializable {
         }
         // Llenar la ListView con los nombres de los bares
         for (Discoteca discoteca : discotecas) {
-            listViewBares.getItems().addAll(discoteca.getNombre()+" en la direccion: "+discoteca.getUbicacion()+" con un tipo de musica: "+discoteca.getTipoMusica());
+            listViewBares.getItems().addAll(discoteca.getNombre());
         }
     }
 
@@ -65,91 +67,81 @@ public class ReservarDiscotecaController implements Initializable {
     }
 
     private boolean validarFormulario() throws SQLException {
+        boolean validado = true;
         LocalDate fechaSeleccionada = fechaField.getValue();
         String nombre = listViewBares.getSelectionModel().getSelectedItem();
+        System.out.println(nombre);
         if (nombre == null || nombre.isEmpty()) {
             System.out.println("Seleccione una Discoteca");
-            return false;
+            validado = false;
         }
         LogicaDelNegocio logicaDelNegocio= LogicaDelNegocio.getInstancia();
-        int idDiscoteca=logicaDelNegocio.idDiscoteca(nombre);
-        if(idDiscoteca==0){
-            System.out.println("No se ha encontrado el discoteca");
-            return false;
+        Discoteca discoteca=logicaDelNegocio.DiscotecaNombre(nombre);
+        if(discoteca.getId()==0){
+            System.out.println("No se ha encontrado la discoteca");
+            validado = false;
         }
         if(!esNumerico(personasField.getText())){
             System.out.println("No es numerico el dato");
-            return false;
+            validado = false;
         }
         int cantidadPersonas = Integer.parseInt(personasField.getText());
-        if(cantidadPersonas>=0){
+        if(cantidadPersonas<=0){
             System.out.println("Debe haber al menos una persona en la reserva");
-            return false;
+            validado = false;
         }
-        if(cantidadPersonas<=20){
+        if(cantidadPersonas>20){
             System.out.println("El maximo de personas por reserva es 20");
-            return false;
+            validado = false;
         }
-        if(fechaSeleccionada != null){
+        if(fechaSeleccionada == null){
             System.out.println("La fecha es invalida");
-            return false;
+            validado = false;
         }
-        if(fechaSeleccionada.isAfter(LocalDate.now().minusDays(1))){
+        if(!fechaSeleccionada.isAfter(LocalDate.now().minusDays(1))){
             System.out.println("La fecha es ya ocurrio");
-            return false;
+            validado = false;
         }
-        if(fechaSeleccionada.isBefore(LocalDate.now().plusDays(31))){
+        if(!fechaSeleccionada.isBefore(LocalDate.now().plusDays(31))){
             System.out.println("La fecha es demasiado lejana");
-            return false;
+            validado = false;
         }
-        return true;
+        return validado;
     }
 
     @FXML
     private void onReservarButtonClick() throws SQLException {
         // Obtener la selección del usuario del ListView
         String barSeleccionado = listViewBares.getSelectionModel().getSelectedItem();
-        // Discoteca d = new Discoteca();
         LocalDate fechaSeleccionada = fechaField.getValue();
         System.out.println(fechaSeleccionada);
-        if(barSeleccionado != null){
-            if(fechaSeleccionada != null && (fechaSeleccionada.isAfter(LocalDate.now().minusDays(1)) && fechaSeleccionada.isBefore(LocalDate.now().plusDays(31)))){
-                try {
-                    if (esNumerico(personasField.getText())) {
-                        int cantidadPersonas = Integer.parseInt(personasField.getText());
-                        if(cantidadPersonas >=1 && cantidadPersonas<=25) {
-                            LogicaDelNegocio logicaDelNegocio= LogicaDelNegocio.getInstancia();
-                            // Convertir LocalDate a Timestamp
-                            Timestamp timestamp = Timestamp.valueOf(fechaSeleccionada.atStartOfDay());
-                            Sesion sesion= Sesion.obtenerInstancia();
-                            int idUsuario= 1;
-                            int idDiscoteca= 1;
-                            int idEntrada= 1;
-                            int idEvento= 1;
-                            if(logicaDelNegocio.registrarReserva(idUsuario,idDiscoteca,idEntrada,idEvento,timestamp,cantidadPersonas,true)){
-                                // Cierra la aplicación después de registrar la reserva correctamente
-                                Platform.exit();
-                            }else{
-                                System.out.printf("No se puede hacer la reserva");
-                            }
-                        }else{
-                            personasField.clear();
-                            personasField.setPromptText("El maximo para reservar es de 25 personas");
-                        }
-                    }else{
-                        personasField.clear();
-                        personasField.setPromptText("Digita un valor numerico");
-                    }
-                } catch (NumberFormatException e) {
-                    personasField.clear();
-                    personasField.setPromptText("Digita un valor numerico");
-                    System.err.println("Error: La cantidad de personas debe ser un número entero válido.");
+        if(validarFormulario()){
+            try {
+                LogicaDelNegocio logicaDelNegocio = LogicaDelNegocio.getInstancia();
+                int cantidadPersonas = Integer.parseInt(personasField.getText());
+                Timestamp timestamp = Timestamp.valueOf(fechaSeleccionada.atStartOfDay());
+                Sesion sesion = Sesion.obtenerInstancia();
+                Usuario usuario = logicaDelNegocio.UsuarioCorreo(sesion.getCorreo());
+                Discoteca discoteca= logicaDelNegocio.DiscotecaNombre(barSeleccionado);
+                //Instanciar
+                logicaDelNegocio.crearEntrada(discoteca.getId(),true,discoteca.getPrecio());
+                int idEntrada = logicaDelNegocio.idEntrada(discoteca.getId());
+                //System.out.println("ENTRADA ID="+idEntrada);
+                String nombreEvento= usuario.getNombre()+"Privado";
+                logicaDelNegocio.crearEventoPrivado(discoteca.getId(), nombreEvento, discoteca.getPrecio(), timestamp);
+                int idEvento = logicaDelNegocio.idEvento(nombreEvento);
+                if (logicaDelNegocio.registrarReserva(usuario.getId(), discoteca.getId(), idEntrada,idEvento,timestamp,cantidadPersonas,true)) {
+                    // Cierra la aplicación después de registrar la reserva correctamente
+                    Platform.exit();
+                } else {
+                    System.out.printf("No se puede hacer la reserva");
                 }
-            }else{
-                TextAux.setPromptText("Escoja una fecha valida");
+            }catch (NumberFormatException e) {
+                personasField.clear();
+                personasField.setPromptText("Digita un valor numerico");
+                System.err.println("Error: La cantidad de personas debe ser un número entero válido.");
             }
-        }else{
-            TextAux.setText("SELECCIONA UN BAR");
         }
     }
+
 }

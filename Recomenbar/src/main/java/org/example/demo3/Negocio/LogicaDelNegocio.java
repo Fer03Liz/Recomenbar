@@ -1,6 +1,7 @@
 package org.example.demo3.Negocio;
 import org.example.demo3.Entidades.Discoteca;
 import org.example.demo3.Entidades.Evento;
+import org.example.demo3.Entidades.Usuario;
 
 import java.sql.*;
 import java.time.LocalDate;
@@ -147,7 +148,7 @@ public class LogicaDelNegocio {
     public boolean crearEventoPrivado(int id_discoteca, String nombreUsuario, float precio, Timestamp date) throws SQLException {
         boolean reservaregistrada = false;
         Connection conexion = ConexionBD.getConexion();
-        String sql = "INSERT INTO evento (id_discoteca, nombreUsuario, precio, date, private) VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO evento (id_discoteca, nombre, precio, fecha, private) VALUES (?, ?, ?, ?, ?)";
         PreparedStatement sentencia = conexion.prepareStatement(sql);
         sentencia.setInt(1, id_discoteca);
         sentencia.setString(2, nombreUsuario);
@@ -158,6 +159,24 @@ public class LogicaDelNegocio {
         if (filasINS > 0) {
             reservaregistrada = true;
             System.out.println("Evento creado!!");
+        } else {
+            System.out.println("Algo salió mal...");
+        }
+        return reservaregistrada;
+    }
+
+    public boolean crearEntrada(int id_discoteca, boolean vip, float precio) throws SQLException {
+        boolean reservaregistrada = false;
+        Connection conexion = ConexionBD.getConexion();
+        String sql = "INSERT INTO entrada (id_discoteca, vip, precio) VALUES (?, ?, ?)";
+        PreparedStatement sentencia = conexion.prepareStatement(sql);
+        sentencia.setInt(1, id_discoteca);
+        sentencia.setBoolean(2, true);
+        sentencia.setFloat(3, precio);
+        int filasINS = sentencia.executeUpdate();
+        if (filasINS > 0) {
+            reservaregistrada = true;
+            System.out.println("Entrada creada!!");
         } else {
             System.out.println("Algo salió mal...");
         }
@@ -224,41 +243,52 @@ public class LogicaDelNegocio {
 
     }
 
-    public int idUsuario(String correo) throws SQLException {
+    public Usuario UsuarioCorreo(String correo) throws SQLException {
         Connection conexion = ConexionBD.getConexion();
-        String sql = "SELECT id_usuario FROM usuario WHERE correo = ?";
+        Usuario usuario=new Usuario();
+        String sql = "SELECT id, nombre, edad FROM usuario WHERE correo = ?";
         PreparedStatement statement = conexion.prepareStatement(sql);
         statement.setString(1, correo);
         ResultSet resultSet = statement.executeQuery();
         int id = 0;
         if (resultSet.next()) {
-            id = resultSet.getInt("id_usuario");
+            usuario.setId(resultSet.getInt("id"));
+            usuario.setNombre(resultSet.getString("nombre"));
+            usuario.setEdad(resultSet.getInt("edad"));
+            usuario.setCorreo(correo);
         }
-        return id;
+        return usuario;
     }
 
-    public int idDiscoteca(String nombre) throws SQLException {
+    public Discoteca DiscotecaNombre(String nombre) throws SQLException {
         Connection conexion = ConexionBD.getConexion();
-        String sql = "SELECT id_discoteca FROM usuario WHERE nombre = ?";
+        Discoteca discoteca = new Discoteca();
+        String sql = "SELECT id, direccion, genero_musical, tipo, precio_entrada FROM discoteca WHERE nombre = ?";
         PreparedStatement statement = conexion.prepareStatement(sql);
         statement.setString(1, nombre);
         ResultSet resultSet = statement.executeQuery();
-        int id = 0;
+
         if (resultSet.next()) {
-            id = resultSet.getInt("id_discoteca");
+            discoteca.setId(resultSet.getInt("id"));
+            discoteca.setNombre(nombre);
+            discoteca.setTipoMusica(resultSet.getString("genero_musical"));
+            discoteca.setUbicacion(resultSet.getString("direccion"));
+            discoteca.setTipo(resultSet.getInt("tipo"));
+            discoteca.setPrecio(resultSet.getFloat("precio_entrada"));
         }
-        return id;
+
+        return discoteca;
     }
 
-    public int idEntrada(int idReserva) throws SQLException {
+    public int idEntrada(int idDiscoteca) throws SQLException {
         Connection conexion = ConexionBD.getConexion();
-        String sql = "SELECT id_entrada FROM reserva WHERE id = ?";
+        String sql = "SELECT id FROM entrada WHERE id_discoteca = ? ";
         PreparedStatement statement = conexion.prepareStatement(sql);
-        statement.setInt(1, idReserva);
+        statement.setInt(1, idDiscoteca);
         ResultSet resultSet = statement.executeQuery();
         int id = 0;
         if (resultSet.next()) {
-            id = resultSet.getInt("id_entrada");
+            id = resultSet.getInt("id");
         }
         return id;
     }
@@ -268,6 +298,19 @@ public class LogicaDelNegocio {
         String sql = "SELECT id FROM usuario WHERE id_usuario = ?";
         PreparedStatement statement = conexion.prepareStatement(sql);
         statement.setInt(1, id_usuario);
+        ResultSet resultSet = statement.executeQuery();
+        int id = 0;
+        if (resultSet.next()) {
+            id = resultSet.getInt("id");
+        }
+        return id;
+    }
+
+    public int idEvento(String nombreUusario) throws SQLException {
+        Connection conexion = ConexionBD.getConexion();
+        String sql = "SELECT id FROM evento WHERE nombre = ?";
+        PreparedStatement statement = conexion.prepareStatement(sql);
+        statement.setString(1, nombreUusario);
         ResultSet resultSet = statement.executeQuery();
         int id = 0;
         if (resultSet.next()) {
