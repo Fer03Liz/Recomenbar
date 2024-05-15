@@ -171,7 +171,7 @@ public class LogicaDelNegocio {
         String sql = "INSERT INTO entrada (id_discoteca, vip, precio) VALUES (?, ?, ?)";
         PreparedStatement sentencia = conexion.prepareStatement(sql);
         sentencia.setInt(1, id_discoteca);
-        sentencia.setBoolean(2, true);
+        sentencia.setBoolean(2, vip);
         sentencia.setFloat(3, precio);
         int filasINS = sentencia.executeUpdate();
         if (filasINS > 0) {

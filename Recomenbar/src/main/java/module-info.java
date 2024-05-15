@@ -11,6 +11,7 @@ module org.example.demo3 {
     requires eu.hansolo.tilesfx;
     requires com.almasb.fxgl.all;
     requires java.sql;
+    requires java.desktop;
 
     opens org.example.demo3 to javafx.fxml;
     exports org.example.demo3;
