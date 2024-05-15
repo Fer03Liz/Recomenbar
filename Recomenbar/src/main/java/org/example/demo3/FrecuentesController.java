@@ -1,11 +1,13 @@
 package org.example.demo3;
 
+import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class HomeController {
+public class FrecuentesController {
 
     @FXML
     private void onLoginButtonClick(ActionEvent event) throws IOException {
@@ -18,11 +20,4 @@ public class HomeController {
         GestorDePantallas gestorDePantallas = GestorDePantallas.obtenerInstancia();
         gestorDePantallas.mostrarPantallaRegistrar(event);
     }
-
-    @FXML
-    private void onFrecuentesButtonClick(ActionEvent event) throws IOException {
-        GestorDePantallas gestorDePantallas = GestorDePantallas.obtenerInstancia();
-        gestorDePantallas.mostrarPantallaFrecuentes(event);
-    }
-
 }
