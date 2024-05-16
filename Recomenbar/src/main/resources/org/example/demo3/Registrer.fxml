@@ -10,7 +10,7 @@
 
 <AnchorPane prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo3.RegistrerController">
    <children>
-      <VBox alignment="CENTER" layoutX="560" layoutY="240" prefHeight="684.0" prefWidth="608.0">
+      <VBox alignment="CENTER" prefHeight="684.0" prefWidth="608.0">
          <children>
             <Label style="-fx-text-fill: white; -fx-font-size: 24px; -fx-font-family: 'Belleza';" text="RECOMENBAR" />
             <Label style="-fx-text-fill: white; -fx-font-size: 18px;" text="Welcome " />
@@ -18,38 +18,18 @@
                <children>
                   <Label style="-fx-text-fill: white;" text="Nombres:" />
                   <TextField fx:id="nombresField" prefHeight="31.0" prefWidth="488.0" />
-                  <Label fx:id="TextAux1" textFill="WHITE">
-                     <font>
-                        <Font size="30.0" />
-                     </font>
-                  </Label>
-                  <Label style="-fx-text-fill: white;" text="Edad" />
+                  <Label fx:id="TextAux1" style="-fx-text-fill: white;" text=" " />
+                  <Label style="-fx-text-fill: white;" text="Cuantos años tienes:" />
                   <TextField fx:id="edadField" prefHeight="31.0" prefWidth="488.0" />
-                  <Label fx:id="TextAux2" layoutX="279.0" layoutY="167.0" textFill="WHITE">
-                     <font>
-                        <Font size="30.0" />
-                     </font>
-                  </Label>
+                  <Label fx:id="TextAux2" style="-fx-text-fill: white;" text=" " />
                   <Label style="-fx-text-fill: white;" text="Correo:" />
                   <TextField fx:id="correoField" prefHeight="31.0" prefWidth="488.0" />
-                  <Label fx:id="TextAux3" layoutX="279.0" layoutY="241.0" textFill="WHITE">
-                     <font>
-                        <Font size="30.0" />
-                     </font>
-                  </Label>
+                  <Label fx:id="TextAux3" style="-fx-text-fill: white;" text=" " />
                   <Label style="-fx-text-fill: white;" text="Contraseña:" />
                   <PasswordField fx:id="contraseñaField" />
-                  <Label fx:id="TextAux4" layoutX="279.0" layoutY="316.0" textFill="WHITE">
-                     <font>
-                        <Font size="30.0" />
-                     </font>
-                  </Label>
+                  <Label fx:id="TextAux4" style="-fx-text-fill: white;" text=" " />
                   <Button mnemonicParsing="false" onAction="#onRegitrarButtonClick" prefWidth="150.0" style="-fx-background-color: #87CEEB; -fx-text-fill: white; -fx-font-family: 'Belleza';" text="Registrar" />
-                  <Label fx:id="TextAux5" textFill="WHITE">
-                     <font>
-                        <Font size="30.0" />
-                     </font>
-                  </Label>
+                  <Label fx:id="TextAux5" style="-fx-text-fill: white;" text=" " />
                   <Button mnemonicParsing="false" onAction="#onVolverButtonClick" prefWidth="150.0" style="-fx-background-color: #87CEEB; -fx-text-fill: white; -fx-font-family: 'Belleza';" text="Ya estas registrado?" />
                </children>
             </VBox>

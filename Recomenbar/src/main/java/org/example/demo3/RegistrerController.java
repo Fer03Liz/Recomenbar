@@ -76,7 +76,7 @@ public class RegistrerController {
             System.out.println("La contraseña no puede ser vacia");
             TextAux4.setText("La contraseña no puede ser vacia");
         }
-        if (!usuario.getCorreo().contains("@") && !usuario.getCorreo().contains(".com")){
+        if (!usuario.getCorreo().contains("@") || !usuario.getCorreo().contains(".com")){
             valido = false;
             System.out.println("El correo no es valido");
             TextAux3.setText("El correo no es valido");
