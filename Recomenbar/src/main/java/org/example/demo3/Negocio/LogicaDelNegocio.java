@@ -351,4 +351,59 @@ public class LogicaDelNegocio {
         return evento;
     }
 
+    public List<Discoteca> filtrarDiscotecas(String tipoMusica, String direccion, String presupuesto, String experiencia) throws SQLException {
+        List<Discoteca> discotecasFiltradas = new ArrayList<>();
+        Connection conexion = ConexionBD.getConexion();
+        StringBuilder sqlBuilder = new StringBuilder("SELECT nombre, direccion, genero_musical, tipo, precio_entrada FROM discoteca WHERE 1=1");
+        if (tipoMusica != null && !tipoMusica.isEmpty()) {
+            sqlBuilder.append(" AND genero_musical = ?");
+        }
+        if (direccion != null && !direccion.isEmpty()) {
+            sqlBuilder.append(" AND direccion = ?");
+        }
+        if (presupuesto != null && !presupuesto.isEmpty()) {
+            String[] rango = presupuesto.split("-");
+            if (rango.length == 2) {
+                sqlBuilder.append(" AND (precio_entrada >= ? AND precio_entrada <= ? OR precio_entrada < ?)");
+            } else {
+                sqlBuilder.append(" AND (precio_entrada = ? OR precio_entrada < ?)");
+            }
+        }
+        PreparedStatement statement = conexion.prepareStatement(sqlBuilder.toString());
+        int index = 1;
+        if (tipoMusica != null && !tipoMusica.isEmpty()) {
+            statement.setString(index++, tipoMusica);
+        }
+        if (direccion != null && !direccion.isEmpty()) {
+            statement.setString(index++, direccion);
+        }
+        if (presupuesto != null && !presupuesto.isEmpty()) {
+            String[] rango = presupuesto.split("-");
+            if (rango.length == 2) {
+                int precioMin = Integer.parseInt(rango[0].replace(".", ""));
+                int precioMax = Integer.parseInt(rango[1].replace(".", ""));
+                statement.setInt(index++, precioMin);
+                statement.setInt(index++, precioMax);
+                statement.setInt(index++, precioMax); // Añadir el valor de presupuesto nuevamente para el caso de < presupuesto
+            } else {
+                int precio = Integer.parseInt(presupuesto.replace(".", ""));
+                statement.setInt(index++, precio);
+                statement.setInt(index++, precio); // Añadir el valor de presupuesto nuevamente para el caso de < presupuesto
+            }
+        }
+        ResultSet resultSet = statement.executeQuery();
+        while (resultSet.next()) {
+            Discoteca discoteca = new Discoteca();
+            discoteca.setNombre(resultSet.getString("nombre"));
+            discoteca.setUbicacion(resultSet.getString("direccion"));
+            discoteca.setTipoMusica(resultSet.getString("genero_musical"));
+            discoteca.setTipo(resultSet.getInt("tipo"));
+            discoteca.setPrecioEntrada(resultSet.getInt("precio_entrada"));
+            discotecasFiltradas.add(discoteca);
+        }
+        resultSet.close();
+        statement.close();
+        conexion.close();
+        return discotecasFiltradas;
+    }
 }

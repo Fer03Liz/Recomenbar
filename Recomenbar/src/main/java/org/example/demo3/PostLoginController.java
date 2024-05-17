@@ -14,6 +14,11 @@ public class PostLoginController {
         System.out.println("Se obtuvo la instancia");
         gestorDePantallas.mostrarPantallaEleccionReservar(event);
     }
+    @FXML
+    private void onEncuestaButtonClick(ActionEvent event) throws IOException {
+        GestorDePantallas gestorDePantallas = GestorDePantallas.obtenerInstancia();
+        gestorDePantallas.mostrarPantallaEncuesta(event);
+    }
 
     
 }
