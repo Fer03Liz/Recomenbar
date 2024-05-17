@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import org.example.demo3.Entidades.Discoteca;
+import org.example.demo3.Entidades.Evento;
 import org.example.demo3.Entidades.Usuario;
 import org.example.demo3.Negocio.LogicaDelNegocio;
 import org.example.demo3.Negocio.Sesion;
@@ -24,6 +25,7 @@ public class ReservarDiscotecaController implements Initializable {
 
     @FXML
     private ListView<String> listViewBares;
+
     @FXML
     private CheckBox vip;
     @FXML
@@ -84,7 +86,7 @@ public class ReservarDiscotecaController implements Initializable {
             validado = false;
         }
         LogicaDelNegocio logicaDelNegocio= LogicaDelNegocio.getInstancia();
-        Discoteca discoteca=logicaDelNegocio.DiscotecaNombre(nombre);
+        Discoteca discoteca=logicaDelNegocio.discotecaNombre(nombre);
         if(discoteca.getId()==0){
             System.out.println("No se ha encontrado la discoteca");
             TextAux1.setText("No se ha encontrado la discoteca");
@@ -143,24 +145,21 @@ public class ReservarDiscotecaController implements Initializable {
                 System.out.println("VARIABLE "+vip);
                 Sesion sesion = Sesion.obtenerInstancia();
                 Usuario usuario = logicaDelNegocio.UsuarioCorreo(sesion.getCorreo());
-                Discoteca discoteca= logicaDelNegocio.DiscotecaNombre(barSeleccionado);
+                Discoteca discoteca= logicaDelNegocio.discotecaNombre(barSeleccionado);
                 //Instanciar
                 logicaDelNegocio.crearEntrada(discoteca.getId(),esVip,discoteca.getPrecio());
                 int idEntrada = logicaDelNegocio.idEntrada(discoteca.getId());
                 //System.out.println("ENTRADA ID="+idEntrada);
                 String nombreEvento= usuario.getNombre()+"Privado";
                 logicaDelNegocio.crearEventoPrivado(discoteca.getId(), nombreEvento, discoteca.getPrecio(), timestamp);
-                int idEvento = logicaDelNegocio.idEvento(nombreEvento);
-                if (logicaDelNegocio.registrarReserva(usuario.getId(), discoteca.getId(), idEntrada,idEvento,timestamp,cantidadPersonas,true)) {
+                Evento evento = logicaDelNegocio.eventoNombre(nombreEvento);
+                if (logicaDelNegocio.registrarReserva(usuario.getId(), discoteca.getId(), idEntrada, evento.getId(), timestamp,cantidadPersonas,true)) {
                     // Cierra la aplicación después de registrar la reserva correctamente
                     Platform.exit();
                 } else {
                     System.out.printf("No se puede hacer la reserva");
                 }
             }catch (NumberFormatException e) {
-                personasField.clear();
-                personasField.setPromptText("Digita un valor numerico");
-                System.err.println("Error: La cantidad de personas debe ser un número entero válido.");
             }
         }
     }

@@ -1,70 +1,47 @@
 package org.example.demo3.Entidades;
 
-import java.util.List;
+import java.util.Date;
 
 public class Reserva {
-    private String fecha;
+    private int id;
+    private int idUsuario;
+    private int idDiscoteca;
+    private int idEntrada;
+    private int idEvento;
+    private Date fecha;
     private int cantEntradas;
-    private boolean estadoReserva; //verdadero si esta activa falso si ya se uso o se cancelo
-    private String metodoDePago;
-    private String precioTotal;
-    private List<Entrada> entradas;
-    private Discoteca lugar;
+    private boolean valida; //verdadero si esta activa falso si ya se uso o se cancelo
 
-    public Reserva (String fecha,Discoteca lugar,int cantEntradas,boolean estadoReserva,String metodoDePago,String precioTotal ){
-        this.fecha=fecha;
-        this.lugar=lugar;
-        this.cantEntradas=cantEntradas;
-        this.estadoReserva=estadoReserva;
-        this.metodoDePago=metodoDePago;
-        this.precioTotal=precioTotal;
+    public Reserva() {
     }
 
-    public Reserva(Discoteca barSeleccionado, int cantidadPersonas, String fechaReserva) {
-        this.cantEntradas=cantidadPersonas;
-        this.estadoReserva=true;
-        this.fecha=fechaReserva;
-        this.lugar=barSeleccionado;
-
-    }
-
-    public String getFecha() {
+    public int getId() {return id;}
+    public void setId(int id) {this.id = id;}
+    public int getIdUsuario() {return idUsuario;}
+    public void setIdUsuario(int idUsuario) {this.idUsuario = idUsuario;}
+    public int getIdDiscoteca() {return idDiscoteca;}
+    public void setIdDiscoteca(int idDiscoteca) {this.idDiscoteca = idDiscoteca;}
+    public int getIdEntrada() {return idEntrada;}
+    public void setIdEntrada(int id) {this.idEntrada = id;}
+    public int getIdEvento() {return idEvento;}
+    public void setIdEvento(int id) {this.idEvento = id;}
+    public Date getFecha() {
         return fecha;
     }
-
-    public void setFecha(String fecha) {
+    public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
-
     public int getCantEntradas() {
         return cantEntradas;
     }
-
     public void setCantEntradas(int cantEntradas) {
         this.cantEntradas = cantEntradas;
     }
-
     public boolean getEstadoReserva() {
-        return estadoReserva;
+        return valida;
     }
-
     public void setEstadoReserva(boolean estadoReserva) {
-        this.estadoReserva = estadoReserva;
+        this.valida = estadoReserva;
     }
 
-    public String getMetodoDePago() {
-        return metodoDePago;
-    }
-
-    public void setMetodoDePago(String metodoDePago) {
-        this.metodoDePago = metodoDePago;
-    }
-
-    public String getPrecioTotal() {
-        return precioTotal;
-    }
-
-    public void setPrecioTotal(String precioTotal) {
-        this.precioTotal = precioTotal;
-    }
 }

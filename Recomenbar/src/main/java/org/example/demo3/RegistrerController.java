@@ -58,9 +58,10 @@ public class RegistrerController {
         return true;
     }
 
-    public boolean validarCampos(){
+    public boolean validarCampos() throws SQLException {
         boolean valido = true;
         Usuario usuario= new Usuario(nombresField.getText(),correoField.getText(),0,contraseñaField.getText());
+        LogicaDelNegocio logicaDelNegocio= LogicaDelNegocio.getInstancia();
         if(usuario.getNombre().isEmpty() || usuario.getNombre()==null){
             valido = false;
             System.out.println("El nombre no puede ser vacio");
@@ -92,6 +93,9 @@ public class RegistrerController {
             valido = false;
             System.out.println("La edad no puede ser menor de 18");
             TextAux2.setText("La edad no puede ser menor de 18");
+        }
+        if(logicaDelNegocio.usuarioExistente(usuario.getCorreo())){
+            valido = false;
         }
         return valido;
     }
