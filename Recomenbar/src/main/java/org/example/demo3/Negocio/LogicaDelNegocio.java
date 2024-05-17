@@ -398,7 +398,7 @@ public class LogicaDelNegocio {
             discoteca.setUbicacion(resultSet.getString("direccion"));
             discoteca.setTipoMusica(resultSet.getString("genero_musical"));
             discoteca.setTipo(resultSet.getInt("tipo"));
-            discoteca.setPrecioEntrada(resultSet.getInt("precio_entrada"));
+            discoteca.setPrecio(resultSet.getInt("precio_entrada"));
             discotecasFiltradas.add(discoteca);
         }
         resultSet.close();
