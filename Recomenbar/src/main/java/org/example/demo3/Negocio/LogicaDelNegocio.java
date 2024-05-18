@@ -235,7 +235,7 @@ public class LogicaDelNegocio {
         return eventos;
 
     }
-    public List<Reserva> reservasValidas(int id_usuario)throws SQLException {
+    public List<Reserva> reservasValidas(int id_usuario) throws SQLException {
         Connection conexion = ConexionBD.getConexion();
         String sql = "SELECT id, id_discoteca, id_entrada, id_evento, fecha, cantidad_boletas FROM reserva WHERE id_usuario = ? AND valida = ?";
         PreparedStatement statement = conexion.prepareStatement(sql);
@@ -243,8 +243,8 @@ public class LogicaDelNegocio {
         statement.setBoolean(2, true);
         ResultSet resultSet = statement.executeQuery();
         List<Reserva> reservas = new ArrayList<>();
-        Reserva reserva= new Reserva();
-        if (resultSet.next()) {
+        while (resultSet.next()) {
+            Reserva reserva = new Reserva(); // Crear una nueva instancia para cada fila
             reserva.setId(resultSet.getInt("id"));
             reserva.setIdUsuario(id_usuario);
             reserva.setIdDiscoteca(resultSet.getInt("id_discoteca"));
@@ -257,6 +257,7 @@ public class LogicaDelNegocio {
         }
         return reservas;
     }
+
     public List<Discoteca> filtrarDiscotecas(String tipoMusica, String direccion, String presupuesto, String experiencia) throws SQLException {
         List<Discoteca> discotecasFiltradas = new ArrayList<>();
         Connection conexion = ConexionBD.getConexion();

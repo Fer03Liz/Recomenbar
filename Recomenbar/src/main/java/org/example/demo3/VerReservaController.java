@@ -21,7 +21,7 @@ public class VerReservaController implements Initializable {
     private ListView<String> ListViewDiscotecas;
 
     @FXML
-    private ListView<String> ListViewEvento;
+    private ListView<String> ListViewEventos;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -38,11 +38,12 @@ public class VerReservaController implements Initializable {
             Discoteca discoteca = new Discoteca();
             try {
                 Evento evento = logicaDelNegocio.eventoIdEvento(reserva.getIdEvento());
+                System.out.println(evento.getNombre());
                 if(evento.isPrivado()){
                     discoteca= logicaDelNegocio.discotecaID(reserva.getIdDiscoteca());
                     ListViewDiscotecas.getItems().addAll(discoteca.getNombre());
                 }else{
-                    ListViewEvento.getItems().addAll(evento.getNombre());
+                    ListViewEventos.getItems().addAll(evento.getNombre());
                 }
             } catch (SQLException e) {
                 throw new RuntimeException(e);
@@ -54,8 +55,11 @@ public class VerReservaController implements Initializable {
         LogicaDelNegocio logicaDelNegocio= LogicaDelNegocio.getInstancia();
         Sesion sesion = Sesion.obtenerInstancia();
         Usuario usuaro= logicaDelNegocio.UsuarioCorreo(sesion.getCorreo());
-        List<Reserva> reservas = logicaDelNegocio.reservasValidas(usuaro.getId());//Instanciar bares
-        // Agregar más nombres de bares según sea necesario
+        List<Reserva> reservas = logicaDelNegocio.reservasValidas(usuaro.getId());
+        for( Reserva r: reservas){
+            Discoteca discoteca = logicaDelNegocio.discotecaID(r.getIdDiscoteca());
+            System.out.println(discoteca.getNombre());
+        }
         return reservas;
     }
 }
