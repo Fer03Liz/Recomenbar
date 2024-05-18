@@ -33,6 +33,7 @@ CREATE TABLE entrada (
     id_discoteca INT,
     vip BOOLEAN,
     precio DECIMAL(10, 2),
+	qr blob,
     FOREIGN KEY (id_discoteca) REFERENCES discoteca(id)
 );
 
