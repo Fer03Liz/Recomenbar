@@ -6,20 +6,20 @@
 
 <AnchorPane prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo3.PostLoginController">
    <children>
-      <VBox alignment="CENTER" layoutX="560" layoutY="240" prefHeight="338.0" prefWidth="265.0">
+      <VBox alignment="CENTER" layoutX="507.5" layoutY="191" prefHeight="338.0" prefWidth="265.0">
          <children>
-            <Label style="-fx-text-fill: white; -fx-font-size: 24px; -fx-font-family: 'Belleza';" text="Que Deseas Hoy???" />
+            <Label style="-fx-text-fill: white; -fx-font-size: 24px; -fx-font-family: 'Belleza';" text="¿Qué Deseas Hoy?" />
             <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../Logo.png" />
+                  <Image url="@../../../LogoFondoNegro.png" />
                </image>
             </ImageView>
-            <VBox alignment="CENTER" prefHeight="357.0" prefWidth="395.0">
+            <VBox alignment="CENTER" spacing="10.0" prefHeight="357.0" prefWidth="395.0">
                <children>
-                  <Button mnemonicParsing="false" onAction="#onEncuestaButtonClick" prefWidth="150.0" style="-fx-background-color: #87CEEB; -fx-text-fill: white; -fx-font-family: 'Belleza';" text="Encuesta" />
-                  <Label style="-fx-text-fill: white; -fx-font-size: 16px;" text="Empecemos con una pequeña encuesta " />
-                  <Button mnemonicParsing="false" onAction="#onReservarButtonClick" prefWidth="150.0" style="-fx-background-color: #87CEEB; -fx-text-fill: white; -fx-font-family: 'Belleza';" text="Reserva" />
-                  <Label style="-fx-text-fill: white; -fx-font-size: 16px;" text="Quieres reservar directamente?" />
+                  <Button mnemonicParsing="false" onAction="#onEncuestaButtonClick" prefWidth="150.0" style="-fx-background-color: #87CEEB; -fx-text-fill: black; -fx-font-family: 'Belleza';" text="Encuesta" />
+                  <Label style="-fx-text-fill: white; -fx-font-size: 16px; -fx-font-family: 'Belleza';" text="Empecemos con una pequeña encuesta " />
+                  <Button mnemonicParsing="false" onAction="#onReservarButtonClick" prefWidth="150.0" style="-fx-background-color: #87CEEB; -fx-text-fill: black; -fx-font-family: 'Belleza';" text="Reserva" />
+                  <Label style="-fx-text-fill: white; -fx-font-size: 16px; -fx-font-family: 'Belleza';" text="¿Quieres reservar directamente?" />
                </children>
             </VBox>
          </children>

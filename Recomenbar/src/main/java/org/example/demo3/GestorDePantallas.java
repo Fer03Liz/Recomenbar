@@ -50,9 +50,9 @@ public class GestorDePantallas {
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.setFullScreen(true);
+        stage.centerOnScreen();
         stage.show();  // Muestra la nueva pantalla
     }
-
     private void mostrarPantalla(String rutaFXML, ActionEvent event, List<Discoteca> discotecas) throws IOException {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         String rutaCompletaFXML = rutasFXML.get(rutaFXML);
@@ -87,6 +87,8 @@ public class GestorDePantallas {
             Parent root = loader.load();
             Scene scene = new Scene(root);
             stage.setScene(scene);
+            stage.setFullScreen(true);
+            stage.centerOnScreen();
             stage.show();  // Muestra la nueva pantalla
         } catch (IOException e) {
             e.printStackTrace();
@@ -94,7 +96,6 @@ public class GestorDePantallas {
     }
     public void mostrarPantallaLogin(ActionEvent event) throws IOException {mostrarPantalla("Login", event);}
     public void mostrarPantallaPostLogin(ActionEvent event) throws IOException {mostrarPantalla("PostLogin", event);}
-
     public void mostrarPantallaRegistrar(ActionEvent event) throws IOException {mostrarPantalla("Register", event);}
     public void mostrarPantallaEleccionReservar(ActionEvent event) throws IOException {mostrarPantalla("EleccionReservar", event);}
     public void mostrarPantallaReservarEvento(ActionEvent event) throws IOException {mostrarPantalla("ReservarEvento", event);}

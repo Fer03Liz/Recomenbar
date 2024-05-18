@@ -12,14 +12,14 @@
 
 <AnchorPane style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo3.LoginController">
    <children>
-         <VBox alignment="CENTER" layoutX="560" layoutY="240" prefHeight="370.0" prefWidth="394.0" style="-fx-background-color: black;">
+      <VBox alignment="CENTER" layoutX="560" layoutY="240" prefHeight="370.0" prefWidth="394.0" style="-fx-background-color: black;">
          <children>
-            <Label style="-fx-font-size: 24px; -fx-font-family: 'Comic Sans MS'; -fx-text-fill: white;" text="RECOMENBAR" />
-            <Label style="-fx-font-size: 24px; -fx-font-family: 'Comic Sans MS'; -fx-text-fill: white;" text="Welcome Back!" />
+            <Label style="-fx-font-size: 24px; -fx-font-family: 'Belleza'; -fx-text-fill: white;" text="RECOMENBAR" />
+            <Label style="-fx-font-size: 24px; -fx-font-family: 'Belleza'; -fx-text-fill: white;" text="Welcome Back!" />
             <Label />
-            <Label style="-fx-font-size: 14px; -fx-font-family: 'Comic Sans MS'; -fx-text-fill: white;" text="Correo:" />
+            <Label style="-fx-font-size: 14px; -fx-font-family: 'Belleza'; -fx-text-fill: white;" text="Correo:" />
             <TextField fx:id="CorreoField" prefHeight="31.0" prefWidth="488.0" />
-            <Label style="-fx-font-size: 14px; -fx-font-family: 'Comic Sans MS'; -fx-text-fill: white;" text="Contraseña:" />
+            <Label style="-fx-font-size: 14px; -fx-font-family: 'Belleza'; -fx-text-fill: white;" text="Contraseña:" />
             <PasswordField fx:id="ContraseñaField" />
             <Label fx:id="textAux" textFill="WHITE">
                <font>
@@ -27,12 +27,13 @@
                </font>
             </Label>
             <Label />
-            <Button mnemonicParsing="false" onAction="#onLoginButtonClick" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: #87CEEB; -fx-text-fill: white; -fx-font-family: 'Belleza';" text="Login" />
+            <Button mnemonicParsing="false" onAction="#onLoginButtonClick" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: #87CEEB; -fx-text-fill: black; -fx-font-family: 'Belleza';" text="Login" />
             <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../Logo.png" />
-               </image></ImageView>
-            <Button mnemonicParsing="false" onAction="#onRegistarButtonClick" prefHeight="40.0" prefWidth="150.0" style="-fx-background-color: #87CEEB; -fx-text-fill: white; -fx-font-family: 'Belleza';" text="No estas registrado?" textAlignment="CENTER" />
+                  <Image url="@../../../LogoFondoNegro.png" />
+               </image>
+            </ImageView>
+            <Button mnemonicParsing="false" onAction="#onRegistarButtonClick" prefHeight="40.0" prefWidth="150.0" style="-fx-background-color: #87CEEB; -fx-text-fill: black; -fx-font-family: 'Belleza';" text="No estas registrado?" textAlignment="CENTER" />
          </children>
       </VBox>
    </children>
