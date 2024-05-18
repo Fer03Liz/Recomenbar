@@ -23,7 +23,7 @@ public class GestorDePantallas {
         this.rutasFXML.put("Home", "/org/example/demo3/Home.fxml");
         this.rutasFXML.put("Login", "/org/example/demo3/Login.fxml");
         this.rutasFXML.put("PostLogin", "/org/example/demo3/PostLogin.fxml");
-        this.rutasFXML.put("Register", "/org/example/demo3/Registrer.fxml");
+        this.rutasFXML.put("Registrar", "/org/example/demo3/Registrar.fxml");
         this.rutasFXML.put("ReservarDiscoteca", "/org/example/demo3/ReservarDiscoteca.fxml");
         this.rutasFXML.put("EleccionReservar", "/org/example/demo3/PreReserva.fxml");
         this.rutasFXML.put("ReservarEvento", "/org/example/demo3/ReservarEvento.fxml");
@@ -97,7 +97,7 @@ public class GestorDePantallas {
     }
     public void mostrarPantallaLogin(ActionEvent event) throws IOException {mostrarPantalla("Login", event);}
     public void mostrarPantallaPostLogin(ActionEvent event) throws IOException {mostrarPantalla("PostLogin", event);}
-    public void mostrarPantallaRegistrar(ActionEvent event) throws IOException {mostrarPantalla("Register", event);}
+    public void mostrarPantallaRegistrar(ActionEvent event) throws IOException {mostrarPantalla("Registrar", event);}
     public void mostrarPantallaEleccionReservar(ActionEvent event) throws IOException {mostrarPantalla("EleccionReservar", event);}
     public void mostrarPantallaReservarEvento(ActionEvent event) throws IOException {mostrarPantalla("ReservarEvento", event);}
     public void mostrarPantallaFrecuentes(ActionEvent event) throws  IOException{mostrarPantalla("Frecuentes",event);}

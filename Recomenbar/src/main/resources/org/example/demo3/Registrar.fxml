@@ -29,6 +29,7 @@
                   <PasswordField fx:id="contraseñaField" prefHeight="31.0" prefWidth="488.0" />
                   <Label fx:id="TextAux4" style="-fx-text-fill: white;" text=" " />
                   <Button mnemonicParsing="false" onAction="#onRegistrarButtonClick" prefWidth="150.0" style="-fx-background-color: #87CEEB; -fx-text-fill: black; -fx-font-family: 'Belleza';" text="Registrar" />
+
                   <Label fx:id="TextAux5" style="-fx-text-fill: white;" text=" " />
                   <Button mnemonicParsing="false" onAction="#onVolverButtonClick" prefWidth="150.0" style="-fx-background-color: #87CEEB; -fx-text-fill: black; -fx-font-family: 'Belleza';" text="Ya estás registrado?" />
                </children>

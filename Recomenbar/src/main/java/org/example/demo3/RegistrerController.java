@@ -102,7 +102,7 @@ public class RegistrerController {
     }
 
     @FXML
-    private void onRegitrarButtonClick(ActionEvent event) throws IOException, SQLException {//CORREGIR PRUEBA REGISTRARSE CON CORREO YA EXISTENTE
+    private void onRegistrarButtonClick(ActionEvent event) throws IOException, SQLException {//CORREGIR PRUEBA REGISTRARSE CON CORREO YA EXISTENTE
         if(validarCampos()){
             TextAux1.setText("");
             TextAux2.setText("");
