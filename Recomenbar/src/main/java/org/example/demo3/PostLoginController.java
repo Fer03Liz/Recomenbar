@@ -20,5 +20,9 @@ public class PostLoginController {
         gestorDePantallas.mostrarPantallaEncuesta(event);
     }
 
-    
+    @FXML
+    private  void onVerReservarButtonClick(ActionEvent event) throws IOException {
+        GestorDePantallas gestorDePantallas = new GestorDePantallas();
+        gestorDePantallas.mosrtarPantallaVerReserva(event);
+    }
 }

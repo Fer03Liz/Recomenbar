@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo3.PostLoginController">
+<AnchorPane prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo3.PostLoginController">
    <children>
       <VBox alignment="CENTER" layoutX="507.5" layoutY="191" prefHeight="338.0" prefWidth="265.0">
          <children>
@@ -14,12 +17,14 @@
                   <Image url="@../../../LogoFondoNegro.png" />
                </image>
             </ImageView>
-            <VBox alignment="CENTER" spacing="10.0" prefHeight="357.0" prefWidth="395.0">
+            <VBox alignment="CENTER" prefHeight="357.0" prefWidth="395.0" spacing="10.0">
                <children>
-                  <Button mnemonicParsing="false" onAction="#onEncuestaButtonClick" prefWidth="150.0" style="-fx-background-color: #87CEEB; -fx-text-fill: black; -fx-font-family: 'Belleza';" text="Encuesta" />
                   <Label style="-fx-text-fill: white; -fx-font-size: 16px; -fx-font-family: 'Belleza';" text="Empecemos con una pequeña encuesta " />
-                  <Button mnemonicParsing="false" onAction="#onReservarButtonClick" prefWidth="150.0" style="-fx-background-color: #87CEEB; -fx-text-fill: black; -fx-font-family: 'Belleza';" text="Reserva" />
+                  <Button mnemonicParsing="false" onAction="#onEncuestaButtonClick" prefWidth="150.0" style="-fx-background-color: #87CEEB; -fx-text-fill: black; -fx-font-family: 'Belleza';" text="Encuesta" />
                   <Label style="-fx-text-fill: white; -fx-font-size: 16px; -fx-font-family: 'Belleza';" text="¿Quieres reservar directamente?" />
+                  <Button mnemonicParsing="false" onAction="#onReservarButtonClick" prefWidth="150.0" style="-fx-background-color: #87CEEB; -fx-text-fill: black; -fx-font-family: 'Belleza';" text="Reserva" />
+                  <Label layoutX="29.0" layoutY="92.0" style="-fx-text-fill: white; -fx-font-size: 16px; -fx-font-family: 'Belleza';" text="¿Quieres ver tus reservas?" />
+                  <Button layoutX="68.0" layoutY="127.0" mnemonicParsing="false" onAction="#onVerReservarButtonClick" prefWidth="150.0" style="-fx-background-color: #87CEEB; -fx-text-fill: black; -fx-font-family: 'Belleza';" text="Ver Reservas" />
                </children>
             </VBox>
          </children>
