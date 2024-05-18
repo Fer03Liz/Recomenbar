@@ -16,31 +16,21 @@
       <VBox alignment="CENTER" layoutX="-1.0" prefHeight="720.0" prefWidth="1280.0">
          <children>
             <Label style="-fx-text-fill: white; -fx-font-size: 24px; -fx-font-family: 'Belleza';" text="RESERVA" />
-            <Label style="-fx-text-fill: white;" text="Escoge el sitio a reservar">
-               <font>
-                  <Font size="31.0" />
-               </font></Label>
+            <Label style="-fx-text-fill: white; -fx-font-size: 31px;" text="Escoge el sitio a reservar" />
             <ListView fx:id="listViewBares" prefHeight="200.0" prefWidth="200.0" />
             <Label fx:id="TextAux1" textFill="WHITE">
                <font>
                   <Font size="40.0" />
                </font>
             </Label>
-            <Label style="-fx-text-fill: white;" text="Cuantas personas van a ir?">
-               <font>
-                  <Font size="29.0" />
-               </font></Label>
+            <Label style="-fx-text-fill: white; -fx-font-size: 29px;" text="Cuantas personas van a ir?" />
             <TextField fx:id="personasField" />
             <Label fx:id="TextAux2" textFill="WHITE">
                <font>
                   <Font size="40.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" style="-fx-text-fill: white;" text="Que dia es la reserva?">
-               <font>
-                  <Font size="28.0" />
-               </font>
-            </Label>
+            <Label alignment="CENTER" style="-fx-text-fill: white; -fx-font-size: 28px;" text="Que día es la reserva?" />
             <DatePicker fx:id="fechaField" />
             <Label fx:id="TextAux3" layoutX="650.0" layoutY="447.0" textFill="WHITE">
                <font>

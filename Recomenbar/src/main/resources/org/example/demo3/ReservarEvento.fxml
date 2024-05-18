@@ -15,22 +15,22 @@
         <VBox alignment="CENTER" layoutX="560" layoutY="240" prefHeight="400.0" prefWidth="600.0">
             <children>
                 <Label style="-fx-text-fill: white; -fx-font-size: 24px; -fx-font-family: 'Belleza';" text="RESERVAR!!" />
-                <Label style="-fx-text-fill: white;" text="Escoge el evento a reservar" />
-            <Label fx:id="TextAux1" textFill="WHITE" />
+                <Label style="-fx-text-fill: white; -fx-font-size: 18px;" text="Escoge el evento a reservar" />
                 <ListView fx:id="listViewEventos" prefHeight="200.0" prefWidth="200.0" />
-                <Label style="-fx-text-fill: white;" text="Cuantas personas van a ir?" />
+                <Label fx:id="TextAux1" textFill="WHITE" />
+                <Label style="-fx-text-fill: white; -fx-font-size: 18px;" text="Cuantas personas van a ir?" />
                 <TextField fx:id="personasField" />
-            <Label fx:id="TextAux2" textFill="WHITE" />
-                <Label style="-fx-text-fill: white;" text="Que dia es la reserva?" />
+                <Label fx:id="TextAux2" textFill="WHITE" />
+                <Label style="-fx-text-fill: white; -fx-font-size: 18px;" text="Que día es la reserva?" />
                 <DatePicker fx:id="fechaField" />
-            <Label fx:id="TextAux3" textFill="WHITE" />
-            <Label style="-fx-text-fill: white;" text="Desea una reserva VIP?" />
-            <CheckBox fx:id="vip" mnemonicParsing="false" text="VIP" textFill="WHITE">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </CheckBox>
-            <Label fx:id="TextAux11" textFill="WHITE" />
+                <Label fx:id="TextAux3" textFill="WHITE" />
+                <Label style="-fx-text-fill: white; -fx-font-size: 18px;" text="Desea una reserva VIP?" />
+                <CheckBox fx:id="vip" mnemonicParsing="false" text="VIP" textFill="WHITE">
+                    <font>
+                        <Font size="18.0" />
+                    </font>
+                </CheckBox>
+                <Label fx:id="TextAux11" textFill="WHITE" />
                 <Button mnemonicParsing="false" onAction="#onReservarButtonClick" prefWidth="150.0" style="-fx-background-color: #87CEEB; -fx-text-fill: white; -fx-font-family: 'Belleza';" text="Reservar" />
             </children>
         </VBox>

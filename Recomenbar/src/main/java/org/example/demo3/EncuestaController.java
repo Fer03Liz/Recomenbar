@@ -10,6 +10,7 @@ import javafx.scene.control.ListView;
 import org.example.demo3.Entidades.Discoteca;
 import org.example.demo3.Negocio.LogicaDelNegocio;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.List;
@@ -105,5 +106,17 @@ public class EncuestaController implements Initializable {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+    }
+    @FXML
+    private  void onReservarButtonClick(ActionEvent event) throws SQLException, IOException {
+        LogicaDelNegocio logicaDelNegocio = LogicaDelNegocio.getInstancia();
+        List<Discoteca> discotecas = logicaDelNegocio.filtrarDiscotecas(
+                choicebox1.getValue(),
+                choicebox2.getValue(),
+                choicebox3.getValue(),
+                choicebox4.getValue()
+        );
+        GestorDePantallas gestorDePantallas = GestorDePantallas.obtenerInstancia();
+        gestorDePantallas.mostrarPantallaReservarDiscoteca(event,discotecas);
     }
 }

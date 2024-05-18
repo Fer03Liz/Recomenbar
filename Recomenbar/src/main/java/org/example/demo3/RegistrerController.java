@@ -80,7 +80,7 @@ public class RegistrerController {
         if (!usuario.getCorreo().contains("@") || !usuario.getCorreo().contains(".com")){
             valido = false;
             System.out.println("El correo no es valido");
-            TextAux3.setText("El correo no es valido");
+            TextAux3.setText("El correo debe tener un @.com");
         }
         if (!esNumerico(edadField.getText())){
             valido = false;
@@ -96,12 +96,13 @@ public class RegistrerController {
         }
         if(logicaDelNegocio.usuarioExistente(usuario.getCorreo())){
             valido = false;
+            TextAux3.setText("Ya hay un usuario con este correo");
         }
         return valido;
     }
 
     @FXML
-    private void onRegitrarButtonClick(ActionEvent event) throws IOException, SQLException {//CORREGIR PRUEBA REGISTRARSE CON CORREO YA EXISTENTE
+    private void onRegistrarButtonClick(ActionEvent event) throws IOException, SQLException {//CORREGIR PRUEBA REGISTRARSE CON CORREO YA EXISTENTE
         if(validarCampos()){
             TextAux1.setText("");
             TextAux2.setText("");

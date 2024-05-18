@@ -52,15 +52,15 @@
                 </ImageView>
                 <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                     <children>
-                          <Button mnemonicParsing="false" onAction="#onLoginButtonClick" style="-fx-background-color: black;" text="Login" textFill="WHITE">
-                              <font>
-                                  <Font name="Berlin Sans FB" size="31.0" />
-                              </font>
-                          </Button>
+                        <Button mnemonicParsing="false" onAction="#onLoginButtonClick" style="-fx-background-color: black;" text="Login" textFill="WHITE">
+                            <font>
+                                <Font name="Berlin Sans FB" size="31.0" />
+                            </font>
+                        </Button>
                         <Button mnemonicParsing="false" onAction="#onRegisterButtonClick" style="-fx-background-color: black;" text="Register" textFill="WHITE" translateX="40.0">
-                     <font>
-                        <Font size="31.0" />
-                     </font></Button>
+                            <font>
+                                <Font size="31.0" />
+                            </font></Button>
                     </children>
                 </HBox>
             </children>

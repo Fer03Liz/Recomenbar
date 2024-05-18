@@ -9,12 +9,12 @@
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
-    <Button alignment="CENTER" mnemonicParsing="false" prefHeight="29.0" prefWidth="70.0" style="-fx-background-color: black;" text="?" textFill="WHITE" translateX="-330.0" translateY="-20.0" onAction="#onFrecuentesButtonClick" />
-    <Label fx:id="welcomeText1" layoutX="671.0" layoutY="471.0" style="-fx-font-size: 24px; -fx-font-family: 'Comic Sans MS'; -fx-text-fill: white;" text="BIENVENIDO" />
+    <Button alignment="CENTER" mnemonicParsing="false" prefHeight="29.0" prefWidth="70.0" style="-fx-background-color: lightblue; -fx-text-fill: black;" text="?" translateX="-330.0" translateY="-20.0" onAction="#onFrecuentesButtonClick" />
+    <Label fx:id="welcomeText1" layoutX="671.0" layoutY="471.0" style="-fx-font-size: 24px; -fx-font-family: 'Belleza'; -fx-text-fill: white;" text="BIENVENIDO" />
     <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
         <children>
-            <Button onAction="#onLoginButtonClick" prefHeight="60.0" prefWidth="151.0" style="-fx-background-color: black; -fx-text-fill: white;" text="Login" />
-            <Button layoutX="575.0" layoutY="30.0" onAction="#onRegisterButtonClick" prefHeight="60.0" prefWidth="151.0" style="-fx-background-color: black; -fx-text-fill: white;" text="Register" />
+            <Button onAction="#onLoginButtonClick" prefHeight="60.0" prefWidth="151.0" style="-fx-background-color: lightblue; -fx-text-fill: black; -fx-font-family: 'Belleza';" text="Login" />
+            <Button layoutX="575.0" layoutY="30.0" onAction="#onRegisterButtonClick" prefHeight="60.0" prefWidth="151.0" style="-fx-background-color: lightblue; -fx-text-fill: black; -fx-font-family: 'Belleza';" text="Register" />
         </children>
     </HBox>
     <ImageView fitHeight="315.0" fitWidth="456.0" pickOnBounds="true" preserveRatio="true">

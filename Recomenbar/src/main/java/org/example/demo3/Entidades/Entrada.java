@@ -15,7 +15,7 @@ public class Entrada {
     public Entrada(){
 
     }
-
+    //PRUEBA PUSH
     public boolean isUsado() {
         return usado;
     }
