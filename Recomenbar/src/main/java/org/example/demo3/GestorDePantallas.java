@@ -6,10 +6,13 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import org.example.demo3.Entidades.Discoteca;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+
 
 public class GestorDePantallas {
     private static GestorDePantallas instancia;
@@ -49,6 +52,30 @@ public class GestorDePantallas {
         stage.setFullScreen(true);
         stage.show();  // Muestra la nueva pantalla
     }
+
+    private void mostrarPantalla(String rutaFXML, ActionEvent event, List<Discoteca> discotecas) throws IOException {
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        String rutaCompletaFXML = rutasFXML.get(rutaFXML);
+        if (rutaCompletaFXML == null) {
+            System.err.println("No se encontró la ruta FXML para: " + rutaFXML);
+            throw new IOException("No se encontró la ruta FXML para: " + rutaFXML);
+        }
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(rutaCompletaFXML));
+        Parent root = loader.load();
+
+        // Obtener el controlador y pasar las discotecas
+        if (discotecas != null && rutaFXML.equals("ReservarDiscoteca")) {
+            ReservarDiscotecaController controller = loader.getController();
+            controller.setDiscotecas(discotecas);
+        }
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.setFullScreen(true);
+        stage.show();
+    }
+
+    public void mostrarPantallaReservarDiscoteca(ActionEvent event, List<Discoteca> discotecas) throws IOException {mostrarPantalla("ReservarDiscoteca", event, discotecas);}
+
     public void mostrarPantallaHome(Stage stage){
         try {
             String rutaCompletaFXML = rutasFXML.get("Home");
@@ -67,7 +94,7 @@ public class GestorDePantallas {
     }
     public void mostrarPantallaLogin(ActionEvent event) throws IOException {mostrarPantalla("Login", event);}
     public void mostrarPantallaPostLogin(ActionEvent event) throws IOException {mostrarPantalla("PostLogin", event);}
-    public void mostrarPantallaReservarDiscoteca(ActionEvent event) throws IOException {mostrarPantalla("ReservarDiscoteca", event);}
+
     public void mostrarPantallaRegistrar(ActionEvent event) throws IOException {mostrarPantalla("Register", event);}
     public void mostrarPantallaEleccionReservar(ActionEvent event) throws IOException {mostrarPantalla("EleccionReservar", event);}
     public void mostrarPantallaReservarEvento(ActionEvent event) throws IOException {mostrarPantalla("ReservarEvento", event);}

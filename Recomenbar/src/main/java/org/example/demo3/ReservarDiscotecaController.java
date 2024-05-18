@@ -21,7 +21,7 @@ import java.util.ResourceBundle;
 import java.util.List;
 
 
-public class ReservarDiscotecaController implements Initializable {
+public class ReservarDiscotecaController {
 
     @FXML
     private ListView<String> listViewBares;
@@ -41,26 +41,11 @@ public class ReservarDiscotecaController implements Initializable {
     @FXML
     private DatePicker fechaField;
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        // Inicializar la lista de nombres de bares
-        List<Discoteca> discotecas = null;
-        try {
-            discotecas = obtenerBaresLocales();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-        // Llenar la ListView con los nombres de los bares
+    // Método para inicializar la lista de discotecas
+    public void setDiscotecas(List<Discoteca> discotecas) {
         for (Discoteca discoteca : discotecas) {
-            listViewBares.getItems().addAll(discoteca.getNombre());
+            listViewBares.getItems().add(discoteca.getNombre());
         }
-    }
-
-    private List<Discoteca> obtenerBaresLocales() throws SQLException {
-        LogicaDelNegocio logicaDelNegocio= LogicaDelNegocio.getInstancia();
-        List<Discoteca> discotecas = logicaDelNegocio.disponibles();//Instanciar bares
-        // Agregar más nombres de bares según sea necesario
-        return discotecas;
     }
 
     public static boolean esNumerico(String str) {
