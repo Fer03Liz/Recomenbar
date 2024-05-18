@@ -10,6 +10,9 @@ import org.example.demo3.Entidades.Usuario;
 import org.example.demo3.Negocio.LogicaDelNegocio;
 import org.example.demo3.Negocio.Sesion;
 
+import javafx.event.ActionEvent;
+
+import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.List;
@@ -62,4 +65,51 @@ public class VerReservaController implements Initializable {
         }
         return reservas;
     }
+
+    private boolean validar() throws SQLException {
+        boolean validar= true;
+        LogicaDelNegocio logicaDelNegocio= LogicaDelNegocio.getInstancia();
+        String discotecaSeleccionada = ListViewDiscotecas.getSelectionModel().getSelectedItem();
+        Discoteca discoteca = logicaDelNegocio.discotecaNombre(discotecaSeleccionada);
+        String eventoSeleccionado = ListViewEventos.getSelectionModel().getSelectedItem();
+        Evento evento = logicaDelNegocio.eventoNombre(eventoSeleccionado);
+        if(discoteca==null &&  evento==null){
+            validar= false;
+        }
+        if(discoteca!=null &&  evento!=null){
+            validar= false;
+            ListViewDiscotecas.getSelectionModel().clearSelection();
+            ListViewEventos.getSelectionModel().clearSelection();
+        }
+        return validar;
+    }
+
+    @FXML
+    private void onVerReserva(ActionEvent event) throws SQLException, IOException {
+        LogicaDelNegocio logicaDelNegocio= LogicaDelNegocio.getInstancia();
+        Reserva reservaEscogida= null;
+        String discotecaSeleccionada = ListViewDiscotecas.getSelectionModel().getSelectedItem();
+        Discoteca discoteca = logicaDelNegocio.discotecaNombre(discotecaSeleccionada);
+        String eventoSeleccionado = ListViewEventos.getSelectionModel().getSelectedItem();
+        Evento evento = logicaDelNegocio.eventoNombre(eventoSeleccionado);
+        List<Reserva> reservas = null;
+        try {
+            reservas = obtenerReservasDisponibles();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        if(validar()){
+            for( Reserva r: reservas){
+                if(r.getIdDiscoteca()==discoteca.getId()){
+                    reservaEscogida=r;
+                }
+                if(r.getIdEvento()==evento.getId()){
+                    reservaEscogida=r;
+                }
+            }
+            GestorDePantallas gestorDePantallas= GestorDePantallas.obtenerInstancia();
+            gestorDePantallas.mostrarVerInfoReserva(event, reservaEscogida);
+        }
+    }
+
 }

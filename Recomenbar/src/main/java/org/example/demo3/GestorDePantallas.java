@@ -7,6 +7,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import org.example.demo3.Entidades.Discoteca;
+import org.example.demo3.Entidades.Reserva;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -30,6 +31,7 @@ public class GestorDePantallas {
         this.rutasFXML.put("Frecuentes","/org/example/demo3/PreguntasFrecuentes.fxml");
         this.rutasFXML.put("Encuesta", "/org/example/demo3/Encuesta.fxml");
         this.rutasFXML.put("VerReserva","/org/example/demo3/VerReserva.fxml");
+        this.rutasFXML.put("VerInfoReserva","/org/example/demo3/VerInfoReserva.fxml");
     }
 
     public static GestorDePantallas obtenerInstancia() {
@@ -76,6 +78,29 @@ public class GestorDePantallas {
     }
 
     public void mostrarPantallaReservarDiscoteca(ActionEvent event, List<Discoteca> discotecas) throws IOException {mostrarPantalla("ReservarDiscoteca", event, discotecas);}
+
+    private void mostrarPantalla(String rutaFXML, ActionEvent event, Reserva reserva ) throws IOException {
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        String rutaCompletaFXML = rutasFXML.get(rutaFXML);
+        if (rutaCompletaFXML == null) {
+            System.err.println("No se encontró la ruta FXML para: " + rutaFXML);
+            throw new IOException("No se encontró la ruta FXML para: " + rutaFXML);
+        }
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(rutaCompletaFXML));
+        Parent root = loader.load();
+
+        // Obtener el controlador y pasar las discotecas
+        if (reserva != null && rutaFXML.equals("VerInfoReserva")) {
+            VerInfoReservaController controller = loader.getController();
+            controller.setReserva(reserva);
+        }
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.setFullScreen(true);
+        stage.show();
+    }
+
+    public void mostrarVerInfoReserva(ActionEvent event, Reserva reserva)throws  IOException{mostrarPantalla("VerInfoReserva",event,reserva);}
 
     public void mostrarPantallaHome(Stage stage){
         try {
