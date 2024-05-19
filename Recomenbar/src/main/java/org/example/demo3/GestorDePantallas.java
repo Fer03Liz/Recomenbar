@@ -36,6 +36,7 @@ public class GestorDePantallas {
         this.rutasFXML.put("Encuesta", "/org/example/demo3/Encuesta.fxml");
         this.rutasFXML.put("VerReserva","/org/example/demo3/VerReserva.fxml");
         this.rutasFXML.put("VerInfoReserva","/org/example/demo3/VerInfoReserva.fxml");
+        this.rutasFXML.put("ValidarReserva","/org/example/demo3/ValidarReserva.fxml");
     }
 
     public static GestorDePantallas obtenerInstancia() {
@@ -113,7 +114,7 @@ public class GestorDePantallas {
         if(usuario.getTipo()==1){
             mostrarPantalla("PostLogin", event);
         }else{
-
+            mostrarPantalla("ValidarReserva", event);
         }
     }
 
