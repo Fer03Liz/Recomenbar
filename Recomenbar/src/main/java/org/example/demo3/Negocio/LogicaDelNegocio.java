@@ -13,7 +13,7 @@ public class LogicaDelNegocio {
     private static LogicaDelNegocio instancia;
 
     // Constructor privado para evitar la creación de instancias desde fuera de la clase
-    private LogicaDelNegocio() {}
+    public LogicaDelNegocio() {}
     // Método estático para obtener la instancia única de LogicaDelNegocio
     public static LogicaDelNegocio getInstancia() {
         if (instancia == null) {

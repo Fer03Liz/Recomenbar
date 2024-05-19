@@ -84,4 +84,5 @@ INSERT INTO evento (id_discoteca, nombre, precio, fecha, private) VALUES (2, "Po
 INSERT INTO evento (id_discoteca, nombre, precio, fecha, private) VALUES (3, "Perreologia", 15000, '2024-06-08', false);
 INSERT INTO evento (id_discoteca, nombre, precio, fecha, private) VALUES (4, "Despecho Pa La Gente", 45000, '2024-06-25', false);
 
-INSERT INTO entrada (id_discoteca,  vip) VALUES(1,true);
+INSERT INTO entrada (id_discoteca, vip, precio) VALUES (1, true, 50000.00);
+

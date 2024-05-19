@@ -4,21 +4,28 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="08ef61b8-f2e4-4eb3-85ba-5046761b8a2f" name="Changes" comment="Prueba">
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+    <list default="true" id="08ef61b8-f2e4-4eb3-85ba-5046761b8a2f" name="Changes" comment="Creación de nueva rama para Pruebas">
+      <change afterPath="$PROJECT_DIR$/Recomenbar/src/test/java/LogicaDelNegocioTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Recomenbar/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Recomenbar/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Recomenbar/src/main/java/lbs/mysql-connector-j-8.3.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Recomenbar/src/main/java/org/example/demo3/Negocio/LogicaDelNegocio.java" beforeDir="false" afterPath="$PROJECT_DIR$/Recomenbar/src/main/java/org/example/demo3/Negocio/LogicaDelNegocio.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Recomenbar/src/main/resources/Script base de datos.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Recomenbar/src/main/resources/Script base de datos.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="main" />
+        <entry key="$PROJECT_DIR$" value="develop" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -29,12 +36,12 @@
     &quot;assignee&quot;: &quot;AFCTT&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/Fer03Liz/Recomenbar.git&quot;,
-    &quot;accountId&quot;: &quot;2b838478-8ea1-4920-b145-b932a8945544&quot;
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/Fer03Liz/Recomenbar.git",
+    "accountId": "f52fef62-4292-4932-bd03-809101075ffb"
   }
-}</component>
+}]]></component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
@@ -51,28 +58,136 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.HelloApplication.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;develop&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/Centa/Documents/Universidad/Ing_Soft/Recomenbar&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.HelloApplication.executor": "Run",
+    "Application.HomeApplication.executor": "Run",
+    "JUnit.LogicaDelNegocioTest.testCrearEntradaFallido.executor": "Run",
+    "JUnit.LogicaDelNegocioTest.testCrearEntradaNormalExitoso.executor": "Run",
+    "JUnit.LogicaDelNegocioTest.testCrearEntradaVIPExitoso.executor": "Run",
+    "JUnit.LogicaDelNegocioTest.testCrearEventoPrivadoExitoso.executor": "Run",
+    "JUnit.LogicaDelNegocioTest.testCrearEventoPrivadoFallido.executor": "Run",
+    "JUnit.LogicaDelNegocioTest.testDiscotecasDisponiblesError.executor": "Run",
+    "JUnit.LogicaDelNegocioTest.testDiscotecasDisponiblesExitoso.executor": "Run",
+    "JUnit.LogicaDelNegocioTest.testLoginExitoso.executor": "Run",
+    "JUnit.LogicaDelNegocioTest.testLoginFallido.executor": "Run",
+    "JUnit.LogicaDelNegocioTest.testRegistrarReservaExitoso.executor": "Run",
+    "JUnit.LogicaDelNegocioTest.testRegistrarReservaFallido.executor": "Run",
+    "JUnit.LogicaDelNegocioTest.testRegistrarUsuarioExitoso.executor": "Run",
+    "JUnit.LogicaDelNegocioTest.testRegistrarUsuarioFallido.executor": "Run",
+    "JUnit.LogicaDelNegocioTest.testUsuarioExistente (1).executor": "Run",
+    "JUnit.LogicaDelNegocioTest.testUsuarioExistente.executor": "Run",
+    "JUnit.LogicaDelNegocioTest.testUsuarioNoExistente.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "Pruebas",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/USER/Downloads/lab1",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\PCFER\Documents\GitHub\Recomenbar" />
     </key>
+  </component>
+  <component name="RunManager" selected="JUnit.LogicaDelNegocioTest.testDiscotecasDisponiblesError">
+    <configuration name="LogicaDelNegocioTest.testCrearEntradaFallido" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="demo3" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.example.demo3.Negocio.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="org.example.demo3.Negocio" />
+      <option name="MAIN_CLASS_NAME" value="org.example.demo3.Negocio.LogicaDelNegocioTest" />
+      <option name="METHOD_NAME" value="testCrearEntradaFallido" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="LogicaDelNegocioTest.testDiscotecasDisponiblesError" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="demo3" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.example.demo3.Negocio.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="org.example.demo3.Negocio" />
+      <option name="MAIN_CLASS_NAME" value="org.example.demo3.Negocio.LogicaDelNegocioTest" />
+      <option name="METHOD_NAME" value="testDiscotecasDisponiblesError" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="LogicaDelNegocioTest.testDiscotecasDisponiblesExitoso" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="demo3" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.example.demo3.Negocio.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="org.example.demo3.Negocio" />
+      <option name="MAIN_CLASS_NAME" value="org.example.demo3.Negocio.LogicaDelNegocioTest" />
+      <option name="METHOD_NAME" value="testDiscotecasDisponiblesExitoso" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="LogicaDelNegocioTest.testUsuarioExistente" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="demo3" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.example.demo3.Negocio.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="org.example.demo3.Negocio" />
+      <option name="MAIN_CLASS_NAME" value="org.example.demo3.Negocio.LogicaDelNegocioTest" />
+      <option name="METHOD_NAME" value="testUsuarioExistente" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="LogicaDelNegocioTest.testUsuarioNoExistente" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="demo3" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.example.demo3.Negocio.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="org.example.demo3.Negocio" />
+      <option name="MAIN_CLASS_NAME" value="org.example.demo3.Negocio.LogicaDelNegocioTest" />
+      <option name="METHOD_NAME" value="testUsuarioNoExistente" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.LogicaDelNegocioTest.testDiscotecasDisponiblesError" />
+        <item itemvalue="JUnit.LogicaDelNegocioTest.testDiscotecasDisponiblesExitoso" />
+        <item itemvalue="JUnit.LogicaDelNegocioTest.testUsuarioNoExistente" />
+        <item itemvalue="JUnit.LogicaDelNegocioTest.testUsuarioExistente" />
+        <item itemvalue="JUnit.LogicaDelNegocioTest.testCrearEntradaFallido" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -108,7 +223,23 @@
       <option name="project" value="LOCAL" />
       <updated>1712868304735</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Funciona la encuesta, se agregaron mas discotecas en el script">
+      <option name="closed" value="true" />
+      <created>1716055537355</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1716055537355</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Creación de nueva rama para Pruebas">
+      <option name="closed" value="true" />
+      <created>1716056324052</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1716056324052</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -142,6 +273,8 @@
     <MESSAGE value="Creacion develop" />
     <MESSAGE value="Creacion GestorDePantallas" />
     <MESSAGE value="pruebaaa" />
-    <option name="LAST_COMMIT_MESSAGE" value="pruebaaa" />
+    <MESSAGE value="Funciona la encuesta, se agregaron mas discotecas en el script" />
+    <MESSAGE value="Creación de nueva rama para Pruebas" />
+    <option name="LAST_COMMIT_MESSAGE" value="Creación de nueva rama para Pruebas" />
   </component>
 </project>
