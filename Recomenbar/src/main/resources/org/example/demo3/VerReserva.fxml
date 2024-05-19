@@ -5,14 +5,13 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
 <AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo3.VerReservaController">
    <children>
       <ListView fx:id="ListViewDiscotecas" layoutX="51.0" layoutY="100.0" prefHeight="200.0" prefWidth="200.0" />
-      <Label layoutX="260.0" layoutY="42.0" text="Tus reservas" style="-fx-text-fill: white; -fx-font-size: 24px; -fx-font-family: 'Belleza';" />
-      <Label layoutX="111.0" layoutY="63.0" text="Discotecas:" style="-fx-text-fill: white; -fx-font-family: 'Belleza';" />
+      <Label layoutX="260.0" layoutY="42.0" style="-fx-text-fill: white; -fx-font-size: 24px; -fx-font-family: 'Belleza';" text="Tus reservas" />
+      <Label layoutX="111.0" layoutY="63.0" style="-fx-text-fill: white; -fx-font-family: 'Belleza';" text="Discotecas:" />
       <ListView fx:id="ListViewEventos" layoutX="341.0" layoutY="100.0" prefHeight="200.0" prefWidth="200.0" />
-      <Label layoutX="401.0" layoutY="63.0" text="Eventos:" style="-fx-text-fill: white; -fx-font-family: 'Belleza';" />
-      <Button layoutX="221.0" layoutY="334.0" mnemonicParsing="false" text="Ver mas Información" style="-fx-background-color: #87CEEB; -fx-text-fill: black; -fx-font-family: 'Belleza';" />
+      <Label layoutX="401.0" layoutY="63.0" style="-fx-text-fill: white; -fx-font-family: 'Belleza';" text="Eventos:" />
+      <Button layoutX="221.0" layoutY="334.0" mnemonicParsing="false" onAction="#onVerInfoReserva" style="-fx-background-color: #87CEEB; -fx-text-fill: black; -fx-font-family: 'Belleza';" text="Ver mas Información" />
    </children>
 </AnchorPane>
