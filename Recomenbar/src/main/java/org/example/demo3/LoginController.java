@@ -10,6 +10,7 @@ import org.example.demo3.Negocio.LogicaDelNegocio;
 import org.example.demo3.Negocio.Sesion;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 
 public class LoginController {
@@ -34,7 +35,7 @@ public class LoginController {
     }
 
     @FXML
-    private void onLoginButtonClick(ActionEvent event) throws IOException {
+    private void onLoginButtonClick(ActionEvent event) throws IOException, SQLException {
         textAux.setText("");
         if(validar()){
             Sesion sesion= Sesion.obtenerInstancia();

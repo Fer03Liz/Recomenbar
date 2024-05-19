@@ -318,16 +318,16 @@ public class LogicaDelNegocio {
     public Usuario UsuarioCorreo(String correo) throws SQLException {
         Connection conexion = ConexionBD.getConexion();
         Usuario usuario=new Usuario();
-        String sql = "SELECT id, nombre, edad FROM usuario WHERE correo = ?";
+        String sql = "SELECT id, nombre, edad, tipo FROM usuario WHERE correo = ?";
         PreparedStatement statement = conexion.prepareStatement(sql);
         statement.setString(1, correo);
         ResultSet resultSet = statement.executeQuery();
-        int id = 0;
         if (resultSet.next()) {
             usuario.setId(resultSet.getInt("id"));
             usuario.setNombre(resultSet.getString("nombre"));
             usuario.setEdad(resultSet.getInt("edad"));
             usuario.setCorreo(correo);
+            usuario.setTipo(resultSet.getInt("tipo"));
         }
         return usuario;
     }

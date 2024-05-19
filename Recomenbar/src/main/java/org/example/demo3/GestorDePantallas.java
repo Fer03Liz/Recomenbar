@@ -8,6 +8,9 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import org.example.demo3.Entidades.Discoteca;
 import org.example.demo3.Entidades.Reserva;
+import org.example.demo3.Entidades.Usuario;
+import org.example.demo3.Negocio.LogicaDelNegocio;
+import org.example.demo3.Negocio.Sesion;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -103,6 +106,17 @@ public class GestorDePantallas {
 
     public void mostrarVerInfoReserva(ActionEvent event, Reserva reserva) throws IOException, SQLException {mostrarPantalla("VerInfoReserva",event,reserva);}
 
+    public void mostrarPantallaPostLogin(ActionEvent event) throws IOException, SQLException {
+        Sesion sesion= Sesion.obtenerInstancia();
+        LogicaDelNegocio logicaDelNegocio= LogicaDelNegocio.getInstancia();
+        Usuario usuario= logicaDelNegocio.UsuarioCorreo(sesion.getCorreo());
+        if(usuario.getTipo()==1){
+            mostrarPantalla("PostLogin", event);
+        }else{
+
+        }
+    }
+
     public void mostrarPantallaHome(Stage stage){
         try {
             String rutaCompletaFXML = rutasFXML.get("Home");
@@ -122,7 +136,6 @@ public class GestorDePantallas {
         }
     }
     public void mostrarPantallaLogin(ActionEvent event) throws IOException {mostrarPantalla("Login", event);}
-    public void mostrarPantallaPostLogin(ActionEvent event) throws IOException {mostrarPantalla("PostLogin", event);}
     public void mostrarPantallaRegistrar(ActionEvent event) throws IOException {mostrarPantalla("Registrar", event);}
     public void mostrarPantallaEleccionReservar(ActionEvent event) throws IOException {mostrarPantalla("EleccionReservar", event);}
     public void mostrarPantallaReservarEvento(ActionEvent event) throws IOException {mostrarPantalla("ReservarEvento", event);}
