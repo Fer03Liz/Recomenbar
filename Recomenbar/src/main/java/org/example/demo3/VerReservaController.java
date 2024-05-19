@@ -41,7 +41,7 @@ public class VerReservaController implements Initializable {
             Discoteca discoteca = new Discoteca();
             try {
                 Evento evento = logicaDelNegocio.eventoIdEvento(reserva.getIdEvento());
-                System.out.println(evento.getNombre());
+               // System.out.println(evento.getNombre());
                 if(evento.isPrivado()){
                     discoteca= logicaDelNegocio.discotecaID(reserva.getIdDiscoteca());
                     ListViewDiscotecas.getItems().addAll(discoteca.getNombre());
@@ -59,33 +59,48 @@ public class VerReservaController implements Initializable {
         Sesion sesion = Sesion.obtenerInstancia();
         Usuario usuaro= logicaDelNegocio.UsuarioCorreo(sesion.getCorreo());
         List<Reserva> reservas = logicaDelNegocio.reservasValidas(usuaro.getId());
-        for( Reserva r: reservas){
+        /*for( Reserva r: reservas){
             Discoteca discoteca = logicaDelNegocio.discotecaID(r.getIdDiscoteca());
-            System.out.println(discoteca.getNombre());
-        }
+            //System.out.println(discoteca.getNombre());
+        }*/
         return reservas;
     }
 
     private boolean validar() throws SQLException {
-        boolean validar= true;
-        LogicaDelNegocio logicaDelNegocio= LogicaDelNegocio.getInstancia();
+        boolean validar = true;
+        LogicaDelNegocio logicaDelNegocio = LogicaDelNegocio.getInstancia();
         String discotecaSeleccionada = ListViewDiscotecas.getSelectionModel().getSelectedItem();
-        Discoteca discoteca = logicaDelNegocio.discotecaNombre(discotecaSeleccionada);
         String eventoSeleccionado = ListViewEventos.getSelectionModel().getSelectedItem();
-        Evento evento = logicaDelNegocio.eventoNombre(eventoSeleccionado);
-        if(discoteca==null &&  evento==null){
-            validar= false;
+
+        System.out.println("Discoteca: " + discotecaSeleccionada);
+        System.out.println("Evento: " + eventoSeleccionado);
+
+        Discoteca discoteca = null;
+        Evento evento = null;
+
+        if (discotecaSeleccionada == null && eventoSeleccionado == null) {
+            validar = false;
         }
-        if(discoteca!=null &&  evento!=null){
-            validar= false;
+
+        if (discotecaSeleccionada != null) {
+            discoteca = logicaDelNegocio.discotecaNombre(discotecaSeleccionada);
+        }
+        if (eventoSeleccionado != null) {
+            evento = logicaDelNegocio.eventoNombre(eventoSeleccionado);
+        }
+
+        if (discoteca != null && evento != null) {
+            validar = false;
             ListViewDiscotecas.getSelectionModel().clearSelection();
             ListViewEventos.getSelectionModel().clearSelection();
         }
+
         return validar;
     }
 
+
     @FXML
-    private void onVerReserva(ActionEvent event) throws SQLException, IOException {
+    private void onVerInfoReserva(ActionEvent event) throws SQLException, IOException {
         LogicaDelNegocio logicaDelNegocio= LogicaDelNegocio.getInstancia();
         Reserva reservaEscogida= null;
         String discotecaSeleccionada = ListViewDiscotecas.getSelectionModel().getSelectedItem();
@@ -93,11 +108,13 @@ public class VerReservaController implements Initializable {
         String eventoSeleccionado = ListViewEventos.getSelectionModel().getSelectedItem();
         Evento evento = logicaDelNegocio.eventoNombre(eventoSeleccionado);
         List<Reserva> reservas = null;
+        System.out.println("BOTON OPRIMIDO");
         try {
             reservas = obtenerReservasDisponibles();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+        System.out.println(validar());
         if(validar()){
             for( Reserva r: reservas){
                 if(r.getIdDiscoteca()==discoteca.getId()){
@@ -107,6 +124,8 @@ public class VerReservaController implements Initializable {
                     reservaEscogida=r;
                 }
             }
+            Discoteca discotecaReservada= logicaDelNegocio.discotecaID(reservaEscogida.getIdDiscoteca());
+            System.out.println(discotecaReservada.getNombre());
             GestorDePantallas gestorDePantallas= GestorDePantallas.obtenerInstancia();
             gestorDePantallas.mostrarVerInfoReserva(event, reservaEscogida);
         }

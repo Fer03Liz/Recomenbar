@@ -1,3 +1,4 @@
+
 package org.example.demo3.Negocio;
 import org.example.demo3.Entidades.Discoteca;
 import org.example.demo3.Entidades.Evento;
@@ -368,25 +369,6 @@ public class LogicaDelNegocio {
 
         return discoteca;
     }
-    public Reserva reservaIdusario (int id_usuario) throws SQLException {
-        Connection conexion = ConexionBD.getConexion();
-        String sql = "SELECT id, id_discoteca, id_entrada, id_evento, fecha, cantidad_boletas, valida FROM reserva WHERE id_usuario = ?";
-        PreparedStatement statement = conexion.prepareStatement(sql);
-        statement.setInt(1, id_usuario);
-        ResultSet resultSet = statement.executeQuery();
-        Reserva reserva= new Reserva();
-        if (resultSet.next()) {
-            reserva.setId(resultSet.getInt("id"));
-            reserva.setIdUsuario(id_usuario);
-            reserva.setIdDiscoteca(resultSet.getInt("id_discoteca"));
-            reserva.setIdEntrada(resultSet.getInt("id_entrada"));
-            reserva.setIdEvento(resultSet.getInt("id_evento"));
-            reserva.setFecha(resultSet.getDate("fecha"));
-            reserva.setCantEntradas(resultSet.getInt("cantidad_boletas"));
-            reserva.setEstadoReserva(resultSet.getBoolean("valida"));
-        }
-        return reserva;
-    }
     public Evento eventoNombre(String nombre) throws SQLException {
         Connection conexion = ConexionBD.getConexion();
         String sql = "SELECT id, id_discoteca, precio, fecha, private FROM evento WHERE nombre = ?";
@@ -402,6 +384,9 @@ public class LogicaDelNegocio {
             evento.setFecha(resultSet.getDate("fecha"));
             evento.setPrivado(resultSet.getBoolean("private"));
         }
+        /*System.out.println("Desde logica de negocio "+evento.getNombre());
+        System.out.println("Desde logica de negocio "+evento.getId());
+        System.out.println("Desde logica de negocio "+evento.getFecha());*/
         return evento;
     }
     public Evento eventoIdEvento(int id) throws SQLException {
