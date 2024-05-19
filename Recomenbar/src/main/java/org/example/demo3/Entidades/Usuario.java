@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Usuario {
+    int id;
     String nombre;
     String correo;
     int edad;
@@ -15,32 +16,50 @@ public class Usuario {
         this.nombre = nombre;
         this.correo = correo;
         this.edad = edad;
-        this.contraseña=contraseña;
+        this.contraseña = contraseña;
+    }
+
+    public Usuario() {
+
     }
 
     public String getNombre() {
         return nombre;
     }
+
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
+
     public String getCorreo() {
         return correo;
     }
+
     public void setCorreo(String correo) {
         this.correo = correo;
     }
+
     public int getEdad() {
         return edad;
     }
+
     public void setEdad(int edad) {
         this.edad = edad;
     }
+
     public String getContraseña() {
         return contraseña;
     }
+
     public void setContraseña(String contraseña) {
         this.contraseña = contraseña;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 }

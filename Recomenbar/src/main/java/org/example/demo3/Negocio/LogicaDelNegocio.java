@@ -1,13 +1,19 @@
 package org.example.demo3.Negocio;
+
 import org.example.demo3.Entidades.Discoteca;
+import org.example.demo3.Entidades.Entrada;
+import org.example.demo3.Entidades.Usuario;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+
 //prueba simon
 public class LogicaDelNegocio {
     private static LogicaDelNegocio instancia;
 
-    // Constructor privado para evitar la creación de instancias desde fuera de la clase
+    // Constructor privado para evitar la creación de instancias desde fuera de la
+    // clase
     private LogicaDelNegocio() {
     }
 
@@ -109,8 +115,10 @@ public class LogicaDelNegocio {
             System.out.println("Error al conectarse a la base de datos: " + e.getMessage());
         } finally {
             try {
-                if (resultados != null) resultados.close();
-                if (sentencia != null) sentencia.close();
+                if (resultados != null)
+                    resultados.close();
+                if (sentencia != null)
+                    sentencia.close();
             } catch (SQLException ex) {
                 System.out.println("Error al cerrar la conexión: " + ex.getMessage());
             }
@@ -118,7 +126,8 @@ public class LogicaDelNegocio {
         return ingresado;
     }
 
-    public boolean registrarReserva(int idUsuario, int idDiscoteca, int idEntrada, int idEvento, Timestamp timestamp, int cantidadBoletas, boolean valida) throws SQLException {
+    public boolean registrarReserva(int idUsuario, int idDiscoteca, int idEntrada, int idEvento, Timestamp fechaReserva,
+            int cantidadBoletas, boolean valida) throws SQLException {
         boolean reservaregistrada = false;
         Connection conexion = ConexionBD.getConexion();
         String sql = "INSERT INTO reserva (id_usuario, id_discoteca, id_entrada, id_evento, fecha, cantidad_boletas, valida) VALUES (?, ?, ?, ?, ?, ?, ?)";
@@ -129,7 +138,7 @@ public class LogicaDelNegocio {
         sentencia.setInt(2, idDiscoteca);
         sentencia.setInt(3, idEntrada);
         sentencia.setInt(4, idEvento);
-        sentencia.setTimestamp(5, timestamp);
+        sentencia.setTimestamp(5, fechaReserva);
         sentencia.setInt(6, cantidadBoletas);
         sentencia.setBoolean(7, valida);
 
@@ -159,7 +168,7 @@ public class LogicaDelNegocio {
         // Recorrer los resultados y agregar los nombres a la lista
         while (resultSet.next()) {
             Discoteca discoteca = new Discoteca();
-            discoteca.setNombre( resultSet.getString("Nombre"));
+            discoteca.setNombre(resultSet.getString("Nombre"));
             discoteca.setUbicacion(resultSet.getString("Direccion"));
             discoteca.setTipoMusica(resultSet.getString("genero_Musical"));
             discotecas.add(discoteca);
@@ -171,5 +180,64 @@ public class LogicaDelNegocio {
         conexion.close();
 
         return discotecas;
+    }
+
+    // nuevo método para reservar con el qr
+    public Entrada obtenerEntradaPorReserva(int idUsuario, int idDiscoteca, Timestamp fechaReserva) {
+        Connection conexion = null;
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+        Entrada entrada = null;
+
+        try {
+            conexion = ConexionBD.getConexion();
+            String query = "SELECT id, id_discoteca, vip, precio FROM entrada WHERE id = ? AND id_discoteca = ?";
+            statement = conexion.prepareStatement(query);
+            statement.setInt(1, idUsuario);
+            statement.setInt(2, idDiscoteca);
+
+            resultSet = statement.executeQuery();
+
+            if (resultSet.next()) {
+                int id = resultSet.getInt("id");
+                int id_discoteca = resultSet.getInt("id_discoteca");
+                boolean vip = resultSet.getBoolean("vip");
+                float precio = resultSet.getFloat("precio");
+                entrada = new Entrada(id, id_discoteca, vip, precio, new byte[0]);
+
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (resultSet != null)
+                    resultSet.close();
+                if (statement != null)
+                    statement.close();
+                if (conexion != null)
+                    conexion.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return entrada;
+    }
+
+    public Usuario UsuarioCorreo(String correo) throws SQLException {
+        Connection conexion = ConexionBD.getConexion();
+        Usuario usuario = new Usuario();
+        String sql = "SELECT id, nombre, edad FROM usuario WHERE correo = ?";
+        PreparedStatement statement = conexion.prepareStatement(sql);
+        statement.setString(1, correo);
+        ResultSet resultSet = statement.executeQuery();
+        int id = 0;
+        if (resultSet.next()) {
+            usuario.setId(resultSet.getInt("id"));
+            usuario.setNombre(resultSet.getString("nombre"));
+            usuario.setEdad(resultSet.getInt("edad"));
+            usuario.setCorreo(correo);
+        }
+        return usuario;
     }
 }

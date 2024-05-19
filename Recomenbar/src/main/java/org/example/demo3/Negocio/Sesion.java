@@ -1,8 +1,11 @@
 package org.example.demo3.Negocio;
 
+import org.example.demo3.Entidades.Usuario;
+
 public class Sesion {
     private static Sesion instancia;
     private String correo;
+    private Usuario usuarioActual;
 
     // Constructor privado para evitar instanciación externa
     private Sesion() {
@@ -24,4 +27,13 @@ public class Sesion {
     public String getCorreo() {
         return correo;
     }
+
+    public Usuario getUsuarioActual() {
+        return usuarioActual;
+    }
+
+    public void setUsuarioActual(Usuario usuario) {
+        this.usuarioActual = usuario;
+    }
+
 }

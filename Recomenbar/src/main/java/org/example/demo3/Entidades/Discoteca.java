@@ -1,4 +1,5 @@
 package org.example.demo3.Entidades;
+
 import java.sql.Date;
 
 public class Discoteca {
@@ -11,14 +12,16 @@ public class Discoteca {
     private String tipoMusica;
     private int capacidadAforo;
 
-    public Discoteca(String nombre, String descripcion, String ubicacion, Date horarioApertura, Date horarioCierre, String tipoMusica, int capacidadAforo){
-        this.nombre=nombre;
-        this.descripcion=descripcion;
-        this.direccion=ubicacion;
-        this.horarioApertura=horarioApertura;
-        this.horarioCierre=horarioCierre;
-        this.tipoMusica=tipoMusica;
-        this.capacidadAforo=capacidadAforo;
+    public Discoteca(String nombre, String descripcion, String ubicacion, Date horarioApertura, Date horarioCierre,
+            String tipoMusica, int capacidadAforo, int id) {
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.direccion = ubicacion;
+        this.horarioApertura = horarioApertura;
+        this.horarioCierre = horarioCierre;
+        this.tipoMusica = tipoMusica;
+        this.capacidadAforo = capacidadAforo;
+        this.id = id;
     }
 
     public Discoteca() {
@@ -79,5 +82,13 @@ public class Discoteca {
 
     public void setCapacidadAforo(int capacidadAforo) {
         this.capacidadAforo = capacidadAforo;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId() {
+        this.id = id;
     }
 }
