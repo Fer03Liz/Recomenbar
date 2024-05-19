@@ -10,6 +10,7 @@ import org.example.demo3.Entidades.Discoteca;
 import org.example.demo3.Entidades.Reserva;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -79,7 +80,7 @@ public class GestorDePantallas {
 
     public void mostrarPantallaReservarDiscoteca(ActionEvent event, List<Discoteca> discotecas) throws IOException {mostrarPantalla("ReservarDiscoteca", event, discotecas);}
 
-    private void mostrarPantalla(String rutaFXML, ActionEvent event, Reserva reserva ) throws IOException {
+    private void mostrarPantalla(String rutaFXML, ActionEvent event, Reserva reserva ) throws IOException, SQLException {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         String rutaCompletaFXML = rutasFXML.get(rutaFXML);
         if (rutaCompletaFXML == null) {
@@ -100,7 +101,7 @@ public class GestorDePantallas {
         stage.show();
     }
 
-    public void mostrarVerInfoReserva(ActionEvent event, Reserva reserva)throws  IOException{mostrarPantalla("VerInfoReserva",event,reserva);}
+    public void mostrarVerInfoReserva(ActionEvent event, Reserva reserva) throws IOException, SQLException {mostrarPantalla("VerInfoReserva",event,reserva);}
 
     public void mostrarPantallaHome(Stage stage){
         try {
