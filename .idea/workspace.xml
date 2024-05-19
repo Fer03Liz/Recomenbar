@@ -4,11 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="08ef61b8-f2e4-4eb3-85ba-5046761b8a2f" name="Changes" comment="Creación de nueva rama para Pruebas">
-      <change afterPath="$PROJECT_DIR$/Recomenbar/src/test/java/LogicaDelNegocioTest.java" afterDir="false" />
+    <list default="true" id="08ef61b8-f2e4-4eb3-85ba-5046761b8a2f" name="Changes" comment="pruebas de junit hasta DiscotecasDisponibles">
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/mysql_connector_j_8_3_0__2_.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Recomenbar/src/main/java/org/example/demo3/Negocio/LogicaDelNegocio.java" beforeDir="false" afterPath="$PROJECT_DIR$/Recomenbar/src/main/java/org/example/demo3/Negocio/LogicaDelNegocio.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Recomenbar/src/main/resources/Script base de datos.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Recomenbar/src/main/resources/Script base de datos.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Recomenbar/src/test/java/LogicaDelNegocioTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/Recomenbar/src/test/java/LogicaDelNegocioTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,12 +37,12 @@
     &quot;assignee&quot;: &quot;AFCTT&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/Fer03Liz/Recomenbar.git",
-    "accountId": "f52fef62-4292-4932-bd03-809101075ffb"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Fer03Liz/Recomenbar.git&quot;,
+    &quot;accountId&quot;: &quot;f52fef62-4292-4932-bd03-809101075ffb&quot;
   }
-}]]></component>
+}</component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
@@ -67,20 +68,38 @@
     "JUnit.LogicaDelNegocioTest.testCrearEntradaVIPExitoso.executor": "Run",
     "JUnit.LogicaDelNegocioTest.testCrearEventoPrivadoExitoso.executor": "Run",
     "JUnit.LogicaDelNegocioTest.testCrearEventoPrivadoFallido.executor": "Run",
+    "JUnit.LogicaDelNegocioTest.testDiscotecaIDExitoso.executor": "Run",
+    "JUnit.LogicaDelNegocioTest.testDiscotecaIDFallido.executor": "Run",
+    "JUnit.LogicaDelNegocioTest.testDiscotecaNombreExitoso.executor": "Run",
+    "JUnit.LogicaDelNegocioTest.testDiscotecaNombreFallido.executor": "Run",
     "JUnit.LogicaDelNegocioTest.testDiscotecasDisponiblesError.executor": "Run",
     "JUnit.LogicaDelNegocioTest.testDiscotecasDisponiblesExitoso.executor": "Run",
+    "JUnit.LogicaDelNegocioTest.testEventoNombreExistente.executor": "Run",
+    "JUnit.LogicaDelNegocioTest.testEventoNombreInexistente.executor": "Run",
+    "JUnit.LogicaDelNegocioTest.testEventosDisponiblesExitoso.executor": "Run",
+    "JUnit.LogicaDelNegocioTest.testEventosDisponiblesFalla.executor": "Run",
+    "JUnit.LogicaDelNegocioTest.testFiltrarDiscotecasExitoso.executor": "Run",
+    "JUnit.LogicaDelNegocioTest.testFiltrarDiscotecasFallido.executor": "Run",
+    "JUnit.LogicaDelNegocioTest.testIdEntradaExitoso.executor": "Run",
+    "JUnit.LogicaDelNegocioTest.testIdEntradaFallido.executor": "Run",
     "JUnit.LogicaDelNegocioTest.testLoginExitoso.executor": "Run",
     "JUnit.LogicaDelNegocioTest.testLoginFallido.executor": "Run",
     "JUnit.LogicaDelNegocioTest.testRegistrarReservaExitoso.executor": "Run",
     "JUnit.LogicaDelNegocioTest.testRegistrarReservaFallido.executor": "Run",
     "JUnit.LogicaDelNegocioTest.testRegistrarUsuarioExitoso.executor": "Run",
     "JUnit.LogicaDelNegocioTest.testRegistrarUsuarioFallido.executor": "Run",
+    "JUnit.LogicaDelNegocioTest.testReservaIdUsuarioExitoso.executor": "Run",
+    "JUnit.LogicaDelNegocioTest.testReservaIdUsuarioFallido.executor": "Run",
+    "JUnit.LogicaDelNegocioTest.testUsuarioCorreoExitoso.executor": "Run",
+    "JUnit.LogicaDelNegocioTest.testUsuarioCorreoFalla.executor": "Run",
     "JUnit.LogicaDelNegocioTest.testUsuarioExistente (1).executor": "Run",
     "JUnit.LogicaDelNegocioTest.testUsuarioExistente.executor": "Run",
     "JUnit.LogicaDelNegocioTest.testUsuarioNoExistente.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "Pruebas",
     "kotlin-language-version-configured": "true",
+    "last_directory_selection": "C:/Users/USER/IdeaProjects/Recomenbar/Recomenbar/src/main/java/org/example/demo3/Negocio",
     "last_opened_file_path": "C:/Users/USER/Downloads/lab1",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -98,7 +117,7 @@
       <recent name="C:\Users\PCFER\Documents\GitHub\Recomenbar" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.LogicaDelNegocioTest.testDiscotecasDisponiblesError">
+  <component name="RunManager" selected="JUnit.LogicaDelNegocioTest.testReservaIdUsuarioExitoso">
     <configuration name="LogicaDelNegocioTest.testCrearEntradaFallido" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="demo3" />
       <extension name="coverage">
@@ -110,6 +129,22 @@
       <option name="PACKAGE_NAME" value="org.example.demo3.Negocio" />
       <option name="MAIN_CLASS_NAME" value="org.example.demo3.Negocio.LogicaDelNegocioTest" />
       <option name="METHOD_NAME" value="testCrearEntradaFallido" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="LogicaDelNegocioTest.testDiscotecaIDFallido" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="demo3" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.example.demo3.Negocio.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="org.example.demo3.Negocio" />
+      <option name="MAIN_CLASS_NAME" value="org.example.demo3.Negocio.LogicaDelNegocioTest" />
+      <option name="METHOD_NAME" value="testDiscotecaIDFallido" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -131,7 +166,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="LogicaDelNegocioTest.testDiscotecasDisponiblesExitoso" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="LogicaDelNegocioTest.testReservaIdUsuarioExitoso" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="demo3" />
       <extension name="coverage">
         <pattern>
@@ -141,13 +176,13 @@
       </extension>
       <option name="PACKAGE_NAME" value="org.example.demo3.Negocio" />
       <option name="MAIN_CLASS_NAME" value="org.example.demo3.Negocio.LogicaDelNegocioTest" />
-      <option name="METHOD_NAME" value="testDiscotecasDisponiblesExitoso" />
+      <option name="METHOD_NAME" value="testReservaIdUsuarioExitoso" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="LogicaDelNegocioTest.testUsuarioExistente" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="LogicaDelNegocioTest.testReservaIdUsuarioFallido" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="demo3" />
       <extension name="coverage">
         <pattern>
@@ -157,23 +192,7 @@
       </extension>
       <option name="PACKAGE_NAME" value="org.example.demo3.Negocio" />
       <option name="MAIN_CLASS_NAME" value="org.example.demo3.Negocio.LogicaDelNegocioTest" />
-      <option name="METHOD_NAME" value="testUsuarioExistente" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="LogicaDelNegocioTest.testUsuarioNoExistente" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="demo3" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="org.example.demo3.Negocio.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="org.example.demo3.Negocio" />
-      <option name="MAIN_CLASS_NAME" value="org.example.demo3.Negocio.LogicaDelNegocioTest" />
-      <option name="METHOD_NAME" value="testUsuarioNoExistente" />
+      <option name="METHOD_NAME" value="testReservaIdUsuarioFallido" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -181,10 +200,10 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.LogicaDelNegocioTest.testReservaIdUsuarioExitoso" />
+        <item itemvalue="JUnit.LogicaDelNegocioTest.testDiscotecaIDFallido" />
+        <item itemvalue="JUnit.LogicaDelNegocioTest.testReservaIdUsuarioFallido" />
         <item itemvalue="JUnit.LogicaDelNegocioTest.testDiscotecasDisponiblesError" />
-        <item itemvalue="JUnit.LogicaDelNegocioTest.testDiscotecasDisponiblesExitoso" />
-        <item itemvalue="JUnit.LogicaDelNegocioTest.testUsuarioNoExistente" />
-        <item itemvalue="JUnit.LogicaDelNegocioTest.testUsuarioExistente" />
         <item itemvalue="JUnit.LogicaDelNegocioTest.testCrearEntradaFallido" />
       </list>
     </recent_temporary>
@@ -239,7 +258,23 @@
       <option name="project" value="LOCAL" />
       <updated>1716056324052</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="pruebas de junit hasta DiscotecasDisponibles">
+      <option name="closed" value="true" />
+      <created>1716087655204</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1716087655204</updated>
+    </task>
+    <task id="LOCAL-00007" summary="pruebas de junit hasta DiscotecasDisponibles">
+      <option name="closed" value="true" />
+      <created>1716087686718</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1716087686718</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -275,6 +310,7 @@
     <MESSAGE value="pruebaaa" />
     <MESSAGE value="Funciona la encuesta, se agregaron mas discotecas en el script" />
     <MESSAGE value="Creación de nueva rama para Pruebas" />
-    <option name="LAST_COMMIT_MESSAGE" value="Creación de nueva rama para Pruebas" />
+    <MESSAGE value="pruebas de junit hasta DiscotecasDisponibles" />
+    <option name="LAST_COMMIT_MESSAGE" value="pruebas de junit hasta DiscotecasDisponibles" />
   </component>
 </project>
