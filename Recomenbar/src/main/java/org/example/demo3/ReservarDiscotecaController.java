@@ -2,6 +2,7 @@ package org.example.demo3;
 
 import com.google.zxing.WriterException;
 import javafx.application.Platform;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -125,7 +126,7 @@ public class ReservarDiscotecaController {
     }
 
     @FXML
-    private void onReservarButtonClick() throws SQLException {
+    private void onReservarButtonClick(ActionEvent event) throws SQLException {
         TextAux1.setText("");
         TextAux2.setText("");
         TextAux3.setText("");
@@ -153,7 +154,9 @@ public class ReservarDiscotecaController {
                 Entrada entrada= logicaDelNegocio.entradaIDR(idR);
                 if (logicaDelNegocio.registrarReserva(usuario.getId(), discoteca.getId(), entrada.getId(), evento.getId(), timestamp,cantidadPersonas,true)) {
                     // Cierra la aplicación después de registrar la reserva correctamente
-                    Platform.exit();
+                    System.out.printf("Se puede hacer la reserva");
+                    GestorDePantallas gestorDePantallas= GestorDePantallas.obtenerInstancia();
+                   gestorDePantallas.mosrtarPantallaCompra(event);
                 } else {
                     System.out.printf("No se puede hacer la reserva");
                 }
