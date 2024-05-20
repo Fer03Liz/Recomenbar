@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import org.example.demo3.Entidades.Discoteca;
+import org.example.demo3.Entidades.Entrada;
 import org.example.demo3.Entidades.Evento;
 import org.example.demo3.Entidades.Usuario;
 import org.example.demo3.Negocio.LogicaDelNegocio;
@@ -19,6 +20,7 @@ import java.sql.Timestamp;
 
 import java.net.URL;
 import java.time.LocalDate;
+import java.util.Random;
 import java.util.ResourceBundle;
 import java.util.List;
 
@@ -113,6 +115,15 @@ public class ReservarDiscotecaController {
         return validado;
     }
 
+
+    public static int generateRandomNumber(int min, int max) {
+        if (min > max) {
+            throw new IllegalArgumentException("El valor mínimo no puede ser mayor que el valor máximo.");
+        }
+        Random random = new Random();
+        return random.nextInt((max - min) + 1) + min;
+    }
+
     @FXML
     private void onReservarButtonClick() throws SQLException {
         TextAux1.setText("");
@@ -134,13 +145,13 @@ public class ReservarDiscotecaController {
                 Usuario usuario = logicaDelNegocio.UsuarioCorreo(sesion.getCorreo());
                 Discoteca discoteca= logicaDelNegocio.discotecaNombre(barSeleccionado);
                 //Instanciar
-                logicaDelNegocio.crearEntrada(discoteca.getId(),esVip,discoteca.getPrecio());
-                int idEntrada = logicaDelNegocio.idEntrada(discoteca.getId());
-                //System.out.println("ENTRADA ID="+idEntrada);
                 String nombreEvento= usuario.getNombre()+"Privado";
                 logicaDelNegocio.crearEventoPrivado(discoteca.getId(), nombreEvento, discoteca.getPrecio(), timestamp);
                 Evento evento = logicaDelNegocio.eventoNombre(nombreEvento);
-                if (logicaDelNegocio.registrarReserva(usuario.getId(), discoteca.getId(), idEntrada, evento.getId(), timestamp,cantidadPersonas,true)) {
+                int idR= generateRandomNumber(1,100000);
+                logicaDelNegocio.crearEntrada(idR,discoteca.getId(),esVip,evento.getPrecio(),timestamp,discoteca.getNombre(),cantidadPersonas);
+                Entrada entrada= logicaDelNegocio.entradaIDR(idR);
+                if (logicaDelNegocio.registrarReserva(usuario.getId(), discoteca.getId(), entrada.getId(), evento.getId(), timestamp,cantidadPersonas,true)) {
                     // Cierra la aplicación después de registrar la reserva correctamente
                     Platform.exit();
                 } else {
