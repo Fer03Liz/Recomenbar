@@ -12,6 +12,8 @@ module org.example.demo3 {
     requires com.almasb.fxgl.all;
     requires java.sql;
     requires java.desktop;
+    requires com.google.zxing;
+    requires com.google.zxing.javase;
 
     opens org.example.demo3 to javafx.fxml;
     exports org.example.demo3;

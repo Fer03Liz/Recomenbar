@@ -1,5 +1,6 @@
 package org.example.demo3;
 
+import com.google.zxing.WriterException;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -10,6 +11,7 @@ import org.example.demo3.Entidades.Usuario;
 import org.example.demo3.Negocio.LogicaDelNegocio;
 import org.example.demo3.Negocio.Sesion;
 
+import java.io.IOException;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 
@@ -124,7 +126,7 @@ public class ReservarEventoController implements Initializable {
     }
 
     @FXML
-    private void onReservarButtonClick() throws SQLException {
+    private void onReservarButtonClick() throws SQLException, IOException, WriterException {
         // Obtener la selección del usuario del ListView
         String eventoSeleccionado = listViewEventos.getSelectionModel().getSelectedItem();
         LocalDate fechaSeleccionada = fechaField.getValue();

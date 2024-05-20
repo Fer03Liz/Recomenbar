@@ -1,5 +1,6 @@
 package org.example.demo3;
 
+import com.google.zxing.WriterException;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -12,6 +13,7 @@ import org.example.demo3.Negocio.Sesion;
 import org.w3c.dom.Text;
 
 import javax.swing.*;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 
@@ -145,6 +147,10 @@ public class ReservarDiscotecaController {
                     System.out.printf("No se puede hacer la reserva");
                 }
             }catch (NumberFormatException e) {
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            } catch (WriterException e) {
+                throw new RuntimeException(e);
             }
         }
     }
