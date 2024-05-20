@@ -1,14 +1,16 @@
 
 package org.example.demo3.Negocio;
-import org.example.demo3.Entidades.Discoteca;
-import org.example.demo3.Entidades.Evento;
-import org.example.demo3.Entidades.Reserva;
-import org.example.demo3.Entidades.Usuario;
+import com.google.zxing.WriterException;
+import org.example.demo3.Entidades.*;
 
+import java.io.IOException;
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+
+import static org.example.demo3.Negocio.QRCode.generateQRCode;
+
 //prueba simon
 public class LogicaDelNegocio {
     private static LogicaDelNegocio instancia;
@@ -66,6 +68,7 @@ public class LogicaDelNegocio {
 
         return existe;
     }
+
     public boolean registrarUsuario(String name, int edad, String correo, String password) throws SQLException {
         boolean insertado = false;
         Connection conexion = ConexionBD.getConexion();
@@ -85,6 +88,7 @@ public class LogicaDelNegocio {
         }
         return insertado;
     }
+
     public boolean loginRealizado(String email, String password) {
         PreparedStatement sentencia = null;
         ResultSet resultados = null;
@@ -117,6 +121,7 @@ public class LogicaDelNegocio {
         }
         return ingresado;
     }
+
     public boolean registrarReserva(int idUsuario, int idDiscoteca, int idEntrada, int idEvento, Timestamp timestamp, int cantidadBoletas, boolean valida) throws SQLException {
         boolean reservaregistrada = false;
         Connection conexion = ConexionBD.getConexion();
@@ -141,7 +146,8 @@ public class LogicaDelNegocio {
         }
         return reservaregistrada;
     }
-    public boolean crearEventoPrivado(int id_discoteca, String nombreUsuario, float precio, Timestamp date) throws SQLException {
+
+    public boolean crearEventoPrivado(int id_discoteca, String nombreUsuario, float precio, Timestamp date ) throws SQLException {
         boolean reservaregistrada = false;
         Connection conexion = ConexionBD.getConexion();
         String sql = "INSERT INTO evento (id_discoteca, nombre, precio, fecha, private) VALUES (?, ?, ?, ?, ?)";
@@ -160,20 +166,23 @@ public class LogicaDelNegocio {
         }
         return reservaregistrada;
     }
-    public boolean crearEntrada(int id_discoteca, boolean vip, float precio) throws SQLException {
+
+    public boolean crearEntrada(int idR, int id_discoteca, boolean vip, float precio, Timestamp fecha, String nombreDisco, int cantidad) throws SQLException, WriterException, IOException {
         boolean reservaregistrada = false;
         Connection conexion = ConexionBD.getConexion();
-        String sql = "INSERT INTO entrada (id_discoteca, vip, precio) VALUES (?, ?, ?)";
-        PreparedStatement sentencia = conexion.prepareStatement(sql);
-        sentencia.setInt(1, id_discoteca);
-        sentencia.setBoolean(2, vip);
-        sentencia.setFloat(3, precio);
-        int filasINS = sentencia.executeUpdate();
-        if (filasINS > 0) {
-            reservaregistrada = true;
-            System.out.println("Entrada creada!!");
-        } else {
-            System.out.println("Algo salió mal...");
+        String sql = "INSERT INTO entrada (idR, id_discoteca, vip, precio, qr) VALUES (?, ?, ?, ?,?)";
+        try (PreparedStatement sentencia = conexion.prepareStatement(sql)) {
+            sentencia.setInt(1, idR);
+            sentencia.setInt(2, id_discoteca);
+            sentencia.setBoolean(3, vip);
+            sentencia.setFloat(4, precio);
+
+            // Generar el código QR
+            String qrText = "ID: " + idR + " Discoteca: "+nombreDisco+ " Fecha:" + fecha+ " VIP: " + vip + " Cantidad personas: " + cantidad;
+            byte[] qrCode = QRCode.generateQRCode(qrText, 200, 200);
+            sentencia.setBytes(5, qrCode);
+            int filasINS = sentencia.executeUpdate();
+            reservaregistrada = filasINS > 0;
         }
         return reservaregistrada;
     }
@@ -407,17 +416,36 @@ public class LogicaDelNegocio {
         return evento;
     }
 
-    public int idEntrada(int idDiscoteca) throws SQLException {
+    public Entrada entradaIDR(int entradaIDR) throws SQLException {
         Connection conexion = ConexionBD.getConexion();
-        String sql = "SELECT id FROM entrada WHERE id_discoteca = ? ";
+        String sql = "SELECT id, id_discoteca,vip,precio,qr FROM entrada WHERE idR = ? ";
         PreparedStatement statement = conexion.prepareStatement(sql);
-        statement.setInt(1, idDiscoteca);
+        statement.setInt(1, entradaIDR);
         ResultSet resultSet = statement.executeQuery();
-        int id = 0;
+        Entrada entrada= new Entrada();
         if (resultSet.next()) {
-            id = resultSet.getInt("id");
+            entrada.setId(resultSet.getInt("id"));
+            entrada.setVip(resultSet.getBoolean("vip"));
+            entrada.setPrecio(resultSet.getFloat("precio"));
+            entrada.setIdDiscoteca(resultSet.getInt("id_discoteca"));
+            entrada.setIdR(entradaIDR);
         }
-        return id;
+        return entrada;
     }
+
+    public byte[] obtenerImagenQR(int idEntrada) throws SQLException {
+        byte[] qrCode = null;
+        Connection conexion = ConexionBD.getConexion();
+        String sql = "SELECT qr FROM entrada WHERE id = ?";
+        try (PreparedStatement statement = conexion.prepareStatement(sql)) {
+            statement.setInt(1, idEntrada);
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                qrCode = resultSet.getBytes("qr");
+            }
+        }
+        return qrCode;
+    }
+
 
 }

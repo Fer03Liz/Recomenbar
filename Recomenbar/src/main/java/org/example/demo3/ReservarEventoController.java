@@ -1,15 +1,18 @@
 package org.example.demo3;
 
+import com.google.zxing.WriterException;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import org.example.demo3.Entidades.Discoteca;
+import org.example.demo3.Entidades.Entrada;
 import org.example.demo3.Entidades.Evento;
 import org.example.demo3.Entidades.Usuario;
 import org.example.demo3.Negocio.LogicaDelNegocio;
 import org.example.demo3.Negocio.Sesion;
 
+import java.io.IOException;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 
@@ -17,6 +20,7 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
 import java.util.List;
+import java.util.Random;
 
 public class ReservarEventoController implements Initializable {
 
@@ -123,8 +127,16 @@ public class ReservarEventoController implements Initializable {
         return validado;
     }
 
+    public static int generateRandomNumber(int min, int max) {
+        if (min > max) {
+            throw new IllegalArgumentException("El valor mínimo no puede ser mayor que el valor máximo.");
+        }
+        Random random = new Random();
+        return random.nextInt((max - min) + 1) + min;
+    }
+
     @FXML
-    private void onReservarButtonClick() throws SQLException {
+    private void onReservarButtonClick() throws SQLException, IOException, WriterException {
         // Obtener la selección del usuario del ListView
         String eventoSeleccionado = listViewEventos.getSelectionModel().getSelectedItem();
         LocalDate fechaSeleccionada = fechaField.getValue();
@@ -138,9 +150,10 @@ public class ReservarEventoController implements Initializable {
             Evento evento=logicaDelNegocio.eventoNombre(eventoSeleccionado);
             Usuario usuario= logicaDelNegocio.UsuarioCorreo(sesion.getCorreo());
             Discoteca discoteca= logicaDelNegocio.discotecaID(evento.getId_discoteca());
-            logicaDelNegocio.crearEntrada(discoteca.getId(),esVip,evento.getPrecio());
-            int entradaID= logicaDelNegocio.idEntrada(discoteca.getId());
-            if(logicaDelNegocio.registrarReserva(usuario.getId(),discoteca.getId(),entradaID,evento.getId(),timestamp,cantidadPersonas,true)){
+            int idR= generateRandomNumber(1,100000);
+            logicaDelNegocio.crearEntrada(idR,discoteca.getId(),esVip,evento.getPrecio(),timestamp,discoteca.getNombre(),cantidadPersonas);
+            Entrada entrada= logicaDelNegocio.entradaIDR(idR);
+            if(logicaDelNegocio.registrarReserva(usuario.getId(),discoteca.getId(), entrada.getId(), evento.getId(),timestamp,cantidadPersonas,true)){
                 // Cierra la aplicación después de registrar la reserva correctamente
                 Platform.exit();
             }else{

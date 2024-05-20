@@ -5,8 +5,8 @@ import javafx.scene.control.TextField;
 
 public class Entrada {
     private int id;
-    private int idRerserva;
-    private int idEvento;
+    private int idR;
+    private int idDiscoteca;
     private String qr;
     private float precio;
     private boolean usado;
@@ -30,17 +30,20 @@ public class Entrada {
     public void setQr(String qr) {
         this.qr = qr;
     }
-    public int getIdEvento() {
-        return idEvento;
+    public int getIdDiscoteca(){
+        return idDiscoteca;
     }
-    public void setIdEvento(int idEvento) {
-        this.idEvento = idEvento;
+
+    public void setIdDiscoteca(int idDiscoteca){
+        this.idDiscoteca = idDiscoteca;
     }
-    public int getIdRerserva() {
-        return idRerserva;
+
+    public void setIdR(int idR) {
+        this.idR = idR;
     }
-    public void setIdRerserva(int idRerserva) {
-        this.idRerserva = idRerserva;
+
+    public int getIdR() {
+        return idR;
     }
     public int getId() {
         return id;
