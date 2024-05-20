@@ -1,6 +1,7 @@
 package org.example.demo3;
 
 import javafx.application.Platform;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -10,6 +11,7 @@ import org.example.demo3.Entidades.Usuario;
 import org.example.demo3.Negocio.LogicaDelNegocio;
 import org.example.demo3.Negocio.Sesion;
 
+import java.io.IOException;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 
@@ -124,7 +126,7 @@ public class ReservarEventoController implements Initializable {
     }
 
     @FXML
-    private void onReservarButtonClick() throws SQLException {
+    private void onReservarButtonClick(ActionEvent event) throws SQLException, IOException {
         // Obtener la selección del usuario del ListView
         String eventoSeleccionado = listViewEventos.getSelectionModel().getSelectedItem();
         LocalDate fechaSeleccionada = fechaField.getValue();
@@ -140,12 +142,17 @@ public class ReservarEventoController implements Initializable {
             Discoteca discoteca= logicaDelNegocio.discotecaID(evento.getId_discoteca());
             logicaDelNegocio.crearEntrada(discoteca.getId(),esVip,evento.getPrecio());
             int entradaID= logicaDelNegocio.idEntrada(discoteca.getId());
+            GestorDePantallas gestorDePantallas = GestorDePantallas.obtenerInstancia();
+            gestorDePantallas.mosrtarPantallaCompra(event);
             if(logicaDelNegocio.registrarReserva(usuario.getId(),discoteca.getId(),entradaID,evento.getId(),timestamp,cantidadPersonas,true)){
                 // Cierra la aplicación después de registrar la reserva correctamente
+
                 Platform.exit();
+
             }else{
                 System.out.printf("No se puede hacer la reserva");
             }
+
         }
     }
 }

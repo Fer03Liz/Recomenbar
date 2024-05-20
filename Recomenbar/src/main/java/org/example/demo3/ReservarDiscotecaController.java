@@ -1,6 +1,7 @@
 package org.example.demo3;
 
 import javafx.application.Platform;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -12,6 +13,7 @@ import org.example.demo3.Negocio.Sesion;
 import org.w3c.dom.Text;
 
 import javax.swing.*;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 
@@ -112,7 +114,7 @@ public class ReservarDiscotecaController {
     }
 
     @FXML
-    private void onReservarButtonClick() throws SQLException {
+    private void onReservarButtonClick(ActionEvent event) throws SQLException {
         TextAux1.setText("");
         TextAux2.setText("");
         TextAux3.setText("");
@@ -138,6 +140,8 @@ public class ReservarDiscotecaController {
                 String nombreEvento= usuario.getNombre()+"Privado";
                 logicaDelNegocio.crearEventoPrivado(discoteca.getId(), nombreEvento, discoteca.getPrecio(), timestamp);
                 Evento evento = logicaDelNegocio.eventoNombre(nombreEvento);
+                GestorDePantallas gestorDePantallas = GestorDePantallas.obtenerInstancia();
+                gestorDePantallas.mosrtarPantallaCompra(event);
                 if (logicaDelNegocio.registrarReserva(usuario.getId(), discoteca.getId(), idEntrada, evento.getId(), timestamp,cantidadPersonas,true)) {
                     // Cierra la aplicación después de registrar la reserva correctamente
                     Platform.exit();
@@ -145,6 +149,8 @@ public class ReservarDiscotecaController {
                     System.out.printf("No se puede hacer la reserva");
                 }
             }catch (NumberFormatException e) {
+            } catch (IOException e) {
+                throw new RuntimeException(e);
             }
         }
     }

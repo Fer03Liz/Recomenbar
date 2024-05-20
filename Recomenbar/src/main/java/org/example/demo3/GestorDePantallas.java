@@ -37,6 +37,7 @@ public class GestorDePantallas {
         this.rutasFXML.put("VerReserva","/org/example/demo3/VerReserva.fxml");
         this.rutasFXML.put("VerInfoReserva","/org/example/demo3/VerInfoReserva.fxml");
         this.rutasFXML.put("ValidarReserva","/org/example/demo3/ValidarReserva.fxml");
+        this.rutasFXML.put("Comprar","/org/example/demo3/Comprar.fxml");
     }
 
     public static GestorDePantallas obtenerInstancia() {
@@ -143,4 +144,6 @@ public class GestorDePantallas {
     public void mostrarPantallaFrecuentes(ActionEvent event) throws  IOException{mostrarPantalla("Frecuentes",event);}
     public void mostrarPantallaEncuesta(ActionEvent event) throws  IOException {mostrarPantalla("Encuesta", event);}
     public void mosrtarPantallaVerReserva(ActionEvent event) throws IOException{mostrarPantalla("VerReserva", event);}
+    public void mosrtarPantallaCompra(ActionEvent event) throws IOException{mostrarPantalla("Compra", event);}
+
 }
