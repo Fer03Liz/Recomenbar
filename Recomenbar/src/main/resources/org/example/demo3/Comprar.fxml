@@ -3,7 +3,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo3.Comprar">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo3.CompraController">
     <children>
         <Label layoutX="181.0" layoutY="14.0" prefHeight="43.0" prefWidth="209.0" text="Bienvenido a la zona de pago" />
         <Label layoutX="70.0" layoutY="84.0" text="La informacion de tu reserva es:" />

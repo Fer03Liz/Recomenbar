@@ -1,11 +1,11 @@
-package org.example.demo3.Negocio;
+package org.example.demo3;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import org.example.demo3.Entidades.*;
+import org.example.demo3.Negocio.LogicaDelNegocio;
+import org.example.demo3.Negocio.Sesion;
 
-import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Date;
 
