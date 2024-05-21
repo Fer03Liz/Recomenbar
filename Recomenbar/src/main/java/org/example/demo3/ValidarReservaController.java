@@ -16,12 +16,17 @@ import org.bytedeco.javacv.OpenCVFrameConverter;
 import org.bytedeco.javacv.OpenCVFrameGrabber;
 import org.bytedeco.javacv.Java2DFrameConverter;
 import org.bytedeco.opencv.opencv_core.IplImage;
+import org.example.demo3.Entidades.Discoteca;
+import org.example.demo3.Entidades.Usuario;
+import org.example.demo3.Negocio.LogicaDelNegocio;
+import org.example.demo3.Negocio.Sesion;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.nio.file.Path;
+import java.sql.SQLException;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -64,11 +69,18 @@ public class ValidarReservaController {
                     try {
                         String qrContent = decodeQRCode(bufferedImage);
                         if (qrContent != null) {
-                            Platform.runLater(() -> infoLabel.setText(qrContent));
                             stopCamera();
+                            if(validarBar(qrContent)){
+                                Platform.runLater(() -> infoLabel.setText(qrContent));
+
+                            }else{
+                                Platform.runLater(() -> infoLabel.setText("La reserva no es en este bar"));
+                            }
                         }
                     } catch (NotFoundException | IOException e) {
                         e.printStackTrace();
+                    } catch (SQLException e) {
+                        throw new RuntimeException(e);
                     }
                 }
             };
@@ -96,5 +108,47 @@ public class ValidarReservaController {
         BinaryBitmap bitmap = new BinaryBitmap(new HybridBinarizer(source));
         Result result = new MultiFormatReader().decode(bitmap);
         return result.getText();
+    }
+
+    private int processQRContent(String qrContent) {
+        // Asumiendo que el contenido del QR es del tipo "ID: <idR> Discoteca: <nombreDisco> Fecha: <fecha> VIP: <vip> Cantidad personas: <cantidad>"
+        String[] parts = qrContent.split(" ");
+        int idR = 0;
+        for (int i = 0; i < parts.length; i++) {
+            if (parts[i].equals("ID:")) {
+                idR = Integer.parseInt(parts[i + 1]);
+                break;
+            }
+        }
+        System.out.println("idR: " + idR);
+        return idR;
+    }
+
+    private boolean validarBar(String qrContent) throws SQLException {
+        boolean valido = false;
+        LogicaDelNegocio logicaDelNegocio = LogicaDelNegocio.getInstancia();
+        Sesion sesion = Sesion.obtenerInstancia();
+        Usuario usuario = logicaDelNegocio.UsuarioCorreo(sesion.getCorreo());
+        String[] parts = qrContent.split(" ");
+        String nombre = null;
+        for (int i = 0; i < parts.length; i++) {
+            if (parts[i].equals("Discoteca:")) {
+                nombre = parts[i + 1];
+                for(int j=i+2; j<parts.length; j++){
+                    if(!parts[j].equals("Fecha:")){
+                        nombre= nombre + " " + parts[j];
+                    }else{
+                        break;
+                    }
+                }
+                break;
+            }
+        }
+        System.out.println("DESDE EL QR "+nombre);
+        System.out.println(usuario.getNombre());
+        if(usuario.getNombre().equals(nombre)){
+            valido = true;
+        }
+        return valido;
     }
 }
