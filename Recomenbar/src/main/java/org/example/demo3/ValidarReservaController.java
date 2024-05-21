@@ -17,6 +17,8 @@ import org.bytedeco.javacv.OpenCVFrameGrabber;
 import org.bytedeco.javacv.Java2DFrameConverter;
 import org.bytedeco.opencv.opencv_core.IplImage;
 import org.example.demo3.Entidades.Discoteca;
+import org.example.demo3.Entidades.Entrada;
+import org.example.demo3.Entidades.Reserva;
 import org.example.demo3.Entidades.Usuario;
 import org.example.demo3.Negocio.LogicaDelNegocio;
 import org.example.demo3.Negocio.Sesion;
@@ -71,8 +73,17 @@ public class ValidarReservaController {
                         if (qrContent != null) {
                             stopCamera();
                             if(validarBar(qrContent)){
+                                LogicaDelNegocio logicaDelNegocio= LogicaDelNegocio.getInstancia();
+                                Entrada entrada = logicaDelNegocio.entradaIDR(processQRContent(qrContent));
+                                System.out.println("entrada id: "+entrada.getId());
+                                Reserva reserva = logicaDelNegocio.reservaIdEntrada(entrada.getId());
+                                System.out.println("reserva id: "+reserva.getId());
+                                if(logicaDelNegocio.validarReserva(reserva)){
+                                    System.out.println("Reserva aceptada");
+                                }else{
+                                    System.out.println("Reserva no aceptada");
+                                }
                                 Platform.runLater(() -> infoLabel.setText(qrContent));
-
                             }else{
                                 Platform.runLater(() -> infoLabel.setText("La reserva no es en este bar"));
                             }

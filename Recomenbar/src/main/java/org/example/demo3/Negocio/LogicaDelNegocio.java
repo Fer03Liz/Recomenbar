@@ -443,6 +443,7 @@ public class LogicaDelNegocio {
         }
         return qrCode;
     }
+
     public Reserva reservaIdEntrada(int idEntrada) throws SQLException {
         Connection conexion = ConexionBD.getConexion();
         Reserva reserva = new Reserva();
@@ -451,6 +452,7 @@ public class LogicaDelNegocio {
             statement.setInt(1, idEntrada);
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
+                System.out.println("ENTRO");
                 reserva.setId(resultSet.getInt("id"));
                 reserva.setIdUsuario(resultSet.getInt("id_usuario"));
                 reserva.setIdDiscoteca(resultSet.getInt("id_discoteca"));
@@ -459,12 +461,41 @@ public class LogicaDelNegocio {
                 reserva.setCantEntradas(resultSet.getInt("cantidad_boletas"));
                 reserva.setEstadoReserva(resultSet.getBoolean("valida"));
                 reserva.setIdEntrada(idEntrada);
+                System.out.println(reserva.getId());
+                System.out.println(reserva.getIdUsuario());
+                System.out.println(reserva.getIdDiscoteca());
+                System.out.println(reserva.getIdEvento());
+                System.out.println(reserva.getIdEntrada());
+            }else{
+                System.out.println("No se encontro el id de entrada");
             }
         }
         return reserva;
     }
 
 
-    //public boolean validarReserva(Reserva reserva) throws SQLException {
-    //}
+    public boolean validarReserva(Reserva reserva) throws SQLException {
+        boolean valida = false;
+        Connection conexion = ConexionBD.getConexion();
+        String sql = "UPDATE Reservas SET valida = false WHERE idR = ?";
+
+        try (PreparedStatement stmt = conexion.prepareStatement(sql)) {
+            stmt.setInt(1, reserva.getId());
+            int rowsAffected = stmt.executeUpdate();
+            if (rowsAffected > 0) {
+                System.out.println("Reserva validada correctamente.");
+                valida=true;
+            } else {
+                System.out.println("No se encontró la reserva con idR: " + reserva.getId());
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw e;
+        } finally {
+            if (conexion != null && !conexion.isClosed()) {
+                conexion.close();
+            }
+        }
+        return valida;
+    }
 }
