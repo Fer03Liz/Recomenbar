@@ -55,7 +55,7 @@ CREATE TABLE reserva (
 
 INSERT INTO usuario (nombre, edad, correo, contraseña, tipo) values ('Prueba', 20,'prueba@.com','123',1);
 
-INSERT INTO usuario (nombre, correo, tipo, contraseña) values ('MonoBandidoreserva', 'MonoBandido@.com',2,"123");
+INSERT INTO usuario (nombre, correo, tipo, contraseña) values ('MonoBandido', 'MonoBandido@.com',2,"123");
 INSERT INTO usuario (nombre, correo, tipo, contraseña) values ('Palenque', 'Palenque@.com',2,"123");
 INSERT INTO usuario (nombre, correo, tipo, contraseña) values ('Dakiti', 'Dakiti@.com',2,"123");
 INSERT INTO usuario (nombre, correo, tipo, contraseña) values ('Plaza Mexico', 'Plaza Mexico@.com',2,"123");
