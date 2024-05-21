@@ -393,9 +393,6 @@ public class LogicaDelNegocio {
             evento.setFecha(resultSet.getDate("fecha"));
             evento.setPrivado(resultSet.getBoolean("private"));
         }
-        /*System.out.println("Desde logica de negocio "+evento.getNombre());
-        System.out.println("Desde logica de negocio "+evento.getId());
-        System.out.println("Desde logica de negocio "+evento.getFecha());*/
         return evento;
     }
     public Evento eventoIdEvento(int id) throws SQLException {
