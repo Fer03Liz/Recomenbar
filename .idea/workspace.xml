@@ -4,21 +4,32 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="08ef61b8-f2e4-4eb3-85ba-5046761b8a2f" name="Changes" comment="Prueba">
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+    <list default="true" id="08ef61b8-f2e4-4eb3-85ba-5046761b8a2f" name="Changes" comment="ya funciona toda la pantalla&#10;falta que con eventos funcione&#10;funciona solo con discotecas">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Recomenbar/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Recomenbar/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Recomenbar/src/main/java/lbs/mysql-connector-j-8.3.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Recomenbar/src/main/java/org/example/demo3/CompraController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Recomenbar/src/main/java/org/example/demo3/CompraController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Recomenbar/src/main/java/org/example/demo3/ReservarEventoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Recomenbar/src/main/java/org/example/demo3/ReservarEventoController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Recomenbar/src/main/resources/org/example/demo3/Comprar.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/Recomenbar/src/main/resources/org/example/demo3/Comprar.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="FxmlFile" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Merge.Settings">
+    <option name="BRANCH" value="develop" />
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="main" />
+        <entry key="$PROJECT_DIR$" value="develop" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -29,18 +40,21 @@
     &quot;assignee&quot;: &quot;AFCTT&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/Fer03Liz/Recomenbar.git&quot;,
-    &quot;accountId&quot;: &quot;2b838478-8ea1-4920-b145-b932a8945544&quot;
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/Fer03Liz/Recomenbar.git",
+    "accountId": "16333a3f-5c3f-4bb3-9fc5-5d71c4303839"
   }
-}</component>
+}]]></component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
         <option name="mavenHomeTypeForPersistence" value="WRAPPER" />
       </MavenGeneralSettings>
     </option>
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 2
@@ -54,8 +68,9 @@
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;Application.HelloApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Application.HomeApplication.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;develop&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;PagoNuevo&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
     &quot;last_opened_file_path&quot;: &quot;D:/Centa/Documents/Universidad/Ing_Soft/Recomenbar&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
@@ -108,7 +123,31 @@
       <option name="project" value="LOCAL" />
       <updated>1712868304735</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Avance pago">
+      <option name="closed" value="true" />
+      <created>1716245340472</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1716245340472</updated>
+    </task>
+    <task id="LOCAL-00005" summary="ya funciona casi toda la pantalla&#10;falta calculo del precio">
+      <option name="closed" value="true" />
+      <created>1716255949046</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1716255949047</updated>
+    </task>
+    <task id="LOCAL-00006" summary="ya funciona toda la pantalla&#10;falta que con eventos funcione&#10;funciona solo con discotecas">
+      <option name="closed" value="true" />
+      <created>1716256938435</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1716256938435</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -125,7 +164,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="Logica-de-negocio" />
+                        <option value="PagoNuevo" />
                       </list>
                     </value>
                   </entry>
@@ -142,6 +181,9 @@
     <MESSAGE value="Creacion develop" />
     <MESSAGE value="Creacion GestorDePantallas" />
     <MESSAGE value="pruebaaa" />
-    <option name="LAST_COMMIT_MESSAGE" value="pruebaaa" />
+    <MESSAGE value="Avance pago" />
+    <MESSAGE value="ya funciona casi toda la pantalla&#10;falta calculo del precio" />
+    <MESSAGE value="ya funciona toda la pantalla&#10;falta que con eventos funcione&#10;funciona solo con discotecas" />
+    <option name="LAST_COMMIT_MESSAGE" value="ya funciona toda la pantalla&#10;falta que con eventos funcione&#10;funciona solo con discotecas" />
   </component>
 </project>
