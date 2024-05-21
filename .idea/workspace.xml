@@ -4,9 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="08ef61b8-f2e4-4eb3-85ba-5046761b8a2f" name="Changes" comment="ya funciona casi toda la pantalla&#10;falta calculo del precio">
+    <list default="true" id="08ef61b8-f2e4-4eb3-85ba-5046761b8a2f" name="Changes" comment="ya funciona toda la pantalla&#10;falta que con eventos funcione&#10;funciona solo con discotecas">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Recomenbar/src/main/java/org/example/demo3/CompraController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Recomenbar/src/main/java/org/example/demo3/CompraController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Recomenbar/src/main/java/org/example/demo3/ReservarEventoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Recomenbar/src/main/java/org/example/demo3/ReservarEventoController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Recomenbar/src/main/resources/org/example/demo3/Comprar.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/Recomenbar/src/main/resources/org/example/demo3/Comprar.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -137,7 +139,15 @@
       <option name="project" value="LOCAL" />
       <updated>1716255949047</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="ya funciona toda la pantalla&#10;falta que con eventos funcione&#10;funciona solo con discotecas">
+      <option name="closed" value="true" />
+      <created>1716256938435</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1716256938435</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -173,6 +183,7 @@
     <MESSAGE value="pruebaaa" />
     <MESSAGE value="Avance pago" />
     <MESSAGE value="ya funciona casi toda la pantalla&#10;falta calculo del precio" />
-    <option name="LAST_COMMIT_MESSAGE" value="ya funciona casi toda la pantalla&#10;falta calculo del precio" />
+    <MESSAGE value="ya funciona toda la pantalla&#10;falta que con eventos funcione&#10;funciona solo con discotecas" />
+    <option name="LAST_COMMIT_MESSAGE" value="ya funciona toda la pantalla&#10;falta que con eventos funcione&#10;funciona solo con discotecas" />
   </component>
 </project>

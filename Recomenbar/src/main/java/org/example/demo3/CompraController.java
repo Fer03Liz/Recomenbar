@@ -4,6 +4,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.stage.Stage;
 import org.example.demo3.Entidades.Discoteca;
 import org.example.demo3.Entidades.Evento;
 import org.example.demo3.Entidades.Reserva;
@@ -63,10 +65,10 @@ public class CompraController {
         Evento evento= logicaDelNegocio.eventoIdEvento(reserva.getIdEvento());
         if(evento!=null) {
             if (evento.isPrivado()) {
-                nombreEvento.setText("");
+                nombreEvento.setText("El evento es Privado");
 
             } else {
-                nombreEvento.setText(evento.getNombre());
+                nombreEvento.setText("El evento es: "+evento.getNombre());
 
             }
         }
@@ -82,9 +84,6 @@ public class CompraController {
         precio.setText(String.valueOf(precioo));
 
     }
-
-
-
 
     @FXML
     public void handleVerReservaButton() throws SQLException {
@@ -119,10 +118,16 @@ public class CompraController {
 
         // Convertir el dato BLOB en una imagen y establecerla en el ImageView
         if (qrCodeData != null) {
-            javafx.scene.image.Image qrImage = new javafx.scene.image.Image(new ByteArrayInputStream(qrCodeData));
+            Image qrImage = new Image(new ByteArrayInputStream(qrCodeData));
             QR.setImage(qrImage);
         }
     }
 
+
+    public void menuPrincipalButton(ActionEvent actionEvent) {
+        Stage stage = new Stage();
+        GestorDePantallas gestorDePantallas = GestorDePantallas.obtenerInstancia();
+        gestorDePantallas.mostrarPantallaHome(stage);
+    }
 }
 
