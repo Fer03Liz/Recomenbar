@@ -45,6 +45,9 @@ public class CompraController {
     @FXML
     private Button verReservaButton;
 
+    @FXML
+    private Label precio;
+
     private Reserva reservita;
 
     public void setReserva(Reserva reserva) throws SQLException {
@@ -69,10 +72,14 @@ public class CompraController {
         }
         Date fechaD= reserva.getFecha();
         fecha.setText(fechaD.toString());
+
         // Obtener el dato BLOB de la base de datos
         byte[] qrCodeData = logicaDelNegocio.obtenerImagenQR(reserva.getIdEntrada());
 
         // Convertir el dato BLOB en una imagen y establecerla en el ImageView
+
+        float precioo=discoteca.getPrecio()*reserva.getCantEntradas();
+        precio.setText(String.valueOf(precioo));
 
     }
 

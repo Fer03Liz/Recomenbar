@@ -4,14 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="08ef61b8-f2e4-4eb3-85ba-5046761b8a2f" name="Changes" comment="Avance pago">
+    <list default="true" id="08ef61b8-f2e4-4eb3-85ba-5046761b8a2f" name="Changes" comment="ya funciona casi toda la pantalla&#10;falta calculo del precio">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Recomenbar/src/main/java/org/example/demo3/CompraController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Recomenbar/src/main/java/org/example/demo3/CompraController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Recomenbar/src/main/java/org/example/demo3/Entidades/Reserva.java" beforeDir="false" afterPath="$PROJECT_DIR$/Recomenbar/src/main/java/org/example/demo3/Entidades/Reserva.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Recomenbar/src/main/java/org/example/demo3/GestorDePantallas.java" beforeDir="false" afterPath="$PROJECT_DIR$/Recomenbar/src/main/java/org/example/demo3/GestorDePantallas.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Recomenbar/src/main/java/org/example/demo3/ReservarDiscotecaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Recomenbar/src/main/java/org/example/demo3/ReservarDiscotecaController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Recomenbar/src/main/resources/org/example/demo3/Comprar.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/Recomenbar/src/main/resources/org/example/demo3/Comprar.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Recomenbar/src/main/resources/org/example/demo3/VerInfoReserva.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/Recomenbar/src/main/resources/org/example/demo3/VerInfoReserva.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -134,7 +129,15 @@
       <option name="project" value="LOCAL" />
       <updated>1716245340472</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="ya funciona casi toda la pantalla&#10;falta calculo del precio">
+      <option name="closed" value="true" />
+      <created>1716255949046</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1716255949047</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -169,6 +172,7 @@
     <MESSAGE value="Creacion GestorDePantallas" />
     <MESSAGE value="pruebaaa" />
     <MESSAGE value="Avance pago" />
-    <option name="LAST_COMMIT_MESSAGE" value="Avance pago" />
+    <MESSAGE value="ya funciona casi toda la pantalla&#10;falta calculo del precio" />
+    <option name="LAST_COMMIT_MESSAGE" value="ya funciona casi toda la pantalla&#10;falta calculo del precio" />
   </component>
 </project>
