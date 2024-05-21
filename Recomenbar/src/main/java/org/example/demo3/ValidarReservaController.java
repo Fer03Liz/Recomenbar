@@ -15,7 +15,6 @@ import org.bytedeco.javacv.FrameGrabber;
 import org.bytedeco.javacv.OpenCVFrameConverter;
 import org.bytedeco.javacv.OpenCVFrameGrabber;
 import org.bytedeco.javacv.Java2DFrameConverter;
-import org.bytedeco.opencv.opencv_core.IplImage;
 import org.example.demo3.Entidades.Discoteca;
 import org.example.demo3.Entidades.Entrada;
 import org.example.demo3.Entidades.Reserva;
@@ -42,6 +41,9 @@ public class ValidarReservaController {
     private Label infoLabel;
 
     @FXML
+    private Label estadoLabel;
+
+    @FXML
     private Button leerQRButton;
 
     private ScheduledExecutorService timer;
@@ -55,6 +57,7 @@ public class ValidarReservaController {
         converter = new OpenCVFrameConverter.ToIplImage();
         java2DConverter = new Java2DFrameConverter();
         timer = Executors.newSingleThreadScheduledExecutor();
+
         try {
             grabber.start();
             Runnable frameGrabber = () -> {
@@ -64,28 +67,54 @@ public class ValidarReservaController {
                 } catch (FrameGrabber.Exception e) {
                     e.printStackTrace();
                 }
+
                 if (frame != null) {
                     BufferedImage bufferedImage = java2DConverter.convert(frame);
                     Image image = SwingFXUtils.toFXImage(bufferedImage, null);
-                    qrImageView.setImage(image);
+
+                    // Actualiza la ImageView en el hilo de la aplicación de JavaFX
+                    Platform.runLater(() -> qrImageView.setImage(image));
+
                     try {
                         String qrContent = decodeQRCode(bufferedImage);
                         if (qrContent != null) {
                             stopCamera();
-                            if(validarBar(qrContent)){
-                                LogicaDelNegocio logicaDelNegocio= LogicaDelNegocio.getInstancia();
-                                Entrada entrada = logicaDelNegocio.entradaIDR(processQRContent(qrContent));
-                                System.out.println("entrada id: "+entrada.getId());
+                            System.out.println("QR Content: " + qrContent);
+
+                            Platform.runLater(() -> infoLabel.setText(qrContent));
+
+                            if (validarBar(qrContent)) {
+                                LogicaDelNegocio logicaDelNegocio = LogicaDelNegocio.getInstancia();
+                                int entradaIdR = processQRContent(qrContent);
+                                System.out.println("Entrada IDR: " + entradaIdR);
+
+                                Entrada entrada = logicaDelNegocio.entradaIDR(entradaIdR);
+
+                                System.out.println("Entrada Obtenida: " + entrada.getId());
+
                                 Reserva reserva = logicaDelNegocio.reservaIdEntrada(entrada.getId());
-                                System.out.println("reserva id: "+reserva.getId());
-                                if(logicaDelNegocio.validarReserva(reserva)){
-                                    System.out.println("Reserva aceptada");
-                                }else{
-                                    System.out.println("Reserva no aceptada");
-                                }
-                                Platform.runLater(() -> infoLabel.setText(qrContent));
-                            }else{
-                                Platform.runLater(() -> infoLabel.setText("La reserva no es en este bar"));
+                                System.out.println("Reserva Obtenida: " + reserva.getId());
+
+                                Platform.runLater(() -> {
+                                    infoLabel.setText(qrContent);
+                                    System.out.println("Reserva ID: " + reserva.getId());
+
+                                    try {
+                                        if (logicaDelNegocio.validarReserva(reserva)) {
+                                            System.out.println("Reserva aceptada");
+                                            estadoLabel.setText("Reserva Aceptada");
+                                        } else {
+                                            System.out.println("Reserva no aceptada");
+                                            estadoLabel.setText("Reserva no aceptada");
+                                        }
+                                    } catch (SQLException e) {
+                                        throw new RuntimeException(e);
+                                    }
+                                });
+                            } else {
+                                Platform.runLater(() -> {
+                                    infoLabel.setText("No se puede usar la reserva");
+                                });
                             }
                         }
                     } catch (NotFoundException | IOException e) {
@@ -155,10 +184,19 @@ public class ValidarReservaController {
                 break;
             }
         }
+        int idR = processQRContent(nombre);
+        Entrada entrada= logicaDelNegocio.entradaIDR(idR);
+        Reserva reserva= logicaDelNegocio.reservaIdEntrada(entrada.getId());
         System.out.println("DESDE EL QR "+nombre);
         System.out.println(usuario.getNombre());
         if(usuario.getNombre().equals(nombre)){
             valido = true;
+        }else{
+            Platform.runLater(() -> estadoLabel.setText("La reserva no es de este local"));
+        }
+        if(!reserva.getEstadoReserva()){
+            valido=false;
+            Platform.runLater(() -> estadoLabel.setText("Ya se ha usado esta reserva"));
         }
         return valido;
     }

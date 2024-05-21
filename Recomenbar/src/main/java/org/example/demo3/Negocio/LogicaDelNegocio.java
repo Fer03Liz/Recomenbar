@@ -447,7 +447,7 @@ public class LogicaDelNegocio {
     public Reserva reservaIdEntrada(int idEntrada) throws SQLException {
         Connection conexion = ConexionBD.getConexion();
         Reserva reserva = new Reserva();
-        String sql = "SELECT id,id_usuario,id_discoteca, id_evento, fecha, cantidad_boletas, valida FROM entrada WHERE id_entrada = ?";
+        String sql = "SELECT id,id_usuario,id_discoteca, id_evento, fecha, cantidad_boletas, valida FROM reserva WHERE id_entrada = ?";
         try (PreparedStatement statement = conexion.prepareStatement(sql)) {
             statement.setInt(1, idEntrada);
             ResultSet resultSet = statement.executeQuery();
@@ -461,11 +461,11 @@ public class LogicaDelNegocio {
                 reserva.setCantEntradas(resultSet.getInt("cantidad_boletas"));
                 reserva.setEstadoReserva(resultSet.getBoolean("valida"));
                 reserva.setIdEntrada(idEntrada);
-                System.out.println(reserva.getId());
-                System.out.println(reserva.getIdUsuario());
-                System.out.println(reserva.getIdDiscoteca());
-                System.out.println(reserva.getIdEvento());
-                System.out.println(reserva.getIdEntrada());
+                System.out.println("ID: "+reserva.getId());
+                System.out.println("Usuario: "+reserva.getIdUsuario());
+                System.out.println("Discoteca: "+reserva.getIdDiscoteca());
+                System.out.println("Evento: "+reserva.getIdEvento());
+                System.out.println("Entrada: "+reserva.getIdEntrada());
             }else{
                 System.out.println("No se encontro el id de entrada");
             }
@@ -477,7 +477,7 @@ public class LogicaDelNegocio {
     public boolean validarReserva(Reserva reserva) throws SQLException {
         boolean valida = false;
         Connection conexion = ConexionBD.getConexion();
-        String sql = "UPDATE Reservas SET valida = false WHERE idR = ?";
+        String sql = "UPDATE reserva SET valida = false WHERE id = ?";
 
         try (PreparedStatement stmt = conexion.prepareStatement(sql)) {
             stmt.setInt(1, reserva.getId());

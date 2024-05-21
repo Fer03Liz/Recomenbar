@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.VBox?>
 
-<VBox xmlns:fx="http://javafx.com/fxml" fx:controller="org.example.demo3.ValidarReservaController" spacing="10" alignment="CENTER">
-   <Label text="Validar Reserva" style="-fx-font-size: 24px;"/>
-   <ImageView fx:id="qrImageView" fitWidth="300" fitHeight="300"/>
-   <Button text="Iniciar Cámara" onAction="#onIniciarCamaraButtonClick"/>
-   <Label fx:id="infoLabel" style="-fx-font-size: 16px;"/>
+<VBox alignment="CENTER" spacing="10" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="org.example.demo3.ValidarReservaController">
+   <Label style="-fx-font-size: 24px;" text="Validar Reserva" />
+   <ImageView fx:id="qrImageView" fitHeight="300" fitWidth="300" />
+   <Button onAction="#onIniciarCamaraButtonClick" text="Iniciar Cámara" />
+   <Label fx:id="infoLabel" style="-fx-font-size: 16px;" />
+   <Label fx:id="estadoLabel" layoutX="160.0" layoutY="406.0" style="-fx-font-size: 16px;" />
 </VBox>
