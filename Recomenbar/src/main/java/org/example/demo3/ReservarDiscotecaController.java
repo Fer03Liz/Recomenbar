@@ -6,10 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-import org.example.demo3.Entidades.Discoteca;
-import org.example.demo3.Entidades.Entrada;
-import org.example.demo3.Entidades.Evento;
-import org.example.demo3.Entidades.Usuario;
+import org.example.demo3.Entidades.*;
 import org.example.demo3.Negocio.LogicaDelNegocio;
 import org.example.demo3.Negocio.Sesion;
 import org.w3c.dom.Text;
@@ -155,8 +152,11 @@ public class ReservarDiscotecaController {
                 if (logicaDelNegocio.registrarReserva(usuario.getId(), discoteca.getId(), entrada.getId(), evento.getId(), timestamp,cantidadPersonas,true)) {
                     // Cierra la aplicación después de registrar la reserva correctamente
                     System.out.printf("Se puede hacer la reserva");
+                    System.out.print("inf reserva antes :"+idR+"  "+usuario.getId()+"    "+ discoteca.getId());
                     GestorDePantallas gestorDePantallas= GestorDePantallas.obtenerInstancia();
-                   gestorDePantallas.mosrtarPantallaCompra(event);
+                    Reserva reservita=new Reserva(idR, usuario.getId(), discoteca.getId(), entrada.getId(), evento.getId(),timestamp,cantidadPersonas,true);
+                    System.out.print("inf reserva despues:"+reservita.getId()+"  "+reservita.getIdUsuario()+"    "+reservita.getIdDiscoteca());
+                   gestorDePantallas.mosrtarPantallaCompra(event,reservita);
                 } else {
                     System.out.printf("No se puede hacer la reserva");
                 }

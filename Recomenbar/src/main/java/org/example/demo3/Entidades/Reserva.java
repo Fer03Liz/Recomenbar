@@ -1,5 +1,6 @@
 package org.example.demo3.Entidades;
 
+import java.sql.Timestamp;
 import java.util.Date;
 
 public class Reserva {
@@ -14,6 +15,18 @@ public class Reserva {
 
     public Reserva() {
     }
+
+    public Reserva(int id, int idUsuario, int idDiscoteca, int idEntrada, int idEvento, Timestamp fecha, int cantEntradas, boolean valida) {
+        this.id = id;
+        this.idUsuario = idUsuario;
+        this.idDiscoteca = idDiscoteca;
+        this.idEntrada = idEntrada;
+        this.idEvento = idEvento;
+        this.fecha = new Date(fecha.getTime()); // Convertir Timestamp a Date
+        this.cantEntradas = cantEntradas;
+        this.valida = valida;
+    }
+
 
     public int getId() {return id;}
     public void setId(int id) {this.id = id;}

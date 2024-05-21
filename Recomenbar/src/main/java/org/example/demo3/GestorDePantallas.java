@@ -14,6 +14,7 @@ import org.example.demo3.Negocio.Sesion;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -101,8 +102,15 @@ public class GestorDePantallas {
         // Obtener el controlador y pasar las discotecas
         if (reserva != null && rutaFXML.equals("VerInfoReserva")) {
             VerInfoReservaController controller = loader.getController();
+
             controller.setReserva(reserva);
         }
+        if (reserva != null && rutaFXML.equals("Comprar")) {
+            CompraController controller1 = loader.getController();
+
+            controller1.setReserva(reserva);
+        }
+
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.setFullScreen(true);
@@ -171,8 +179,8 @@ public class GestorDePantallas {
         mostrarPantalla("VerReserva", event);
     }
 
-    public void mosrtarPantallaCompra(ActionEvent event) throws IOException {
-        mostrarPantalla("Comprar", event);
+    public void mosrtarPantallaCompra(ActionEvent event,Reserva reserva ) throws IOException, SQLException {
+        mostrarPantalla("Comprar", event,reserva);
     }
 }
 

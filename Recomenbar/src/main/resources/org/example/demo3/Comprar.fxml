@@ -6,18 +6,21 @@
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo3.CompraController">
     <children>
         <Label layoutX="181.0" layoutY="14.0" prefHeight="43.0" prefWidth="209.0" text="Bienvenido a la zona de pago" />
-        <Label layoutX="70.0" layoutY="84.0" text="La informacion de tu reserva es:" />
+        <Label layoutX="70.0" layoutY="84.0" text="La información de tu reserva es:" />
         <Label layoutX="93.0" layoutY="123.0" text="A nombre de:" />
         <Label layoutX="115.0" layoutY="153.0" text="Lugar:" />
         <Label layoutX="115.0" layoutY="183.0" text="Fecha:" />
         <Label layoutX="118.0" layoutY="212.0" text="Precio:" />
-        <Label fx:id="nombreUsuario" layoutX="272.0" layoutY="123.0" text="Label" />
-        <Label fx:id="nombreDiscoteca" layoutX="272.0" layoutY="153.0" text="Label" />
-        <Label fx:id="fecha" layoutX="272.0" layoutY="183.0" text="Label" />
-        <Label fx:id="precio" layoutX="272.0" layoutY="212.0" text="Label" />
-        <Button layoutX="246.0" layoutY="326.0" mnemonicParsing="false" text="Pagar" />
-        <Button layoutX="379.0" layoutY="326.0" mnemonicParsing="false" text="menu principal" />
-        <Label layoutX="122.0" layoutY="244.0" text="Numero de personas:" />
-        <Label fx:id="numeroPersonas" layoutX="272.0" layoutY="244.0" text="Label" />
+        <Label fx:id="nombreUsuario" layoutX="272.0" layoutY="123.0" />
+        <Label fx:id="nombreDiscoteca" layoutX="272.0" layoutY="153.0" />
+        <Label fx:id="fecha" layoutX="272.0" layoutY="183.0" />
+        <Label fx:id="precio" layoutX="272.0" layoutY="212.0" />
+        <Button fx:id="pagarButton" layoutX="246.0" layoutY="326.0" mnemonicParsing="false" text="Pagar" />
+        <Button fx:id="menuPrincipalButton" layoutX="379.0" layoutY="326.0" mnemonicParsing="false" text="Menu Principal" />
+        <Label layoutX="122.0" layoutY="244.0" text="Número de personas:" />
+        <Label fx:id="numeroPersonas" layoutX="272.0" layoutY="244.0" />
+        <Button fx:id="verReservaButton" layoutX="50.0" layoutY="326.0" mnemonicParsing="false" onAction="#handleVerReservaButton" text="Ver Reserva" />
+      <Label layoutX="122.0" layoutY="274.0" text="nombre del evento:" />
+      <Label fx:id="nombreEvento" layoutX="286.0" layoutY="274.0" />
     </children>
 </AnchorPane>
