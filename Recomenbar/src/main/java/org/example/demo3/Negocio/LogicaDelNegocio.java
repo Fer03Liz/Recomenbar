@@ -178,7 +178,7 @@ public class LogicaDelNegocio {
             sentencia.setFloat(4, precio);
 
             // Generar el código QR
-            String qrText = "ID: " + idR + " Discoteca: "+nombreDisco+ " Fecha:" + fecha+ " VIP: " + vip + " Cantidad personas: " + cantidad;
+            String qrText = "ID: " + idR + " Discoteca: "+nombreDisco+ " Fecha: " + fecha+ " VIP: " + vip + " Cantidad personas: " + cantidad;
             byte[] qrCode = QRCode.generateQRCode(qrText, 200, 200);
             sentencia.setBytes(5, qrCode);
             int filasINS = sentencia.executeUpdate();
@@ -393,9 +393,6 @@ public class LogicaDelNegocio {
             evento.setFecha(resultSet.getDate("fecha"));
             evento.setPrivado(resultSet.getBoolean("private"));
         }
-        /*System.out.println("Desde logica de negocio "+evento.getNombre());
-        System.out.println("Desde logica de negocio "+evento.getId());
-        System.out.println("Desde logica de negocio "+evento.getFecha());*/
         return evento;
     }
     public Evento eventoIdEvento(int id) throws SQLException {
@@ -447,5 +444,58 @@ public class LogicaDelNegocio {
         return qrCode;
     }
 
+    public Reserva reservaIdEntrada(int idEntrada) throws SQLException {
+        Connection conexion = ConexionBD.getConexion();
+        Reserva reserva = new Reserva();
+        String sql = "SELECT id,id_usuario,id_discoteca, id_evento, fecha, cantidad_boletas, valida FROM reserva WHERE id_entrada = ?";
+        try (PreparedStatement statement = conexion.prepareStatement(sql)) {
+            statement.setInt(1, idEntrada);
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                System.out.println("ENTRO");
+                reserva.setId(resultSet.getInt("id"));
+                reserva.setIdUsuario(resultSet.getInt("id_usuario"));
+                reserva.setIdDiscoteca(resultSet.getInt("id_discoteca"));
+                reserva.setIdEvento(resultSet.getInt("id_evento"));
+                reserva.setFecha(resultSet.getDate("fecha"));
+                reserva.setCantEntradas(resultSet.getInt("cantidad_boletas"));
+                reserva.setEstadoReserva(resultSet.getBoolean("valida"));
+                reserva.setIdEntrada(idEntrada);
+                System.out.println("ID: "+reserva.getId());
+                System.out.println("Usuario: "+reserva.getIdUsuario());
+                System.out.println("Discoteca: "+reserva.getIdDiscoteca());
+                System.out.println("Evento: "+reserva.getIdEvento());
+                System.out.println("Entrada: "+reserva.getIdEntrada());
+            }else{
+                System.out.println("No se encontro el id de entrada");
+            }
+        }
+        return reserva;
+    }
 
+
+    public boolean validarReserva(Reserva reserva) throws SQLException {
+        boolean valida = false;
+        Connection conexion = ConexionBD.getConexion();
+        String sql = "UPDATE reserva SET valida = false WHERE id = ?";
+
+        try (PreparedStatement stmt = conexion.prepareStatement(sql)) {
+            stmt.setInt(1, reserva.getId());
+            int rowsAffected = stmt.executeUpdate();
+            if (rowsAffected > 0) {
+                System.out.println("Reserva validada correctamente.");
+                valida=true;
+            } else {
+                System.out.println("No se encontró la reserva con idR: " + reserva.getId());
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw e;
+        } finally {
+            if (conexion != null && !conexion.isClosed()) {
+                conexion.close();
+            }
+        }
+        return valida;
+    }
 }

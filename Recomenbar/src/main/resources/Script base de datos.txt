@@ -30,6 +30,7 @@ CREATE TABLE evento (
 #Si vip true, se cobra un 20% adicional
 CREATE TABLE entrada (
     id INT AUTO_INCREMENT PRIMARY KEY,
+    idR INT,
     id_discoteca INT,
     vip BOOLEAN,
     precio DECIMAL(10, 2),
@@ -52,9 +53,31 @@ CREATE TABLE reserva (
     FOREIGN KEY (id_evento) REFERENCES evento(id)
 );
 
-INSERT INTO usuario (nombre, correo, tipo) values ('bar1Ejemplo', 'bar1@.com',2);
-INSERT INTO usuario (nombre, correo, tipo) values ('bar2Ejemplo', 'bar2@.com',2);
 INSERT INTO usuario (nombre, edad, correo, contraseña, tipo) values ('Prueba', 20,'prueba@.com','123',1);
+
+INSERT INTO usuario (nombre, correo, tipo, contraseña) values ('MonoBandido', 'MonoBandido@.com',2,"123");
+INSERT INTO usuario (nombre, correo, tipo, contraseña) values ('Palenque', 'Palenque@.com',2,"123");
+INSERT INTO usuario (nombre, correo, tipo, contraseña) values ('Dakiti', 'Dakiti@.com',2,"123");
+INSERT INTO usuario (nombre, correo, tipo, contraseña) values ('Plaza Mexico', 'Plaza Mexico@.com',2,"123");
+INSERT INTO usuario (nombre, correo, tipo, contraseña) values ('Andres DC', 'Andres DC@.com',2,"123");
+INSERT INTO usuario (nombre, correo, tipo, contraseña) values ('Andres Chia', 'Andres Chia@.com',2,"123");
+INSERT INTO usuario (nombre, correo, tipo, contraseña) values ('The Club', 'The Club@.com',2,"123");
+INSERT INTO usuario (nombre, correo, tipo, contraseña) values ('ElectroLand', 'ElectroLand@.com',2,"123");
+INSERT INTO usuario (nombre, correo, tipo, contraseña) values ("Rock'n'Roll Paradise", "Rock'n'Roll Paradise@.com",2,"123");
+INSERT INTO usuario (nombre, correo, tipo, contraseña) values ('House of Beats', 'House of Beats@.com',2,"123");
+INSERT INTO usuario (nombre, correo, tipo, contraseña) values ('Salsa Lounge', 'Salsa Lounge@.com',2,"123");
+INSERT INTO usuario (nombre, correo, tipo, contraseña) values ('Merengue Bar', 'Merengue Bar@.com',2,"123");
+INSERT INTO usuario (nombre, correo, tipo, contraseña) values ('Rancheras Pub', 'Rancheras Pub@.com',2,"123");
+INSERT INTO usuario (nombre, correo, tipo, contraseña) values ('Variedad Party', 'Variedad Party@.com',2,"123");
+INSERT INTO usuario (nombre, correo, tipo, contraseña) values ('Chill & Chat', 'Chill & Chat@.com',2,"123");
+INSERT INTO usuario (nombre, correo, tipo, contraseña) values ('EDM Kingdom', 'EDM Kingdom@.com',2,"123");
+INSERT INTO usuario (nombre, correo, tipo, contraseña) values ('Salsa Fiesta', 'Salsa Fiesta@.com',2,"123");
+INSERT INTO usuario (nombre, correo, tipo, contraseña) values ('Merengue Madness', 'Merengue Madness@.com',2,"123");
+INSERT INTO usuario (nombre, correo, tipo, contraseña) values ('Rocks & Rolls', 'Rocks & Rolls@.com',2,"123");
+INSERT INTO usuario (nombre, correo, tipo, contraseña) values ('House Hub', 'House Hub@.com',2,"123");
+INSERT INTO usuario (nombre, correo, tipo, contraseña) values ('Salsa Sensation', 'Salsa Sensation@.com',2,"123");
+INSERT INTO usuario (nombre, correo, tipo, contraseña) values ('Merengue Mania', 'Merengue Mania@.com',2,"123");
+INSERT INTO usuario (nombre, correo, tipo, contraseña) values ('Regueton Rave', 'Regueton Rave@.com',2,"123");
 
 INSERT INTO discoteca(nombre, direccion, genero_musical, tipo, precio_entrada) values ("MonoBandido", "Calle 85", "Variedad",2,45000);
 INSERT INTO discoteca(nombre, direccion, genero_musical, tipo, precio_entrada) values ("Palenque", "Calle 85", "Regueton",1,20000);
@@ -84,5 +107,3 @@ INSERT INTO discoteca(nombre, direccion, genero_musical, tipo, precio_entrada) V
 INSERT INTO evento (id_discoteca, nombre, precio, fecha, private) VALUES (2, "PontiFarra", 25000, '2024-06-01', false);
 INSERT INTO evento (id_discoteca, nombre, precio, fecha, private) VALUES (3, "Perreologia", 15000, '2024-06-08', false);
 INSERT INTO evento (id_discoteca, nombre, precio, fecha, private) VALUES (4, "Despecho Pa La Gente", 45000, '2024-06-25', false);
-
-INSERT INTO entrada (id_discoteca,  vip) VALUES(1,true);
