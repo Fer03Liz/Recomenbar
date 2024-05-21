@@ -1,24 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="601.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo3.VerInfoReservaController" style="-fx-background-color: black;">
+<AnchorPane prefHeight="601.0" prefWidth="600.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo3.VerInfoReservaController">
    <children>
-      <Label layoutX="217.0" layoutY="23.0" text="Informacion de tu reserva" AnchorPane.leftAnchor="217.0" AnchorPane.rightAnchor="213.0" style="-fx-text-fill: white; -fx-font-size: 16px;" />
+      <Label layoutX="217.0" layoutY="23.0" style="-fx-text-fill: white; -fx-font-size: 16px;" text="Informacion de tu reserva" AnchorPane.leftAnchor="217.0" AnchorPane.rightAnchor="213.0" />
       <ImageView fx:id="QR" fitHeight="200.0" fitWidth="200.0" layoutX="198.0" layoutY="115.0" pickOnBounds="true" preserveRatio="true" />
-      <Label layoutX="189.0" layoutY="66.0" text="Nombre de quien hizo la reserva:" style="-fx-text-fill: white;" />
-      <Label fx:id="nombreUsuario" layoutX="262.0" layoutY="94.0" prefHeight="21.0" prefWidth="73.0" text="name" style="-fx-text-fill: white;" />
-      <Label layoutX="262.0" layoutY="398.0" text="En el lugar:" style="-fx-text-fill: white;" />
+      <Label layoutX="189.0" layoutY="66.0" style="-fx-text-fill: white;" text="Nombre de quien hizo la reserva:" />
+      <Label fx:id="nombreUsuario" layoutX="262.0" layoutY="94.0" prefHeight="21.0" prefWidth="73.0" style="-fx-text-fill: white;" text="name" />
+      <Label layoutX="262.0" layoutY="398.0" style="-fx-text-fill: white;" text="En el lugar:" />
       <Label fx:id="nombreDiscoteca" layoutX="277.0" layoutY="419.0" prefHeight="21.0" prefWidth="42.0" style="-fx-text-fill: white;" />
-      <Label layoutX="280.0" layoutY="334.0" text="Para :" style="-fx-text-fill: white;" />
+      <Label layoutX="280.0" layoutY="334.0" style="-fx-text-fill: white;" text="Para :" />
       <Label fx:id="numeroPersonas" layoutX="262.0" layoutY="355.0" prefHeight="21.0" prefWidth="73.0" style="-fx-text-fill: white;" />
-      <Label fx:id="textEvento" layoutX="253.0" layoutY="458.0" text="Por el evento:" style="-fx-text-fill: white;" />
+      <Label fx:id="textEvento" layoutX="253.0" layoutY="458.0" style="-fx-text-fill: white;" text="Por el evento:" />
       <Label fx:id="nombreEvento" layoutX="251.0" layoutY="491.0" prefHeight="21.0" prefWidth="103.0" style="-fx-text-fill: white;" />
-      <Label layoutX="432.0" layoutY="23.0" text="Fecha:" style="-fx-text-fill: white;" />
+      <Label layoutX="432.0" layoutY="23.0" style="-fx-text-fill: white;" text="Fecha:" />
       <Label fx:id="fecha" layoutX="482.0" layoutY="23.0" prefHeight="21.0" prefWidth="59.0" style="-fx-text-fill: white;" />
-      <Button layoutX="271.0" layoutY="528.0" mnemonicParsing="false" text="Menu" style="-fx-background-color: #ADD8E6; -fx-text-fill: black;" />
+      <Button layoutX="271.0" layoutY="528.0" mnemonicParsing="false" style="-fx-background-color: #ADD8E6; -fx-text-fill: black;" text="Menu" />
    </children>
 </AnchorPane>

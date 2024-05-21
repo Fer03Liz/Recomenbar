@@ -14,6 +14,7 @@ import org.example.demo3.Negocio.Sesion;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -32,11 +33,12 @@ public class GestorDePantallas {
         this.rutasFXML.put("ReservarDiscoteca", "/org/example/demo3/ReservarDiscoteca.fxml");
         this.rutasFXML.put("EleccionReservar", "/org/example/demo3/PreReserva.fxml");
         this.rutasFXML.put("ReservarEvento", "/org/example/demo3/ReservarEvento.fxml");
-        this.rutasFXML.put("Frecuentes","/org/example/demo3/PreguntasFrecuentes.fxml");
+        this.rutasFXML.put("Frecuentes", "/org/example/demo3/PreguntasFrecuentes.fxml");
         this.rutasFXML.put("Encuesta", "/org/example/demo3/Encuesta.fxml");
-        this.rutasFXML.put("VerReserva","/org/example/demo3/VerReserva.fxml");
-        this.rutasFXML.put("VerInfoReserva","/org/example/demo3/VerInfoReserva.fxml");
-        this.rutasFXML.put("ValidarReserva","/org/example/demo3/ValidarReserva.fxml");
+        this.rutasFXML.put("VerReserva", "/org/example/demo3/VerReserva.fxml");
+        this.rutasFXML.put("VerInfoReserva", "/org/example/demo3/VerInfoReserva.fxml");
+        this.rutasFXML.put("ValidarReserva", "/org/example/demo3/ValidarReserva.fxml");
+        this.rutasFXML.put("Comprar", "/org/example/demo3/Comprar.fxml");
     }
 
     public static GestorDePantallas obtenerInstancia() {
@@ -61,6 +63,7 @@ public class GestorDePantallas {
         stage.centerOnScreen();
         stage.show();  // Muestra la nueva pantalla
     }
+
     private void mostrarPantalla(String rutaFXML, ActionEvent event, List<Discoteca> discotecas) throws IOException {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         String rutaCompletaFXML = rutasFXML.get(rutaFXML);
@@ -82,9 +85,11 @@ public class GestorDePantallas {
         stage.show();
     }
 
-    public void mostrarPantallaReservarDiscoteca(ActionEvent event, List<Discoteca> discotecas) throws IOException {mostrarPantalla("ReservarDiscoteca", event, discotecas);}
+    public void mostrarPantallaReservarDiscoteca(ActionEvent event, List<Discoteca> discotecas) throws IOException {
+        mostrarPantalla("ReservarDiscoteca", event, discotecas);
+    }
 
-    private void mostrarPantalla(String rutaFXML, ActionEvent event, Reserva reserva ) throws IOException, SQLException {
+    private void mostrarPantalla(String rutaFXML, ActionEvent event, Reserva reserva) throws IOException, SQLException {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         String rutaCompletaFXML = rutasFXML.get(rutaFXML);
         if (rutaCompletaFXML == null) {
@@ -97,28 +102,37 @@ public class GestorDePantallas {
         // Obtener el controlador y pasar las discotecas
         if (reserva != null && rutaFXML.equals("VerInfoReserva")) {
             VerInfoReservaController controller = loader.getController();
+
             controller.setReserva(reserva);
         }
+        if (reserva != null && rutaFXML.equals("Comprar")) {
+            CompraController controller1 = loader.getController();
+
+            controller1.setReserva(reserva);
+        }
+
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.setFullScreen(true);
         stage.show();
     }
 
-    public void mostrarVerInfoReserva(ActionEvent event, Reserva reserva) throws IOException, SQLException {mostrarPantalla("VerInfoReserva",event,reserva);}
+    public void mostrarVerInfoReserva(ActionEvent event, Reserva reserva) throws IOException, SQLException {
+        mostrarPantalla("VerInfoReserva", event, reserva);
+    }
 
     public void mostrarPantallaPostLogin(ActionEvent event) throws IOException, SQLException {
-        Sesion sesion= Sesion.obtenerInstancia();
-        LogicaDelNegocio logicaDelNegocio= LogicaDelNegocio.getInstancia();
-        Usuario usuario= logicaDelNegocio.UsuarioCorreo(sesion.getCorreo());
-        if(usuario.getTipo()==1){
+        Sesion sesion = Sesion.obtenerInstancia();
+        LogicaDelNegocio logicaDelNegocio = LogicaDelNegocio.getInstancia();
+        Usuario usuario = logicaDelNegocio.UsuarioCorreo(sesion.getCorreo());
+        if (usuario.getTipo() == 1) {
             mostrarPantalla("PostLogin", event);
-        }else{
+        } else {
             mostrarPantalla("ValidarReserva", event);
         }
     }
 
-    public void mostrarPantallaHome(Stage stage){
+    public void mostrarPantallaHome(Stage stage) {
         try {
             String rutaCompletaFXML = rutasFXML.get("Home");
             if (rutaCompletaFXML == null) {
@@ -136,11 +150,39 @@ public class GestorDePantallas {
             e.printStackTrace();
         }
     }
-    public void mostrarPantallaLogin(ActionEvent event) throws IOException {mostrarPantalla("Login", event);}
-    public void mostrarPantallaRegistrar(ActionEvent event) throws IOException {mostrarPantalla("Registrar", event);}
-    public void mostrarPantallaEleccionReservar(ActionEvent event) throws IOException {mostrarPantalla("EleccionReservar", event);}
-    public void mostrarPantallaReservarEvento(ActionEvent event) throws IOException {mostrarPantalla("ReservarEvento", event);}
-    public void mostrarPantallaFrecuentes(ActionEvent event) throws  IOException{mostrarPantalla("Frecuentes",event);}
-    public void mostrarPantallaEncuesta(ActionEvent event) throws  IOException {mostrarPantalla("Encuesta", event);}
-    public void mosrtarPantallaVerReserva(ActionEvent event) throws IOException{mostrarPantalla("VerReserva", event);}
+
+    public void mostrarPantallaLogin(ActionEvent event) throws IOException {
+        mostrarPantalla("Login", event);
+    }
+
+    public void mostrarPantallaRegistrar(ActionEvent event) throws IOException {
+        mostrarPantalla("Registrar", event);
+    }
+
+    public void mostrarPantallaEleccionReservar(ActionEvent event) throws IOException {
+        mostrarPantalla("EleccionReservar", event);
+    }
+
+    public void mostrarPantallaReservarEvento(ActionEvent event) throws IOException {
+        mostrarPantalla("ReservarEvento", event);
+    }
+
+    public void mostrarPantallaFrecuentes(ActionEvent event) throws IOException {
+        mostrarPantalla("Frecuentes", event);
+    }
+
+    public void mostrarPantallaEncuesta(ActionEvent event) throws IOException {
+        mostrarPantalla("Encuesta", event);
+    }
+
+    public void mosrtarPantallaVerReserva(ActionEvent event) throws IOException {
+        mostrarPantalla("VerReserva", event);
+    }
+
+    public void mosrtarPantallaCompra(ActionEvent event,Reserva reserva ) throws IOException, SQLException {
+        mostrarPantalla("Comprar", event,reserva);
+    }
 }
+
+
+
