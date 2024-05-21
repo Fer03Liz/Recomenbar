@@ -124,10 +124,10 @@ public class CompraController {
     }
 
 
-    public void menuPrincipalButton(ActionEvent actionEvent) {
+    public void menuPrincipalButton(ActionEvent actionEvent) throws SQLException, IOException {
         Stage stage = new Stage();
         GestorDePantallas gestorDePantallas = GestorDePantallas.obtenerInstancia();
-        gestorDePantallas.mostrarPantallaHome(stage);
+        gestorDePantallas.mostrarPantallaPostLogin(actionEvent);
     }
 }
 
