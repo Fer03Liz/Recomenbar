@@ -25,6 +25,7 @@
                   <Button mnemonicParsing="false" onAction="#onReservarButtonClick" prefWidth="150.0" style="-fx-background-color: #87CEEB; -fx-text-fill: black; -fx-font-family: 'Belleza';" text="Reserva" />
                   <Label layoutX="29.0" layoutY="92.0" style="-fx-text-fill: white; -fx-font-size: 16px; -fx-font-family: 'Belleza';" text="¿Quieres ver tus reservas?" />
                   <Button layoutX="68.0" layoutY="127.0" mnemonicParsing="false" onAction="#onVerReservarButtonClick" prefWidth="150.0" style="-fx-background-color: #87CEEB; -fx-text-fill: black; -fx-font-family: 'Belleza';" text="Ver Reservas" />
+                  <Button layoutX="68.0" layoutY="197.0" mnemonicParsing="false" onAction="#onSalirButtonClick" prefWidth="150.0" style="-fx-background-color: #87CEEB; -fx-text-fill: black; -fx-font-family: 'Belleza';" text="Salir" />
                </children>
             </VBox>
          </children>
