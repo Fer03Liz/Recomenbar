@@ -4,21 +4,21 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo3.CompraController" style="-fx-background-color: black;">
+<AnchorPane prefHeight="828.0" prefWidth="1210.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo3.CompraController">
     <children>
-        <Label layoutX="181.0" layoutY="14.0" prefHeight="43.0" prefWidth="209.0" text="Bienvenido a la zona de pago" style="-fx-text-fill: white;" />
-        <Label layoutX="70.0" layoutY="84.0" text="La información de tu reserva es:" style="-fx-text-fill: white;" />
-        <Label layoutX="93.0" layoutY="123.0" text="A nombre de:" style="-fx-text-fill: white;" />
-        <Label layoutX="115.0" layoutY="153.0" text="Lugar:" style="-fx-text-fill: white;" />
-        <Label layoutX="115.0" layoutY="183.0" text="Fecha:" style="-fx-text-fill: white;" />
-        <Label layoutX="118.0" layoutY="212.0" text="Precio:" style="-fx-text-fill: white;" />
-        <Label fx:id="nombreUsuario" layoutX="272.0" layoutY="123.0" style="-fx-text-fill: white;" />
-        <Label fx:id="nombreDiscoteca" layoutX="272.0" layoutY="153.0" style="-fx-text-fill: white;" />
-        <Label fx:id="fecha" layoutX="272.0" layoutY="183.0" style="-fx-text-fill: white;" />
-        <Label fx:id="precio" layoutX="272.0" layoutY="212.0" style="-fx-text-fill: white;" />
-        <Button fx:id="menuPrincipalButton" layoutX="241.0" layoutY="320.0" mnemonicParsing="false" onAction="#menuPrincipalButton" text="Menu Principal" style="-fx-background-color: lightblue; -fx-text-fill: black;" />
-        <Label layoutX="111.0" layoutY="244.0" prefHeight="17.0" prefWidth="125.0" text="Número de personas:" style="-fx-text-fill: white;" />
-        <Label fx:id="numeroPersonas" layoutX="272.0" layoutY="244.0" style="-fx-text-fill: white;" />
-        <Label fx:id="nombreEvento" layoutX="124.0" layoutY="274.0" prefHeight="17.0" prefWidth="199.0" style="-fx-text-fill: white;" />
+        <Label layoutX="506.0" layoutY="185.0" prefHeight="43.0" prefWidth="209.0" style="-fx-text-fill: white; -fx-font-family: Belleza; -fx-font-size: 20px;" text="Bienvenido a la zona de pago" />
+        <Label layoutX="380.0" layoutY="255.0" style="-fx-text-fill: white; -fx-font-family: Belleza; -fx-font-size: 20px;" text="La información de tu reserva es:" />
+        <Label layoutX="403.0" layoutY="294.0" style="-fx-text-fill: white; -fx-font-family: Belleza; -fx-font-size: 20px;" text="A nombre de:" />
+        <Label layoutX="425.0" layoutY="324.0" style="-fx-text-fill: white; -fx-font-family: Belleza; -fx-font-size: 20px;" text="Lugar:" />
+        <Label layoutX="425.0" layoutY="354.0" style="-fx-text-fill: white; -fx-font-family: Belleza; -fx-font-size: 20px;" text="Fecha:" />
+        <Label layoutX="428.0" layoutY="383.0" style="-fx-text-fill: white; -fx-font-family: Belleza; -fx-font-size: 20px;" text="Precio:" />
+        <Label fx:id="nombreUsuario" layoutX="582.0" layoutY="294.0" style="-fx-text-fill: white; -fx-font-family: Belleza; -fx-font-size: 20px;" />
+        <Label fx:id="nombreDiscoteca" layoutX="582.0" layoutY="324.0" style="-fx-text-fill: white; -fx-font-family: Belleza; -fx-font-size: 20px;" />
+        <Label fx:id="fecha" layoutX="582.0" layoutY="354.0" style="-fx-text-fill: white; -fx-font-family: Belleza; -fx-font-size: 20px;" />
+        <Label fx:id="precio" layoutX="582.0" layoutY="383.0" style="-fx-text-fill: white; -fx-font-family: Belleza; -fx-font-size: 20px;" />
+        <Button fx:id="menuPrincipalButton" layoutX="551.0" layoutY="491.0" mnemonicParsing="false" onAction="#menuPrincipalButton" style="-fx-background-color: lightblue; -fx-text-fill: black;" text="Menu Principal" />
+        <Label layoutX="425.0" layoutY="415.0" prefHeight="17.0" prefWidth="125.0" style="-fx-text-fill: white; -fx-font-family: Belleza; -fx-font-size: 20px;" text="Número de personas:" />
+        <Label fx:id="numeroPersonas" layoutX="582.0" layoutY="415.0" style="-fx-text-fill: white; -fx-font-family: Belleza; -fx-font-size: 20px;" />
+        <Label fx:id="nombreEvento" layoutX="434.0" layoutY="445.0" prefHeight="17.0" prefWidth="199.0" style="-fx-text-fill: white; -fx-font-family: Belleza; -fx-font-size: 20px;" />
     </children>
 </AnchorPane>
