@@ -28,42 +28,31 @@ public class VerReservaController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        // Inicializar la lista de nombres de bares
-        List<Reserva> reservas = null;
-        LogicaDelNegocio logicaDelNegocio= LogicaDelNegocio.getInstancia();
         try {
-            reservas = obtenerReservasDisponibles();
+            // Inicializar la lista de nombres de bares
+            List<Reserva> reservas = obtenerReservasDisponibles();
+            LogicaDelNegocio logicaDelNegocio = LogicaDelNegocio.getInstancia();
+
+            // Llenar la ListView con los nombres de los bares
+            for (Reserva reserva : reservas) {
+                Evento evento = logicaDelNegocio.eventoIdEvento(reserva.getIdEvento());
+                if (evento.isPrivado()) {
+                    Discoteca discoteca = logicaDelNegocio.discotecaID(reserva.getIdDiscoteca());
+                    ListViewDiscotecas.getItems().add(discoteca.getNombre());
+                } else {
+                    ListViewEventos.getItems().add(evento.getNombre());
+                }
+            }
         } catch (SQLException e) {
             throw new RuntimeException(e);
-        }
-        // Llenar la ListView con los nombres de los bares
-        for (Reserva reserva : reservas) {
-            Discoteca discoteca = new Discoteca();
-            try {
-                Evento evento = logicaDelNegocio.eventoIdEvento(reserva.getIdEvento());
-               // System.out.println(evento.getNombre());
-                if(evento.isPrivado()){
-                    discoteca= logicaDelNegocio.discotecaID(reserva.getIdDiscoteca());
-                    ListViewDiscotecas.getItems().addAll(discoteca.getNombre());
-                }else{
-                    ListViewEventos.getItems().addAll(evento.getNombre());
-                }
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
-            }
         }
     }
 
     private List<Reserva> obtenerReservasDisponibles() throws SQLException {
-        LogicaDelNegocio logicaDelNegocio= LogicaDelNegocio.getInstancia();
+        LogicaDelNegocio logicaDelNegocio = LogicaDelNegocio.getInstancia();
         Sesion sesion = Sesion.obtenerInstancia();
-        Usuario usuaro= logicaDelNegocio.UsuarioCorreo(sesion.getCorreo());
-        List<Reserva> reservas = logicaDelNegocio.reservasValidas(usuaro.getId());
-        /*for( Reserva r: reservas){
-            Discoteca discoteca = logicaDelNegocio.discotecaID(r.getIdDiscoteca());
-            //System.out.println(discoteca.getNombre());
-        }*/
-        return reservas;
+        Usuario usuario = logicaDelNegocio.UsuarioCorreo(sesion.getCorreo());
+        return logicaDelNegocio.reservasValidas(usuario.getId());
     }
 
     private boolean validar() throws SQLException {
@@ -71,9 +60,6 @@ public class VerReservaController implements Initializable {
         LogicaDelNegocio logicaDelNegocio = LogicaDelNegocio.getInstancia();
         String discotecaSeleccionada = ListViewDiscotecas.getSelectionModel().getSelectedItem();
         String eventoSeleccionado = ListViewEventos.getSelectionModel().getSelectedItem();
-
-        System.out.println("Discoteca: " + discotecaSeleccionada);
-        System.out.println("Evento: " + eventoSeleccionado);
 
         Discoteca discoteca = null;
         Evento evento = null;
@@ -98,37 +84,51 @@ public class VerReservaController implements Initializable {
         return validar;
     }
 
-
     @FXML
     private void onVerInfoReserva(ActionEvent event) throws SQLException, IOException {
-        LogicaDelNegocio logicaDelNegocio= LogicaDelNegocio.getInstancia();
-        Reserva reservaEscogida= null;
-        String discotecaSeleccionada = ListViewDiscotecas.getSelectionModel().getSelectedItem();
-        Discoteca discoteca = logicaDelNegocio.discotecaNombre(discotecaSeleccionada);
-        String eventoSeleccionado = ListViewEventos.getSelectionModel().getSelectedItem();
-        Evento evento = logicaDelNegocio.eventoNombre(eventoSeleccionado);
-        List<Reserva> reservas = null;
-        System.out.println("BOTON OPRIMIDO");
-        try {
-            reservas = obtenerReservasDisponibles();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
+        if (!validar()) {
+            System.out.println("Validación fallida: Selecciona una discoteca o un evento.");
+            return;
         }
-        System.out.println(validar());
-        if(validar()){
-            for( Reserva r: reservas){
-                if(r.getIdDiscoteca()==discoteca.getId()){
-                    reservaEscogida=r;
-                }
-                if(r.getIdEvento()==evento.getId()){
-                    reservaEscogida=r;
+
+        LogicaDelNegocio logicaDelNegocio = LogicaDelNegocio.getInstancia();
+        Reserva reservaEscogida = null;
+        String discotecaSeleccionada = ListViewDiscotecas.getSelectionModel().getSelectedItem();
+        String eventoSeleccionado = ListViewEventos.getSelectionModel().getSelectedItem();
+
+        Discoteca discoteca = null;
+        Evento evento = null;
+
+        if (discotecaSeleccionada != null) {
+            discoteca = logicaDelNegocio.discotecaNombre(discotecaSeleccionada);
+        }
+        if (eventoSeleccionado != null) {
+            evento = logicaDelNegocio.eventoNombre(eventoSeleccionado);
+        }
+
+        List<Reserva> reservas = obtenerReservasDisponibles();
+
+        if (discoteca != null) {
+            for (Reserva r : reservas) {
+                if (r.getIdDiscoteca() == discoteca.getId()) {
+                    reservaEscogida = r;
+                    break;
                 }
             }
-            Discoteca discotecaReservada= logicaDelNegocio.discotecaID(reservaEscogida.getIdDiscoteca());
-            System.out.println(discotecaReservada.getNombre());
-            GestorDePantallas gestorDePantallas= GestorDePantallas.obtenerInstancia();
+        } else if (evento != null) {
+            for (Reserva r : reservas) {
+                if (r.getIdEvento() == evento.getId()) {
+                    reservaEscogida = r;
+                    break;
+                }
+            }
+        }
+
+        if (reservaEscogida != null) {
+            GestorDePantallas gestorDePantallas = GestorDePantallas.obtenerInstancia();
             gestorDePantallas.mostrarVerInfoReserva(event, reservaEscogida);
+        } else {
+            System.out.println("No se encontró una reserva correspondiente.");
         }
     }
-
 }
