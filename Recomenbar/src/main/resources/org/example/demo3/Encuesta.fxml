@@ -8,28 +8,28 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
 
-<Pane prefHeight="530.0" prefWidth="831.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo3.EncuestaController">
+<Pane prefHeight="695.0" prefWidth="953.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo3.EncuestaController">
     <children>
-        <ImageView fitHeight="50.0" fitWidth="100.0" layoutX="365.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+        <ImageView fitHeight="274.0" fitWidth="272.0" layoutX="318.0" layoutY="-68.0" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@../../../LogoFondoNegro.png" />
             </image>
         </ImageView>
-        <Label layoutX="217.0" layoutY="73.0" text="Encuesta para encontrar tu discoteca indicada" style="-fx-text-fill: white; -fx-font-family: 'Belleza';" />
-        <Label layoutX="48.0" layoutY="123.0" text="Pregunta 1" style="-fx-text-fill: white; -fx-font-family: 'Belleza';" />
-        <Label layoutX="48.0" layoutY="153.0" text="Que tipo de musica te gusta?" style="-fx-text-fill: white; -fx-font-family: 'Belleza';" />
-        <Label layoutX="50.0" layoutY="226.0" text="Pregunta 2" style="-fx-text-fill: white; -fx-font-family: 'Belleza';" />
-        <Label layoutX="44.0" layoutY="256.0" text="En donde te gusta rumbear normalmente?" style="-fx-text-fill: white; -fx-font-family: 'Belleza';" />
-        <Label layoutX="44.0" layoutY="354.0" text="Cual es tu presupuesto?" style="-fx-text-fill: white; -fx-font-family: 'Belleza';" />
-        <Label layoutX="44.0" layoutY="329.0" text="Pregunta 3" style="-fx-text-fill: white; -fx-font-family: 'Belleza';" />
-        <Label layoutX="44.0" layoutY="409.0" text="Pregunta 4" style="-fx-text-fill: white; -fx-font-family: 'Belleza';" />
-        <Label layoutX="47.0" layoutY="433.0" text="Que tipo de experiencia prefieres al salir?" style="-fx-text-fill: white; -fx-font-family: 'Belleza';" />
-        <ChoiceBox fx:id="choicebox1" layoutX="50.0" layoutY="185.0" prefWidth="150.0" />
-        <ChoiceBox fx:id="choicebox2" layoutX="50.0" layoutY="283.0" prefWidth="150.0" />
-        <ChoiceBox fx:id="choicebox4" layoutX="50.0" layoutY="460.0" prefWidth="150.0" />
-        <ChoiceBox fx:id="choicebox3" layoutX="50.0" layoutY="377.0" prefWidth="150.0" />
-        <Button layoutX="340.0" layoutY="484.0" mnemonicParsing="false" onAction="#onResultadosButtonClick" text="Resultados" style="-fx-background-color: lightblue; -fx-text-fill: black; -fx-font-family: 'Belleza';" />
-        <ListView fx:id="listViewBares" layoutX="479.0" layoutY="171.0" prefHeight="200.0" prefWidth="200.0" />
-        <Button layoutX="478.0" layoutY="484.0" mnemonicParsing="false" onAction="#onReservarButtonClick" text="Reservar" style="-fx-background-color: lightblue; -fx-text-fill: black; -fx-font-family: 'Belleza';" />
+        <Label layoutX="286.0" layoutY="183.0" prefHeight="21.0" prefWidth="336.0" style="-fx-text-fill: white; -fx-font-family: 'Belleza';" text="Encuesta para encontrar tu discoteca indicada" />
+        <Label layoutX="133.0" layoutY="233.0" style="-fx-text-fill: white; -fx-font-family: 'Belleza';" text="Pregunta 1" />
+        <Label layoutX="133.0" layoutY="263.0" style="-fx-text-fill: white; -fx-font-family: 'Belleza';" text="Que tipo de musica te gusta?" />
+        <Label layoutX="135.0" layoutY="336.0" style="-fx-text-fill: white; -fx-font-family: 'Belleza';" text="Pregunta 2" />
+        <Label layoutX="129.0" layoutY="366.0" style="-fx-text-fill: white; -fx-font-family: 'Belleza';" text="En donde te gusta rumbear normalmente?" />
+        <Label layoutX="129.0" layoutY="464.0" style="-fx-text-fill: white; -fx-font-family: 'Belleza';" text="Cual es tu presupuesto?" />
+        <Label layoutX="129.0" layoutY="439.0" style="-fx-text-fill: white; -fx-font-family: 'Belleza';" text="Pregunta 3" />
+        <Label layoutX="129.0" layoutY="519.0" style="-fx-text-fill: white; -fx-font-family: 'Belleza';" text="Pregunta 4" />
+        <Label layoutX="132.0" layoutY="543.0" style="-fx-text-fill: white; -fx-font-family: 'Belleza';" text="Que tipo de experiencia prefieres al salir?" />
+        <ChoiceBox fx:id="choicebox1" layoutX="135.0" layoutY="295.0" prefWidth="150.0" />
+        <ChoiceBox fx:id="choicebox2" layoutX="135.0" layoutY="393.0" prefWidth="150.0" />
+        <ChoiceBox fx:id="choicebox4" layoutX="135.0" layoutY="570.0" prefWidth="150.0" />
+        <ChoiceBox fx:id="choicebox3" layoutX="135.0" layoutY="487.0" prefWidth="150.0" />
+        <Button layoutX="425.0" layoutY="594.0" mnemonicParsing="false" onAction="#onResultadosButtonClick" style="-fx-background-color: lightblue; -fx-text-fill: black; -fx-font-family: 'Belleza';" text="Resultados" />
+        <ListView fx:id="listViewBares" layoutX="564.0" layoutY="281.0" prefHeight="200.0" prefWidth="200.0" />
+        <Button layoutX="563.0" layoutY="594.0" mnemonicParsing="false" onAction="#onReservarButtonClick" style="-fx-background-color: lightblue; -fx-text-fill: black; -fx-font-family: 'Belleza';" text="Reservar" />
     </children>
 </Pane>

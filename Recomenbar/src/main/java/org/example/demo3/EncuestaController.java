@@ -93,9 +93,14 @@ public class EncuestaController implements Initializable {
         // Limpiar la lista actual de nombres de bares
         listViewBares.getItems().clear();
 
-        // Llenar la ListView con los nombres de los bares filtrados
-        for (Discoteca discoteca : discotecas) {
-            listViewBares.getItems().add(discoteca.getNombre());
+        if (discotecas.isEmpty()) {
+            // No hay discotecas que cumplan con las características
+            listViewBares.getItems().add("No hay una discoteca que cumpla con las características.");
+        } else {
+            // Llenar la ListView con los nombres de los bares filtrados
+            for (Discoteca d : discotecas) {
+                listViewBares.getItems().add(d.getNombre());
+            }
         }
     }
 
@@ -107,8 +112,9 @@ public class EncuestaController implements Initializable {
             throw new RuntimeException(e);
         }
     }
+
     @FXML
-    private  void onReservarButtonClick(ActionEvent event) throws SQLException, IOException {
+    private void onReservarButtonClick(ActionEvent event) throws SQLException, IOException {
         LogicaDelNegocio logicaDelNegocio = LogicaDelNegocio.getInstancia();
         List<Discoteca> discotecas = logicaDelNegocio.filtrarDiscotecas(
                 choicebox1.getValue(),
@@ -117,6 +123,12 @@ public class EncuestaController implements Initializable {
                 choicebox4.getValue()
         );
         GestorDePantallas gestorDePantallas = GestorDePantallas.obtenerInstancia();
-        gestorDePantallas.mostrarPantallaReservarDiscoteca(event,discotecas);
+
+        if (discotecas != null && !discotecas.isEmpty()) {
+            gestorDePantallas.mostrarPantallaReservarDiscoteca(event, discotecas);
+        } else {
+            discotecas = logicaDelNegocio.disponibles();
+            gestorDePantallas.mostrarPantallaReservarDiscoteca(event, discotecas);
+        }
     }
 }
