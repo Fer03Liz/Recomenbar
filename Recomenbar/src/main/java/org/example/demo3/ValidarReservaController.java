@@ -5,11 +5,13 @@ import com.google.zxing.common.HybridBinarizer;
 import com.google.zxing.client.j2se.BufferedImageLuminanceSource;
 import javafx.application.Platform;
 import javafx.embed.swing.SwingFXUtils;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.control.Button;
+import javafx.stage.Stage;
 import org.bytedeco.javacv.Frame;
 import org.bytedeco.javacv.FrameGrabber;
 import org.bytedeco.javacv.OpenCVFrameConverter;
@@ -199,5 +201,12 @@ public class ValidarReservaController {
             Platform.runLater(() -> estadoLabel.setText("Ya se ha usado esta reserva"));
         }
         return valido;
+    }
+
+    @FXML
+    private void onSalirButtonClick(ActionEvent event) {
+        // Cerrar la aplicación
+        Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
+        stage.close();
     }
 }
