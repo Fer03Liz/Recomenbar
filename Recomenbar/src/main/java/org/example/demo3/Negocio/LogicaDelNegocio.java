@@ -15,7 +15,7 @@ import static org.example.demo3.Negocio.QRCode.generateQRCode;
 public class LogicaDelNegocio {
     private static LogicaDelNegocio instancia;
     // Constructor privado para evitar la creación de instancias desde fuera de la clase
-    private LogicaDelNegocio() {}
+    public LogicaDelNegocio() {}
     // Método estático para obtener la instancia única de LogicaDelNegocio
     public static LogicaDelNegocio getInstancia() {
         if (instancia == null) {
@@ -73,21 +73,48 @@ public class LogicaDelNegocio {
         boolean insertado = false;
         Connection conexion = ConexionBD.getConexion();
 
+        // Verificar si el usuario es mayor de 18 años
+        if (edad <= 18) {
+            System.out.println("El usuario debe ser mayor de 18 años para registrarse.");
+            return false;
+        }
+
+        // Verificar si el correo electrónico tiene un formato válido
+        if (!correo.contains("@") || !correo.contains(".com")) {
+            System.out.println("El correo electrónico debe tener un formato válido.");
+            return false;
+        }
+
         String sql = "INSERT INTO usuario (nombre, edad, correo, contraseña, tipo) VALUES(?,?,?,?,?)";
-        PreparedStatement sentencia = conexion.prepareStatement(sql);
+        PreparedStatement sentencia = null;
 
-        sentencia.setString(1, name);
-        sentencia.setInt(2, edad);
-        sentencia.setString(3, correo);
-        sentencia.setString(4, password);
-        sentencia.setInt(5, 1);
+        try {
+            sentencia = conexion.prepareStatement(sql);
+            sentencia.setString(1, name);
+            sentencia.setInt(2, edad);
+            sentencia.setString(3, correo);
+            sentencia.setString(4, password);
+            sentencia.setInt(5, 1);
 
-        int filasINS = sentencia.executeUpdate();
-        if (filasINS > 0) {
-            insertado = true;
+            int filasINS = sentencia.executeUpdate();
+            if (filasINS > 0) {
+                insertado = true;
+            }
+        } catch (SQLIntegrityConstraintViolationException e) {
+            // El correo ya está en uso
+            System.out.println("El correo " + correo + " ya está en uso.");
+        } finally {
+            if (sentencia != null) {
+                sentencia.close();
+            }
+            if (conexion != null) {
+                conexion.close();
+            }
         }
         return insertado;
     }
+
+
 
     public boolean loginRealizado(String email, String password) {
         PreparedStatement sentencia = null;
@@ -216,6 +243,7 @@ public class LogicaDelNegocio {
 
         return discotecas;
     }
+
     public List<Evento> EventosDisponibles() throws SQLException {
         List<Evento> eventos = new ArrayList<>();
         // Obtén la conexión a través del Singleton
@@ -342,13 +370,15 @@ public class LogicaDelNegocio {
     }
     public Discoteca discotecaNombre(String nombre) throws SQLException {
         Connection conexion = ConexionBD.getConexion();
-        Discoteca discoteca = new Discoteca();
+        Discoteca discoteca = null; // Inicializa como null
+
         String sql = "SELECT id, direccion, genero_musical, tipo, precio_entrada FROM discoteca WHERE nombre = ?";
         PreparedStatement statement = conexion.prepareStatement(sql);
         statement.setString(1, nombre);
         ResultSet resultSet = statement.executeQuery();
 
         if (resultSet.next()) {
+            discoteca = new Discoteca(); // Solo crea la instancia si se encontró una discoteca
             discoteca.setId(resultSet.getInt("id"));
             discoteca.setNombre(nombre);
             discoteca.setTipoMusica(resultSet.getString("genero_musical"));
@@ -359,15 +389,19 @@ public class LogicaDelNegocio {
 
         return discoteca;
     }
+
+
     public Discoteca discotecaID(int id) throws SQLException {
         Connection conexion = ConexionBD.getConexion();
-        Discoteca discoteca = new Discoteca();
+        Discoteca discoteca = null; // Inicializamos a null
+
         String sql = "SELECT nombre, direccion, genero_musical, tipo, precio_entrada FROM discoteca WHERE id = ?";
         PreparedStatement statement = conexion.prepareStatement(sql);
         statement.setInt(1, id);
         ResultSet resultSet = statement.executeQuery();
 
         if (resultSet.next()) {
+            discoteca = new Discoteca(); // Creamos una instancia solo si se encuentra una discoteca
             discoteca.setId(id);
             discoteca.setNombre(resultSet.getString("nombre"));
             discoteca.setTipoMusica(resultSet.getString("genero_musical"));
@@ -384,8 +418,10 @@ public class LogicaDelNegocio {
         PreparedStatement statement = conexion.prepareStatement(sql);
         statement.setString(1, nombre);
         ResultSet resultSet = statement.executeQuery();
-        Evento evento= new Evento();
+        Evento evento = null; // Inicializamos como null
+
         if (resultSet.next()) {
+            evento = new Evento();
             evento.setId(resultSet.getInt("id"));
             evento.setId_discoteca(resultSet.getInt("id_discoteca"));
             evento.setNombre(nombre);
@@ -393,6 +429,9 @@ public class LogicaDelNegocio {
             evento.setFecha(resultSet.getDate("fecha"));
             evento.setPrivado(resultSet.getBoolean("private"));
         }
+
+        // Si resultSet.next() devuelve false (no se encontró ningún resultado), evento seguirá siendo null
+
         return evento;
     }
     public Evento eventoIdEvento(int id) throws SQLException {
