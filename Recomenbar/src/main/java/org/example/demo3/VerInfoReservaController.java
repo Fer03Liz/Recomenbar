@@ -1,5 +1,6 @@
 package org.example.demo3;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import org.example.demo3.Entidades.Discoteca;
@@ -10,7 +11,9 @@ import org.example.demo3.Negocio.LogicaDelNegocio;
 import org.example.demo3.Negocio.Sesion;
 
 import javafx.scene.image.ImageView;
+
 import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.Date;
@@ -67,4 +70,9 @@ public class VerInfoReservaController {
         }
     }
 
+    @FXML
+    private void onMenuButtonClick(ActionEvent event) throws IOException, SQLException {
+        GestorDePantallas gestorDePantallas = GestorDePantallas.obtenerInstancia();
+        gestorDePantallas.mostrarPantallaPostLogin(event);
+    }
 }
