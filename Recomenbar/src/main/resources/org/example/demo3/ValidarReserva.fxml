@@ -5,10 +5,11 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox alignment="CENTER" spacing="10" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="org.example.demo3.ValidarReservaController">
-   <Label style="-fx-font-size: 24px;" text="Validar Reserva" />
+<VBox alignment="CENTER" spacing="10" style="-fx-background-color: black;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="org.example.demo3.ValidarReservaController">
+   <Label style="-fx-font-size: 24px; -fx-text-fill: white;" text="Validar Reserva" />
    <ImageView fx:id="qrImageView" fitHeight="300" fitWidth="300" />
-   <Button onAction="#onIniciarCamaraButtonClick" text="Iniciar Cámara" />
-   <Label fx:id="infoLabel" style="-fx-font-size: 16px;" />
-   <Label fx:id="estadoLabel" layoutX="160.0" layoutY="406.0" style="-fx-font-size: 16px;" />
+   <Button onAction="#onIniciarCamaraButtonClick" text="Iniciar Cámara" style="-fx-background-color: lightblue; -fx-text-fill: black;" />
+   <Label fx:id="infoLabel" style="-fx-font-size: 16px; -fx-text-fill: white;" />
+   <Label fx:id="estadoLabel" layoutX="160.0" layoutY="406.0" style="-fx-font-size: 16px; -fx-text-fill: white;" />
+   <Button onAction="#onSalirButtonClick" text="Salir" style="-fx-background-color: lightblue; -fx-text-fill: black;" />
 </VBox>
