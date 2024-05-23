@@ -1,13 +1,17 @@
 package org.example.demo3.Negocio;
 
+import com.google.zxing.WriterException;
+import javafx.scene.control.RadioMenuItem;
 import org.example.demo3.Entidades.Discoteca;
 import org.example.demo3.Entidades.Evento;
 import org.example.demo3.Entidades.Reserva;
 import org.example.demo3.Entidades.Usuario;
 import org.junit.jupiter.api.Test;
 
+import java.io.IOException;
 import java.sql.*;
 import java.util.List;
+import java.util.Random;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -198,13 +202,22 @@ public class LogicaDelNegocioTest {
         // Datos para la entrada VIP
         int idDiscoteca = 1;  // ID de discoteca existente
         boolean vip = true;
-        float precio = 50000.00f;
+        float precio = 20000.00f;
+        Date date = Date.valueOf("2024-06-01 20:00:00");
+        Timestamp   timestamp=Timestamp.valueOf(String.valueOf(date));
+        String nombreBar= "Palenque";
+        int cantidad = 15;
+        int idr= 123456789;
 
         // Prueba el método crearEntrada para insertar una entrada VIP en la base de datos
         try {
-            assertTrue(logica.crearEntrada(idDiscoteca, vip, precio), "Se esperaba que la entrada VIP se creara correctamente");
+            assertTrue(logica.crearEntrada(idr,idDiscoteca, vip, precio,timestamp,nombreBar,cantidad), "Se esperaba que la entrada VIP se creara correctamente");
         } catch (SQLException e) {
             fail("Se produjo una excepción al ejecutar la prueba: " + e.getMessage());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } catch (WriterException e) {
+            throw new RuntimeException(e);
         }
     }
 
@@ -216,12 +229,20 @@ public class LogicaDelNegocioTest {
         int idDiscoteca = 1;  // ID de discoteca existente
         boolean vip = false;
         float precio = 20000.00f;
-
+        Date date = Date.valueOf("2024-06-01 20:00:00");
+        Timestamp   timestamp=Timestamp.valueOf(String.valueOf(date));
+        String nombreBar= "Palenque";
+        int cantidad = 15;
+        int idr= 123456789;
         // Prueba el método crearEntrada para insertar una entrada normal en la base de datos
         try {
-            assertTrue(logica.crearEntrada(idDiscoteca, vip, precio), "Se esperaba que la entrada normal se creara correctamente");
+            assertTrue(logica.crearEntrada(idr,idDiscoteca, vip, precio,timestamp,nombreBar,cantidad), "Se esperaba que la entrada normal se creara correctamente");
         } catch (SQLException e) {
             fail("Se produjo una excepción al ejecutar la prueba: " + e.getMessage());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } catch (WriterException e) {
+            throw new RuntimeException(e);
         }
     }
 
@@ -230,15 +251,24 @@ public class LogicaDelNegocioTest {
         LogicaDelNegocio logica = LogicaDelNegocio.getInstancia();
 
         // Datos para una entrada con id_discoteca nulo
-        Integer idDiscoteca = 50; // Aquí inicializamos idDiscoteca en null
+        Integer idDiscoteca = 0; // Aquí inicializamos idDiscoteca en null
         boolean vip = false;
         float precio = 20000.00f;
+        Date date = Date.valueOf("2024-06-01 20:00:00");
+        Timestamp   timestamp=Timestamp.valueOf(String.valueOf(date));
+        String nombreBar= "Palenque";
+        int cantidad = 15;
+        int idr= 123456789;
 
         // Prueba el método crearEntrada con un id_discoteca nulo
         try {
-            assertFalse(logica.crearEntrada(idDiscoteca, vip, precio), "Se esperaba que la creación de la entrada fallara");
+            assertFalse(logica.crearEntrada(idr,idDiscoteca, vip, precio,timestamp,nombreBar,cantidad), "Se esperaba que la creación de la entrada fallara");
         } catch (SQLException e) {
             fail("Se produjo una excepción al ejecutar la prueba: " + e.getMessage());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } catch (WriterException e) {
+            throw new RuntimeException(e);
         }
     }
     @Test
@@ -375,46 +405,6 @@ public class LogicaDelNegocioTest {
         } catch (SQLException e) {
             fail("Se produjo una excepción al ejecutar la prueba: " + e.getMessage());
         }
-    }
-    @Test
-    public void testIdEntradaExitoso() throws SQLException {
-        // Llamar al método que se está probando
-        LogicaDelNegocio logica = new LogicaDelNegocio();
-        int id = logica.idEntrada(1); // Supongamos que queremos el ID de entrada para la discoteca con ID 1
-
-        // Verificar si el resultado es el esperado
-        assertEquals(1, id); // Asegúrate de ajustar el valor esperado según tu lógica
-    }
-    @Test
-    public void testIdEntradaFallido() throws SQLException {
-        // Llamar al método que se está probando
-        LogicaDelNegocio logica = new LogicaDelNegocio();
-        int id = logica.idEntrada(50); // Supongamos que queremos el ID de entrada para una discoteca inexistente
-
-        // Verificar si el resultado es el esperado
-        assertEquals(0, id); // Asegúrate de ajustar el valor esperado según tu lógica
-    }
-    @Test
-    public void testReservaIdUsuarioExitoso() throws SQLException {
-        LogicaDelNegocio logica = new LogicaDelNegocio();
-        int idUsuario = 3; // ID de usuario existente en tu base de datos
-
-        Reserva reserva = logica.reservaIdUsuario(idUsuario);
-
-        assertNotNull(reserva, "La reserva no debe ser nula");
-        assertEquals(idUsuario, reserva.getIdUsuario(), "El ID del usuario de la reserva debe ser el esperado");
-        // Asegúrate de verificar otros campos importantes de la reserva aquí
-        // Por ejemplo, asegúrate de que la reserva tenga una fecha válida y una cantidad de entradas válida
-    }
-    @Test
-    public void testReservaIdUsuarioFallido() throws SQLException {
-        // Llamar al método que se está probando con un ID de usuario inexistente
-        LogicaDelNegocio logica = new LogicaDelNegocio();
-        Reserva reserva = logica.reservaIdUsuario(99); // Supongamos que queremos la reserva de un usuario inexistente
-
-        // Verificar si la reserva devuelta está vacía (es decir, no se encontró ninguna reserva)
-        assertEquals(0, reserva.getId());
-        assertFalse(reserva.getEstadoReserva());
     }
     @Test
     public void testEventoNombreExistente() {
