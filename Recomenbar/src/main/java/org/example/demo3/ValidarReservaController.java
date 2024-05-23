@@ -155,9 +155,9 @@ public class ValidarReservaController {
         String[] parts = qrContent.split(" ");
         int idR = 0;
         for (int i = 0; i < parts.length; i++) {
+            System.out.println(parts[i]);
             if (parts[i].equals("ID:")) {
                 idR = Integer.parseInt(parts[i + 1]);
-                break;
             }
         }
         System.out.println("idR: " + idR);
@@ -184,7 +184,7 @@ public class ValidarReservaController {
                 break;
             }
         }
-        int idR = processQRContent(nombre);
+        int idR = processQRContent(qrContent);
         Entrada entrada= logicaDelNegocio.entradaIDR(idR);
         Reserva reserva= logicaDelNegocio.reservaIdEntrada(entrada.getId());
         System.out.println("DESDE EL QR "+nombre);

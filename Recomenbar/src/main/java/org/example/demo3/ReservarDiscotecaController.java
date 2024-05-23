@@ -150,7 +150,6 @@ public class ReservarDiscotecaController {
                 logicaDelNegocio.crearEntrada(idR,discoteca.getId(),esVip,evento.getPrecio(),timestamp,discoteca.getNombre(),cantidadPersonas);
                 Entrada entrada= logicaDelNegocio.entradaIDR(idR);
                 if (logicaDelNegocio.registrarReserva(usuario.getId(), discoteca.getId(), entrada.getId(), evento.getId(), timestamp,cantidadPersonas,true)) {
-                    // Cierra la aplicación después de registrar la reserva correctamente
                     System.out.printf("Se puede hacer la reserva");
                     System.out.print("inf reserva antes :"+idR+"  "+usuario.getId()+"    "+ discoteca.getId());
                     GestorDePantallas gestorDePantallas= GestorDePantallas.obtenerInstancia();
